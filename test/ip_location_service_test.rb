@@ -49,7 +49,7 @@ class IpLocationServiceTest < Test::Unit::TestCase
   end
 
   def test_build_region_without_exception
-    region_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/is_in_region.xml")
+    region_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/ip_location_response.xml")
     region_xml_doc = Handsoap::XmlQueryFront.parse_string(region_xml, :nokogiri)
     
     assert_nothing_raised do
@@ -58,7 +58,7 @@ class IpLocationServiceTest < Test::Unit::TestCase
   end
 
   def test_build_region_witht_valid_attributes
-    region_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/is_in_region.xml")
+    region_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/ip_location_response.xml")
     region_xml_doc = Handsoap::XmlQueryFront.parse_string(region_xml, :nokogiri)      
     region = IpLocationService::Region.build_from_xml(region_xml_doc)
 
@@ -68,7 +68,7 @@ class IpLocationServiceTest < Test::Unit::TestCase
 
 
   def test_build_ip_address_location_without_exception
-    ip_address_location_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/ip_address_location.xml")
+    ip_address_location_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/ip_location_response.xml")
     ip_address_location_xml_doc = Handsoap::XmlQueryFront.parse_string(ip_address_location_xml, :nokogiri)
     
     assert_nothing_raised do
@@ -78,7 +78,7 @@ class IpLocationServiceTest < Test::Unit::TestCase
 
   # Hier wird getestet, ob auch die Attribute korrekt gesetzt wurden.
   def test_build_ip_address_location_without_valid_attributes
-    ip_address_location_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/ip_address_location.xml")
+    ip_address_location_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/ip_location_response.xml")
     ip_address_location_xml_doc = Handsoap::XmlQueryFront.parse_string(ip_address_location_xml, :nokogiri)
     ip_location_response = IpLocationService::IpAddressLocation.build_from_xml(ip_address_location_xml_doc)
     assert_equal("de", ip_location_response.is_in_region.country_code)

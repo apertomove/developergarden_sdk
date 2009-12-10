@@ -65,6 +65,8 @@ module IpLocationService
 
     # Performs a xpath query in the ip location namespace for the given document and query string.
     def self.xpath_query(doc, query_string)
+      
+      # Only search if there's at least one element
       doc.xpath("//schema:#{query_string}", "schema" => @@IP_LOCATION_SCHEMA)
     end
   end

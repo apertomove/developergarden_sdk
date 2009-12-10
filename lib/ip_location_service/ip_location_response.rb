@@ -16,13 +16,13 @@ module IpLocationService
 
       ip_address_location_doc = IpLocationService.xpath_query(doc, "ipAddressLocation")      
 
-      @id_address_location    = IpAddressLocation.build_from_xml(ip_address_location_doc)
+      @ip_address_location    = IpAddressLocation.build_from_xml(ip_address_location_doc)
 
       raise_on_error(response_xml) if raise_exception_on_error
     end
 
     def to_s
-      "Status: #{@error_code}, Message: #{@error_message}, Location: #{@id_address_location}."
+      "Status: #{@error_code}, Message: #{@error_message}, Location: #{@ip_address_location}."
     end
     
   end

@@ -97,7 +97,13 @@ class IpLocationServiceTest < Test::Unit::TestCase
   end
 
   def test_locate_ip_by_ip_string
-    @ip_location_service.locate_ip("127.0.0.1")
+    response = @ip_location_service.locate_ip("127.0.0.1")
+    assert_instance_of(IpLocationService::IpLocationResponse, response)
+
+    assert_equal("0000", response.error_code)
+    
+    assert_instance_of(IpLocationService::IpAddressLocation, response.ip_address_location)
+    assert_equal("de", response.ip_address_location.is_in_region.country_code)
   end
 
   def test_locate_ip_by_ip_string_array
@@ -108,10 +114,20 @@ class IpLocationServiceTest < Test::Unit::TestCase
     ip = IpLocationService::IpAddress.new("127.0.0.1")
     response = @ip_location_service.locate_ip(ip)
     assert_instance_of(IpLocationService::IpLocationResponse, response)
-    puts response
+
+    assert_equal("0000", response.error_code)
+
+    assert_instance_of(IpLocationService::IpAddressLocation, response.ip_address_location)
+    assert_equal("de", response.ip_address_location.is_in_region.country_code)
   end
 
   def test_locate_ip_by_ip_address_object_array
-    assert(false, "Unimplemented")
+    ips = [ IpLocationService::IpAddress.new("127.0.0.1"), IpLocationService::IpAddress.new("128.0.0.1") ]
+
+
+    response = @ip_location_service.locate_ip(ips)
+    assert_instance_of(IpLocationService::IpLocationResponse, response)
+    assert_equal("0000", response.error_code)
+    puts response
   end
 end

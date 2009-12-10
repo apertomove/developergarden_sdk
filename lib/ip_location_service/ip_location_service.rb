@@ -43,6 +43,10 @@ module IpLocationService
         ip_addresses = [ip_addresses] unless ip_addresses.is_a?(Array)
 
         ip_addresses.each do |ip_address|
+
+          # If there are string ips convert them to IpAddress objects.
+          ip_address = IpAddress.new(ip_address) if ip_address.is_a?(String) 
+
           request.add('address') do |address|
             address.add('ipType', ip_address.ip_type)
             address.add('ipAddress', ip_address.ip_address)

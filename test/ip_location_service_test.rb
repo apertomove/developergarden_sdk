@@ -128,6 +128,11 @@ class IpLocationServiceTest < Test::Unit::TestCase
     response = @ip_location_service.locate_ip(ips)
     assert_instance_of(IpLocationService::IpLocationResponse, response)
     assert_equal("0000", response.error_code)
+
+    assert_instance_of(IpLocationService::IpAddressLocation, response.ip_address_locations[0])
+
+    assert_instance_of(IpLocationService::IpAddressLocation, response.ip_address_locations[1])
+
     puts response
   end
 end

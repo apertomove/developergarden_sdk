@@ -1,0 +1,112 @@
+== developergarden_sdk development version
+
+In order to use the current development version of the developergarden_sdk here is what you need to do.
+
+=== Install the handsoap gem
+For production use the official release of handsoap should be installed.
+
+More information about handsoap can be found at:
+ http://github.com/troelskn/handsoap/tree/master
+
+==== Install official handsoap release
+ gem sources -a http://gems.github.com
+ sudo gem install troelskn-handsoap 
+
+==== Install handsoap developer version
+In most cases you don't need the developer version of handsoap. The official release will do the trick.
+However, if you want to use the bleeding edge version of handsoap proceed as follows.
+Note that you do not need to perform these steps if you have already installed the official release!
+
+Checkout handsoap from github
+ git clone git://github.com/troelskn/handsoap.git
+
+Install jeweler
+ sudo gem install jeweler
+
+Build handsoap package
+ cd handsoap_repo
+ rake build
+
+Install the resulting gem file
+ cd pkg
+ sudo gem install handsoap-0.2.7.gem
+
+Attention: if you you use the development version you might need to change the gem statement in
+   basic_service.rb from
+
+   gem 'troelskn-handsoap'
+
+   to
+
+   gem 'handsoap'
+
+=== Get the developergarden_sdk source
+Use subversion to get the developergarden_sdk source code:
+  svn checkout http://developergarden.rubyforge.org/svn/
+or
+	svn checkout svn://rubyforge.org/var/svn/developergarden
+
+=== Build the developergarden_sdk gem from source
+You can build the gem by invoking the gem rake task
+ 
+ rake gem
+
+The resulting gem will be generated to the pkg/ directory and can be installed like this:
+
+ sudo gem install developergarden_sdk-0.0.6.gem
+
+Depending on the current version number you will need to adapt the gem filename correspondingly.
+
+=== Installation of the developergarden_sdk Gem
+Install the gem using the following command
+ gem install developergarden_sdk-0.0.x.gem
+
+Where x stands for the current version. For the version 0.0.4 this could look like this:
+ gem install developergarden_sdk-0.0.x.gem
+
+=== Build the developergarden_sdk plugin from source
+ rake update_plugin
+
+You can find the resulting plugin in the "plugin" folder of your developergarden_sdk directory.
+
+=== Debug
+Per default all generated and received soap xml messages are not visible. These can be print to stdout for debugging purposes by starting the ruby interpreter with the -d option. You will then see all http xml soap requests and responses.
+This can be done by invoking your ruby app by using a shebang like this:
+ #!/usr/bin/ruby -d
+
+=== Testing
+Before you run the tests you will need to modify config/test_settings.yml by entering your developer garden credentials.
+
+Executing tests will be done in the "sandbox" or "mock" environment which are free of charge.
+Be ware that the services itself have quotas on these test environments so your tests may fail after a while.
+The quotas are on a daily basis so they should pass again the next day.
+
+Failures when reaching the SANDBOX QUOTA might look like this:
+ 0030 quotas have exceeded
+
+Phone numbers in test files are fictive and for testing purposes only.
+
+The testsuite can be run by invoking the test raketask.
+ cd /home/yourhome/developergarden_sdk
+ rake test
+
+In order to run a single test perform the following command:
+ cd /home/yourhome/developergarden_sdk/lib
+ ruby -d ../test/voice_call_service_test.rb --name teardown_call
+
+==== QuotaService
+* QuotaService can be tested as it is. There is no need to pass an environment such as "production" or "sandbox" because
+it is free of charge.
+
+==== SmsService
+* SmsService can be tested using the "sandbox" environment. Be aware that there is a 5 credit quota per day. So you can
+send 5 test sms per day. After that you will receive a corresponding quota error message.
+
+==== VoiceCallService
+* In the "sandbox" environment there is a quota limit of 5 calls per day (each up to 10 sec) for the VoiceCallService
+* In the "production" environment a call may not last more than 60 minutes. After 60 min the call will be cancelled.
+* There is also a quota for the "mock" environment.
+
+For more information about service environments have a look at the documentation at http://www.developergarden.com
+
+

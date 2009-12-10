@@ -1,0 +1,11 @@
+<ipAddressLocation>
+  <isInRegion>
+    <countryCode>de</countryCode>
+    <regionCode/>
+    <regionName>Lokalhost</regionName>
+  </isInRegion>
+  <ipType>4</ipType>
+  <ipAddress>127.0.0.1</ipAddress>
+  <radius>0</radius>
+  <statusCode>0000</statusCode>
+</ipAddressLocation>

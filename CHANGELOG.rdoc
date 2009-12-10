@@ -1,0 +1,26 @@
+== 0.0.1
+* Internal release
+
+== 0.0.2
+* Internal release
+
+== 0.0.3
+* Internal release
+
+== 0.0.4
+* Internal release
+
+== 0.0.5
+* Internal release
+
+== 0.0.6
+* Internal release
+* BUGFIX: Orignator will now be passed to the remote service, again.
+
+== 0.0.7
+
+== 0.0.7.1
+
+== 0.0.8
+
+== 0.0.8.1

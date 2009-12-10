@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: BasicService</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">BasicService</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/basic_service_rb.html">
+                lib/basic_service.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Handsoap::Service
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Implements basic logic used by developer garden ruby service
+implementations.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000003">build_security_header_common</a>&nbsp;&nbsp;
+      <a href="#M000002">build_service_header</a>&nbsp;&nbsp;
+      <a href="#M000004">get_token_data_from_response</a>&nbsp;&nbsp;
+      <a href="#M000001">new</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000001" class="method-detail">
+        <a name="M000001"></a>
+
+        <div class="method-heading">
+          <a href="#M000001" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(username, password, environment = ServiceEnvironment.SANDBOX)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Constructor
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>username</tt>:</td><td>Username, such as myuser@t-online.de
+
+</td></tr>
+<tr><td valign="top"><tt>password</tt>:</td><td>Password
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in <a
+href="ServiceEnvironment.html">ServiceEnvironment</a>
+
+</td></tr>
+</table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000001-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000001-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/basic_service.rb, line 24</span>
+24:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">username</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">SANDBOX</span>)
+25:     <span class="ruby-ivar">@username</span> = <span class="ruby-identifier">username</span>
+26:     <span class="ruby-ivar">@password</span> = <span class="ruby-identifier">password</span>
+27:     <span class="ruby-ivar">@environment</span> = <span class="ruby-identifier">environment</span>
+28:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Protected Instance methods</h3>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
+
+        <div class="method-heading">
+          <a href="#M000003" class="method-signature">
+          <span class="method-name">build_security_header_common</span><span class="method-args">(doc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Regardless to whether it is a <tt>login</tt>, <tt>getTokens</tt> or a
+regular service call there always has to be a security header. This method
+provides the structure which is in common to all these method calls.
+</p>
+<p>
+The header of the given document will be enhanced so there is no need to
+process the returning value.
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>doc</tt>:</td><td>Request XmlMason document.
+
+</td></tr>
+</table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000003-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/basic_service.rb, line 55</span>
+55:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build_security_header_common</span>(<span class="ruby-identifier">doc</span>)
+56:     
+57:     <span class="ruby-comment cmt"># Get the header element</span>
+58:     <span class="ruby-identifier">header</span> = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">'Header'</span>)
+59: 
+60:     <span class="ruby-comment cmt"># Add plain security element</span>
+61:     <span class="ruby-identifier">header</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'Security'</span>)
+62: 
+63:     <span class="ruby-comment cmt"># Find security element for further enhancement</span>
+64:     <span class="ruby-identifier">security</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">'Security'</span>)
+65: 
+66:     <span class="ruby-comment cmt"># Set namespace</span>
+67:     <span class="ruby-identifier">security</span>.<span class="ruby-identifier">set_attr</span>(<span class="ruby-value str">&quot;xmlns&quot;</span>, <span class="ruby-value str">&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd&quot;</span>)
+68:     <span class="ruby-identifier">security</span>.<span class="ruby-identifier">set_attr</span>(<span class="ruby-value str">&quot;env:mustUnderstand&quot;</span>, <span class="ruby-value str">&quot;1&quot;</span>)
+69:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">header</span>
+70:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
+
+        <div class="method-heading">
+          <a href="#M000002" class="method-signature">
+          <span class="method-name">build_service_header</span><span class="method-args">(doc, security_token)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+After being successfully authenticated service calls need to performed
+including the security token(s) in its soap headers. This method builds
+such a header.
+</p>
+<p>
+The header of the given document will be enhanced so there is no need to
+process the returning value.
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>doc</tt>:</td><td>Request XmlMason document.
+
+</td></tr>
+<tr><td valign="top"><tt>security_token</tt>:</td><td>Security tokens as plain text gathered using the <a
+href="TokenService.html">TokenService</a>.
+
+</td></tr>
+</table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000002-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000002-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/basic_service.rb, line 41</span>
+41:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build_service_header</span>(<span class="ruby-identifier">doc</span>, <span class="ruby-identifier">security_token</span>)
+42:     <span class="ruby-identifier">header</span> = <span class="ruby-identifier">build_security_header_common</span>(<span class="ruby-identifier">doc</span>)
+43:     <span class="ruby-identifier">security</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">&quot;Security&quot;</span>)
+44:     <span class="ruby-identifier">security</span>.<span class="ruby-identifier">set_value</span>( <span class="ruby-identifier">security_token</span>, <span class="ruby-identifier">:raw</span>)
+45:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">header</span>
+46:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="#M000004" class="method-signature">
+          <span class="method-name">get_token_data_from_response</span><span class="method-args">(response)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Extracts any token from the response and returns it.
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>response</tt>:</td><td>Response as returned from a <tt>getTokens</tt> call, for example.
+
+</td></tr>
+</table>
+<h2>Return</h2>
+<p>
+Returns the security token as plain text to be inserted into a security
+header build with <tt><a
+href="BasicService.html#M000003">build_security_header_common</a></tt>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000004-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/basic_service.rb, line 79</span>
+79:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_token_data_from_response</span>(<span class="ruby-identifier">response</span>)
+80: 
+81:     <span class="ruby-comment cmt"># nokogiri document. Unfortunately it is unable to parse the returning xml completely.</span>
+82:     <span class="ruby-comment cmt"># Especially the body is not parsed completely.</span>
+83:     <span class="ruby-identifier">doc</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">document</span>
+84:     <span class="ruby-identifier">intermediate_token</span> = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">xpath</span>(<span class="ruby-value str">&quot;//schema:tokenData&quot;</span>, <span class="ruby-value str">&quot;schema&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'http://sts.idm.telekom.com/schema/'</span>).<span class="ruby-identifier">inner_text</span>
+85: 
+86:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">intermediate_token</span>
+87:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

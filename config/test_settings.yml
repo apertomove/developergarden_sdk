@@ -1,0 +1,8 @@
+account:
+  username: "bjuler222@t-online.de"
+  password: "Nae5wah6"
+
+# Environment to run the tests in. Default is 2 (SANDBOX).
+# Values here are defined accordingly to those in ServiceEnvironment class.
+# Production = 1, Sandbox = 2, Mock = 3
+test_environment: 1

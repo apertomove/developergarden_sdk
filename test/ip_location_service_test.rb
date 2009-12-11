@@ -170,4 +170,19 @@ class IpLocationServiceTest < Test::Unit::TestCase
       response = @ip_location_service.locate_ip(ip)
     end
   end
+
+#  def test_locate_ip_production
+#    #
+#    ip = IpLocationService::IpAddress.new("93.222.255.58")
+#    response = @ip_location_service.locate_ip(ip, ServiceEnvironment.PRODUCTION)
+#
+#    puts response.ip_address_locations.first.address
+#    puts response.ip_address_locations.first.is_in_region.country_code
+#    puts response.ip_address_locations.first.is_in_region.region_name
+#
+#
+#    puts response.ip_address_location.address
+#    puts response.ip_address_location.is_in_region.country_code
+#    puts response.ip_address_location.is_in_region.region_name
+#  end
 end

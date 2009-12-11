@@ -37,7 +37,27 @@ You can use the gem from pure Ruby applications and of course from Ruby on Rails
 
  sms = SmsService::SmsService.new("<USER>@t-online.de", "<PASSWORD>")
  sms_response = sms.send_sms("+49177 0000001", "Your message text.", "RubySDK", ServiceEnvironment.PRODUCTION, "")
- 
+
+
+=== Ruby Example to perform an ip location
+
+ require 'rubygems'
+ gem 'developergarden_sdk'
+ require 'token_Service/token_service'
+ require 'ip_location_service/ip_location_service'
+
+ ip = IpLocationService::IpAddress.new("93.222.255.58")
+ response = @ip_location_service.locate_ip(ip, ServiceEnvironment.PRODUCTION)
+
+ puts response.ip_address_locations.first.address
+ puts response.ip_address_locations.first.is_in_region.country_code
+ puts response.ip_address_locations.first.is_in_region.region_name
+
+ # If you except a single ip location (if you have passed a single ip to look up)
+ # then you can use the following way to access the location
+ puts response.ip_address_location.address
+ puts response.ip_address_location.is_in_region.country_code
+ puts response.ip_address_location.is_in_region.region_name
 
 ==== To use your gem from your Ruby on Rails app
 In your environment.rb add the following line in the config block:

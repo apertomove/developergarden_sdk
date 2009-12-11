@@ -51,13 +51,13 @@ class IpLocationServiceTest < Test::Unit::TestCase
   def test_build_region_without_exception
     response_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/ip_location_response.xml")
     response_xml_doc = Handsoap::XmlQueryFront.parse_string(response_xml, :nokogiri)
-    ip_address_location_doc = IpLocationService::IpLocationService.xpath_query(response_xml_doc, "ipAddressLocation")    
-    region_xml_doc    = IpLocationService::IpLocationService.xpath_query(ip_address_location_doc, "isInRegion", false)
-    
+    ip_address_location_doc = IpLocationService::IpLocationService.xpath_query(response_xml_doc, "ipAddressLocation")
+    region_xml_doc = IpLocationService::IpLocationService.xpath_query(ip_address_location_doc, "isInRegion", false)
+
     assert_nothing_raised do
       region = IpLocationService::Region.build_from_xml(region_xml_doc)
       puts region
-    end  
+    end
   end
 
 
@@ -65,11 +65,11 @@ class IpLocationServiceTest < Test::Unit::TestCase
     response_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/ip_location_response.xml")
     response_xml_doc = Handsoap::XmlQueryFront.parse_string(response_xml, :nokogiri)
     ip_address_location_doc = IpLocationService::IpLocationService.xpath_query(response_xml_doc, "ipAddressLocation")
-    region_xml_doc    = IpLocationService::IpLocationService.xpath_query(ip_address_location_doc, "isInRegion", false)
+    region_xml_doc = IpLocationService::IpLocationService.xpath_query(ip_address_location_doc, "isInRegion", false)
     region = IpLocationService::Region.build_from_xml(region_xml_doc)
-    
+
     assert_equal("de", region.country_code)
-    assert_equal("Lokalhost", region.region_name)      
+    assert_equal("Lokalhost", region.region_name)
   end
 
 
@@ -80,7 +80,7 @@ class IpLocationServiceTest < Test::Unit::TestCase
 
     assert_nothing_raised do
       ip_location_response = IpLocationService::IpAddressLocation.build_from_xml(ip_address_location_doc)
-    end     
+    end
   end
 
   # Hier wird getestet, ob auch die Attribute korrekt gesetzt wurden.
@@ -88,8 +88,8 @@ class IpLocationServiceTest < Test::Unit::TestCase
     response_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/ip_location_response.xml")
     response_xml_doc = Handsoap::XmlQueryFront.parse_string(response_xml, :nokogiri)
     ip_address_location_doc = IpLocationService::IpLocationService.xpath_query(response_xml_doc, "ipAddressLocation")
-    
-    ip_location_response = IpLocationService::IpAddressLocation.build_from_xml(ip_address_location_doc)    
+
+    ip_location_response = IpLocationService::IpAddressLocation.build_from_xml(ip_address_location_doc)
     assert_equal("de", ip_location_response.is_in_region.country_code)
     assert_equal("Lokalhost", ip_location_response.is_in_region.region_name)
     assert_equal("127.0.0.1", ip_location_response.address)
@@ -111,7 +111,7 @@ class IpLocationServiceTest < Test::Unit::TestCase
     assert_instance_of(IpLocationService::IpLocationResponse, response)
 
     assert_equal("0000", response.error_code)
-    
+
     assert_instance_of(IpLocationService::IpAddressLocation, response.ip_address_location)
     assert_equal("de", response.ip_address_location.is_in_region.country_code)
   end
@@ -160,5 +160,14 @@ class IpLocationServiceTest < Test::Unit::TestCase
 
     assert_equal("127.0.0.1", response.ip_address_locations[0].address)
     assert_equal("128.0.0.1", response.ip_address_locations[1].address)
+  end
+
+  def test_locate_ip_for_non_tcom_ip
+    # This ip is not a valid tcom ip
+    ip = IpLocationService::IpAddress.new("134.96.50.208")
+
+    assert_raises(ServiceException) do
+      response = @ip_location_service.locate_ip(ip)
+    end
   end
 end

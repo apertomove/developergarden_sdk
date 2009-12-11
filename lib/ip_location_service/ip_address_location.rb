@@ -13,7 +13,7 @@ module IpLocationService
     end
 
     def to_s
-      ret = "Address: #{@address.to_s}, IP-Type: #{@ip_type.to_s}, Region: #{@is_in_region.to_s}, "
+      ret = "Address: #{@address.to_s}, IP-Type: #{@ip_type.to_s}, #{@is_in_region.to_s}, "
       ret += "City: #{@is_in_city.to_s}, Geo: #{@is_in_geo.to_s}, Radius: #{@radius.to_s}"
       ret
     end

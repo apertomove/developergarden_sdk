@@ -13,7 +13,7 @@ module IpLocationService
     end
 
     def to_s
-      ret = "IP: #{@address.to_s}, IP-Type: #{@ip_type.to_s}, Region: #{@is_in_region.to_s}, "
+      ret = "Address: #{@address.to_s}, IP-Type: #{@ip_type.to_s}, Region: #{@is_in_region.to_s}, "
       ret += "City: #{@is_in_city.to_s}, Geo: #{@is_in_geo.to_s}, Radius: #{@radius.to_s}"
       ret
     end
@@ -36,7 +36,11 @@ module IpLocationService
         # This is also true for Region's build method.
         ipa.address       = IpLocationService.xpath_query(xml_doc, "ipAddress", false).to_s        
         ipa.ip_type       = IpLocationService.xpath_query(xml_doc, "ipType", false).to_s
-        ipa.radius        = IpLocationService.xpath_query(xml_doc, "radius", false).to_s
+
+        # TODO As soon as the API supports them.
+        # ipa.radius        = IpLocationService.xpath_query(xml_doc, "radius", false).to_s
+        # ... isInGeo, isInCity
+        
         region_xml_doc    = IpLocationService.xpath_query(xml_doc, "isInRegion", false)        
         ipa.is_in_region  = Region.build_from_xml(region_xml_doc)
       end

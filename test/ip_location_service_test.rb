@@ -49,12 +49,27 @@ class IpLocationServiceTest < Test::Unit::TestCase
   end
 
   def test_build_region_without_exception
-    region_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/ip_location_response.xml")
-    region_xml_doc = Handsoap::XmlQueryFront.parse_string(region_xml, :nokogiri)
+    response_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/ip_location_response.xml")
+    response_xml_doc = Handsoap::XmlQueryFront.parse_string(response_xml, :nokogiri)
+    ip_address_location_doc = IpLocationService::IpLocationService.xpath_query(response_xml_doc, "ipAddressLocation")    
+    region_xml_doc    = IpLocationService::IpLocationService.xpath_query(ip_address_location_doc, "isInRegion", false)
     
     assert_nothing_raised do
       region = IpLocationService::Region.build_from_xml(region_xml_doc)
+      puts region
     end  
+  end
+
+
+  def test_build_region_with_valid_attributes
+    response_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/ip_location_response.xml")
+    response_xml_doc = Handsoap::XmlQueryFront.parse_string(response_xml, :nokogiri)
+    ip_address_location_doc = IpLocationService::IpLocationService.xpath_query(response_xml_doc, "ipAddressLocation")
+    region_xml_doc    = IpLocationService::IpLocationService.xpath_query(ip_address_location_doc, "isInRegion", false)
+    region = IpLocationService::Region.build_from_xml(region_xml_doc)
+    
+    assert_equal("de", region.country_code)
+    assert_equal("Lokalhost", region.region_name)      
   end
 
 
@@ -69,15 +84,16 @@ class IpLocationServiceTest < Test::Unit::TestCase
   end
 
   # Hier wird getestet, ob auch die Attribute korrekt gesetzt wurden.
-  def test_build_ip_address_location_without_valid_attributes
+  def test_build_ip_address_location_with_valid_attributes
     response_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/ip_location_response.xml")
     response_xml_doc = Handsoap::XmlQueryFront.parse_string(response_xml, :nokogiri)
     ip_address_location_doc = IpLocationService::IpLocationService.xpath_query(response_xml_doc, "ipAddressLocation")
     
-    ip_location_response = IpLocationService::IpAddressLocation.build_from_xml(ip_address_location_doc)
+    ip_location_response = IpLocationService::IpAddressLocation.build_from_xml(ip_address_location_doc)    
     assert_equal("de", ip_location_response.is_in_region.country_code)
     assert_equal("Lokalhost", ip_location_response.is_in_region.region_name)
-  end  
+    assert_equal("127.0.0.1", ip_location_response.address)
+  end
 
   def test_ip_location_response
 

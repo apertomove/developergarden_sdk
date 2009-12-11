@@ -68,10 +68,17 @@ module IpLocationService
     
 
     # Performs a xpath query in the ip location namespace for the given document and query string.
-    def self.xpath_query(doc, query_string)
-      
+    # === Parameters
+    # <tt>doc</tt>:: XmlQueryFront document.
+    # <tt>query_string</tt>:: Element to look for
+    # <tt>global_search</tt>:: Searches within all levels using "//" if <tt>global_search = true</tt>.    
+    def self.xpath_query(doc, query_string, global_search = true)
+      xpath_query = ""
+      xpath_query = "//" if global_search
+      xpath_query += "schema:#{query_string}"
+
       # Only search if there's at least one element
-      doc.xpath("//schema:#{query_string}", "schema" => @@IP_LOCATION_SCHEMA)
+      doc.xpath(xpath_query, "schema" => @@IP_LOCATION_SCHEMA)
     end
   end
 end

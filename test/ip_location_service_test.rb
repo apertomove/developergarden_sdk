@@ -57,30 +57,24 @@ class IpLocationServiceTest < Test::Unit::TestCase
     end  
   end
 
-  def test_build_region_witht_valid_attributes
-    region_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/ip_location_response.xml")
-    region_xml_doc = Handsoap::XmlQueryFront.parse_string(region_xml, :nokogiri)      
-    region = IpLocationService::Region.build_from_xml(region_xml_doc)
-
-    assert_equal("de", region.country_code)
-    assert_equal("Lokalhost",region.region_name)
-  end
-
 
   def test_build_ip_address_location_without_exception
-    ip_address_location_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/ip_location_response.xml")
-    ip_address_location_xml_doc = Handsoap::XmlQueryFront.parse_string(ip_address_location_xml, :nokogiri)
-    
+    response_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/ip_location_response.xml")
+    response_xml_doc = Handsoap::XmlQueryFront.parse_string(response_xml, :nokogiri)
+    ip_address_location_doc = IpLocationService::IpLocationService.xpath_query(response_xml_doc, "ipAddressLocation")
+
     assert_nothing_raised do
-      ip_location_response = IpLocationService::IpAddressLocation.build_from_xml(ip_address_location_xml_doc)
+      ip_location_response = IpLocationService::IpAddressLocation.build_from_xml(ip_address_location_doc)
     end     
   end
 
   # Hier wird getestet, ob auch die Attribute korrekt gesetzt wurden.
   def test_build_ip_address_location_without_valid_attributes
-    ip_address_location_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/ip_location_response.xml")
-    ip_address_location_xml_doc = Handsoap::XmlQueryFront.parse_string(ip_address_location_xml, :nokogiri)
-    ip_location_response = IpLocationService::IpAddressLocation.build_from_xml(ip_address_location_xml_doc)
+    response_xml = open(File.dirname(__FILE__) + "/fixtures/ip_location_service/ip_location_response.xml")
+    response_xml_doc = Handsoap::XmlQueryFront.parse_string(response_xml, :nokogiri)
+    ip_address_location_doc = IpLocationService::IpLocationService.xpath_query(response_xml_doc, "ipAddressLocation")
+    
+    ip_location_response = IpLocationService::IpAddressLocation.build_from_xml(ip_address_location_doc)
     assert_equal("de", ip_location_response.is_in_region.country_code)
     assert_equal("Lokalhost", ip_location_response.is_in_region.region_name)
   end  
@@ -107,7 +101,20 @@ class IpLocationServiceTest < Test::Unit::TestCase
   end
 
   def test_locate_ip_by_ip_string_array
-    assert(false, "Unimplemented")
+    ips = [ "127.0.0.1", "128.0.0.1" ]
+
+    response = @ip_location_service.locate_ip(ips)
+    assert_instance_of(IpLocationService::IpLocationResponse, response)
+    assert_equal("0000", response.error_code)
+
+    assert_instance_of(IpLocationService::IpAddressLocation, response.ip_address_locations[0])
+    assert_instance_of(IpLocationService::IpAddressLocation, response.ip_address_locations[1])
+
+    assert_equal("de", response.ip_address_locations[0].is_in_region.country_code)
+    assert_equal("de", response.ip_address_locations[1].is_in_region.country_code)
+
+    assert_equal("127.0.0.1", response.ip_address_locations[0].address)
+
   end
 
   def test_locate_ip_by_ip_address_object
@@ -119,20 +126,23 @@ class IpLocationServiceTest < Test::Unit::TestCase
 
     assert_instance_of(IpLocationService::IpAddressLocation, response.ip_address_location)
     assert_equal("de", response.ip_address_location.is_in_region.country_code)
+    assert_equal("127.0.0.1", response.ip_address_location.address)
   end
 
   def test_locate_ip_by_ip_address_object_array
     ips = [ IpLocationService::IpAddress.new("127.0.0.1"), IpLocationService::IpAddress.new("128.0.0.1") ]
-
 
     response = @ip_location_service.locate_ip(ips)
     assert_instance_of(IpLocationService::IpLocationResponse, response)
     assert_equal("0000", response.error_code)
 
     assert_instance_of(IpLocationService::IpAddressLocation, response.ip_address_locations[0])
-
     assert_instance_of(IpLocationService::IpAddressLocation, response.ip_address_locations[1])
 
-    puts response
+    assert_equal("de", response.ip_address_locations[0].is_in_region.country_code)
+    assert_equal("de", response.ip_address_locations[1].is_in_region.country_code)
+
+    assert_equal("127.0.0.1", response.ip_address_locations[0].address)
+    assert_equal("128.0.0.1", response.ip_address_locations[1].address)
   end
 end

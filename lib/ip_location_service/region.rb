@@ -12,11 +12,11 @@ module IpLocationService
 
     def self.build_from_xml(xml_doc)
       region = Region.new
-      
+
       if xml_doc then
-        region.country_code = IpLocationService.xpath_query(xml_doc, "countryCode").to_s        
-        region.region_code  = IpLocationService.xpath_query(xml_doc, "regionCode").to_s
-        region.region_name  = IpLocationService.xpath_query(xml_doc, "regionName").to_s
+        region.country_code = IpLocationService.xpath_query(xml_doc, "countryCode", false).to_s
+        region.region_code  = IpLocationService.xpath_query(xml_doc, "regionCode", false).to_s
+        region.region_name  = IpLocationService.xpath_query(xml_doc, "regionName", false).to_s
       end      
       return region
     end

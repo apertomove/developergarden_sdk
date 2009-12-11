@@ -10,14 +10,15 @@ module IpLocationService
     # <tt>raise_exception_on_error</tt>:: Xml as returned by a <tt>call_status</tt>-method call.
     def initialize(response_xml, raise_exception_on_error = true)
 
-      doc = response_xml.document
+      doc = response_xml.document      
+
       @error_code = IpLocationService.xpath_query(doc, "statusCode").to_s
       @error_message = IpLocationService.xpath_query(doc, "statusMessage").to_s
       @ip_address_locations = []
 
       ip_address_location_doc = IpLocationService.xpath_query(doc, "ipAddressLocation")
 
-      ip_address_location_doc.each do |ip_address_location|
+      ip_address_location_doc.each do |ip_address_location|                
         @ip_address_locations << IpAddressLocation.build_from_xml(ip_address_location)
       end
 

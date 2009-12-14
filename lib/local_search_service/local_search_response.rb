@@ -22,5 +22,9 @@ module LocalSearchService
     
       raise_on_error(response_xml) if raise_exception_on_error
     end
+
+    def to_s
+      "#{@error_code.to_s}: #{@error_message.to_s}: #{@search_result.to_s}"
+    end
   end
 end

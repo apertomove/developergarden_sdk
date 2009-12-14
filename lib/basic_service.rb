@@ -88,12 +88,27 @@ class BasicService < Handsoap::Service
 
     # Get the XmlQueryFront object which is a subclass of an array.
     intermediate_token = doc.xpath("//schema:tokenData", "schema" => 'http://sts.idm.telekom.com/schema/').to_s
-    
+
     # The first element is a NokogiriDriver-Object which mixes in the XmlElement module.
     # In order to preserve the CDATA ...
-     #= xml_element
+    #= xml_element
     #puts intermediate_token
-    
+
     return intermediate_token
+  end
+
+  # Performs a xpath query in the given namespace for the given document and query string.
+  # === Parameters
+  # <tt>schema</tt>:: Schema to be searched in such as <tt>'http://iplocation.developer.telekom.com/schema/'</tt>
+  # <tt>doc</tt>:: XmlQueryFront document.
+  # <tt>query_string</tt>:: Element to look for
+  # <tt>global_search</tt>:: Searches within all levels using "//" if <tt>global_search = true</tt>.
+  def self.xpath_query_for_schema(schema, doc, query_string, global_search = true)
+    xpath_query = ""
+    xpath_query = "//" if global_search
+    xpath_query += "schema:#{query_string}"
+
+    # Only search if there's at least one element
+    doc.xpath(xpath_query, "schema" => schema)
   end
 end

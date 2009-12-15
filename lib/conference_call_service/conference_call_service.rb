@@ -8,6 +8,7 @@ require File.dirname(__FILE__) + '/commit_conference_response'
 require File.dirname(__FILE__) + '/get_conference_status_response'
 require File.dirname(__FILE__) + '/new_participant_response'
 require File.dirname(__FILE__) + '/participant_details'
+require File.dirname(__FILE__) + '/remove_participant_response'
 
 Handsoap.http_driver = :httpclient
 
@@ -130,10 +131,11 @@ module ConferenceCallService
       return response        
     end
 
-    def new_participant(conference_id, participant, environment = ServiceEnvironment.MOCK)
+    def new_participant(conference_id, participant, environment = ServiceEnvironment.MOCK, account = nil)
       response_xml = invoke_authenticated("cc:newParticipant") do |request, doc|
         request.add('newParticipantRequest') do |new_participant_request|
           new_participant_request.add('environment', environment)
+          new_participant_request.add('account', account) if (account && !account.empty?)
           new_participant_request.add('conferenceId', conference_id.to_s)
           new_participant_request.add('participant') do |participant_request|
             participant_request.add('firstName', participant.first_name.to_s)
@@ -146,15 +148,28 @@ module ConferenceCallService
       end
 
       response = NewParticipantResponse.new(response_xml)
-
     end
 
     def remove_conference
 
     end
 
-    def remove_participant
-
+    # Retrieves that status of the given conference.
+    # ===Parameters
+    # <tt>conference_id</tt>::
+    # <tt>what</tt>:: Contraints of the list to be retrieved.
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.    
+    def remove_participant(conference_id, participant_id, environment = ServiceEnvironment.MOCK, account = nil)
+      response_xml = invoke_authenticated("cc:removeParticipant") do |request, doc|
+        request.add('removeParticipantRequest') do |remove_request|
+          remove_request.add('environment', environment)
+          remove_request.add('account', account) if (account && !account.empty?)
+          remove_request.add('conferenceId', conference_id.to_s)
+          remove_request.add('participantId', participant_id.to_s)
+        end
+      end
+      
+      response = RemoveParticipantResponse.new(response_xml)
     end
 
     def update_conference

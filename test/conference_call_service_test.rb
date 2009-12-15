@@ -27,7 +27,7 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
   end
 
   def test_create_conference
-    conf_details = ConferenceCallService::ConferenceDetails.new("A very important conf", "A very impressive descrption", 30)
+    conf_details = ConferenceCallService::ConferenceDetails.new("A very important conf", "A very impressive description", 30)
     schedule = ConferenceCallService::ConferenceSchedule.new
     response = @service.create_conference("max.mustermann", conf_details, schedule)
     assert_instance_of(ConferenceCallService::CreateConferenceResponse, response)
@@ -48,7 +48,19 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
 
     assert_instance_of(ConferenceCallService::GetConferenceStatusResponse, response)
     assert_equal("0000", response.error_code)
-      
+
+    assert_instance_of(ConferenceCallService::ConferenceDetails, response.details)
+    assert_not_nil(response.details.name)
+    assert_not_nil(response.details.description)
+    assert_not_nil(response.details.duration)
+
+    assert_instance_of(ConferenceCallService::ConferenceSchedule, response.schedule)
+    assert_not_nil(response.schedule.minute)
+    assert_not_nil(response.schedule.hour)
+    assert_not_nil(response.schedule.day_of_month)
+    assert_not_nil(response.schedule.month)
+    assert_not_nil(response.schedule.year)
+    assert_not_nil(response.schedule.recurring)
   end
 
   def test_new_participant

@@ -35,6 +35,6 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
   def test_commit_conference
     conf_id = "1234567890"
     response = @service.commit_conference(conf_id)
-    assert_instance_of(ConferenceCallService::CreateConferenceResponse, response)
+    assert_instance_of(BasicResponse, response)
   end
 end

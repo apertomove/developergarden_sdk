@@ -40,8 +40,10 @@ module ConferenceCallService
         request.add('commitConferenceRequest') do |commit_request, doc|
           commit_request.add('conferenceId', conference_id)
           commit_request.add('environment', environment)
+        end
       end
-      end
+
+      response = BasicResponse.new(response_xml)
     end
 
     def create_conference(owner_id, detail, schedule = nil, environment = ServiceEnvironment.MOCK, account = nil)

@@ -9,6 +9,7 @@ require File.dirname(__FILE__) + '/get_conference_status_response'
 require File.dirname(__FILE__) + '/new_participant_response'
 require File.dirname(__FILE__) + '/participant_details'
 require File.dirname(__FILE__) + '/remove_conference_response'
+require File.dirname(__FILE__) + '/get_running_conference_response'
 
 
 Handsoap.http_driver = :httpclient
@@ -178,7 +179,16 @@ module ConferenceCallService
 
     end
 
-    def get_running_conference
+    def get_running_conference(conference_id,  environment = ServiceEnvironment.MOCK,  account = nil)
+      response_xml = invoke_authenticated("cc:getRunningConference") do |request, doc|
+        request.add('getRunningConferenceRequest') do |get_running_conference_request|
+          get_running_conference_request.add('environment', environment)
+          get_running_conference_request.add('conferenceId', conference_id.to_s)
+          get_running_conference_request.add('account', account) if (account && !account.empty?)
+        end
+      end
+
+        response = GetRunningConferenceResponse.new(response_xml)
 
     end
 

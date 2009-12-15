@@ -79,4 +79,11 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     assert_instance_of(ConferenceCallService::RemoveConferenceResponse, response)
     assert_equal("0000", response.error_code)
   end
+
+  def test_get_running_conference
+    conf_id = "219230"
+    response = @service.get_running_conference(conf_id)
+    assert_instance_of(ConferenceCallService::GetRunningConferenceResponse, response)
+    assert_equal("0000", response.error_code)
+  end
 end

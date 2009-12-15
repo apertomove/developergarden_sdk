@@ -125,7 +125,6 @@ module ConferenceCallService
       end
 
       response = GetConferenceStatusResponse.new(response_xml)
-      puts response_xml.to_xml
       return response        
     end
 

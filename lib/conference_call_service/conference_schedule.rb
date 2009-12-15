@@ -22,7 +22,23 @@ module ConferenceCallService
       @notify        = notify
     end
 
+    def to_s
+      ret = "#{year}-#{month}-#{day_of_month} #{hour}:#{minute} Recurring: #{recurring}, Notify: #{notify}\n"
+      ret
+    end
+
     #### Static methods
+
+    def self.build_from_xml(xml_doc)
+      minute        = ConferenceCallService.xpath_query(xml_doc, "minute").to_s
+      hour          = ConferenceCallService.xpath_query(xml_doc, "hour").to_s
+      day_of_month  = ConferenceCallService.xpath_query(xml_doc, "dayOfMonth").to_s
+      month         = ConferenceCallService.xpath_query(xml_doc, "month").to_s
+      year          = ConferenceCallService.xpath_query(xml_doc, "year").to_s
+      recurring     = ConferenceCallService.xpath_query(xml_doc, "recurring").to_s
+      notify        = ConferenceCallService.xpath_query(xml_doc, "notify").to_s
+      new(minute, hour, day_of_month, month, year, recurring, notify)
+    end
 
     def self.RECURRING_NONE
       @@RECURRING_NONE

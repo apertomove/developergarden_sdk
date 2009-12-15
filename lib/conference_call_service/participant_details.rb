@@ -14,5 +14,11 @@ module ConferenceCallService
     def to_s
       "#{@first_name.to_s} #{@last_name.to_s}, #{@number.to_s}, #{@email.to_s}, #{@flags.to_s}. "
     end
+
+    #### Static methods
+
+    def self.build_from_xml()
+      
+    end
   end
 end

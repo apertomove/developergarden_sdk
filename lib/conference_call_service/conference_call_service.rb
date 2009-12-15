@@ -11,6 +11,7 @@ require File.dirname(__FILE__) + '/participant_details'
 require File.dirname(__FILE__) + '/remove_participant_response'
 require File.dirname(__FILE__) + '/remove_conference_response'
 require File.dirname(__FILE__) + '/get_running_conference_response'
+require File.dirname(__FILE__) + '/participant'
 
 Handsoap.http_driver = :httpclient
 
@@ -88,7 +89,7 @@ module ConferenceCallService
           create_request.add('account', account) if (account && !account.empty?)
         end
       end
-      
+
       response = CreateConferenceResponse.new(response_xml)
     end
 
@@ -109,8 +110,8 @@ module ConferenceCallService
           list_request.add('account', account) if (account && !account.empty?)
         end
       end
-      
-      response = GetConferenceListResponse.new(response_xml)      
+
+      response = GetConferenceListResponse.new(response_xml)
       return response
     end
 
@@ -129,8 +130,10 @@ module ConferenceCallService
         end
       end
 
+      puts response_xml.to_xml
+      puts "\n\n----------\n\n"
       response = GetConferenceStatusResponse.new(response_xml)
-      return response        
+      return response
     end
 
     # ===Parameters
@@ -185,7 +188,7 @@ module ConferenceCallService
           remove_request.add('participantId', participant_id.to_s)
         end
       end
-      
+
       response = RemoveParticipantResponse.new(response_xml)
     end
 
@@ -202,8 +205,7 @@ module ConferenceCallService
         end
       end
 
-        response = GetRunningConferenceResponse.new(response_xml)
-
+      response = GetRunningConferenceResponse.new(response_xml)
     end
 
     def create_conference_template

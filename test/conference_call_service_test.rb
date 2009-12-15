@@ -4,7 +4,6 @@
 
 require 'test/unit'
 
-
 require File.dirname(__FILE__) + '/../lib/conference_call_service/conference_call_service'
 
 class ConferenceCallServiceTest < Test::Unit::TestCase
@@ -24,7 +23,9 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     assert_equal("0000", response.error_code)
 
     assert( response.conference_ids.size > 0, "There should be at least one conference id." )
-    puts response
+
+    # Comment in to see a list of available conferences
+    #puts response
   end
 
   def test_create_conference
@@ -74,11 +75,19 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     assert_not_nil(response.participant_id)
   end
 
+
   def test_remove_participant
     conference_id   = "16194"
     participant_id  = "abc"
 
     response = @service.remove_participant(conference_id, participant_id)
     assert_equal("0000", response.error_code)    
+  end
+  
+  def test_remove_conference
+    conf_id = "219230"
+    response = @service.remove_conference(conf_id)
+    assert_instance_of(ConferenceCallService::RemoveConferenceResponse, response)
+    assert_equal("0000", response.error_code)
   end
 end

@@ -9,6 +9,7 @@ require File.dirname(__FILE__) + '/get_conference_status_response'
 require File.dirname(__FILE__) + '/new_participant_response'
 require File.dirname(__FILE__) + '/participant_details'
 require File.dirname(__FILE__) + '/remove_participant_response'
+require File.dirname(__FILE__) + '/remove_conference_response'
 
 Handsoap.http_driver = :httpclient
 
@@ -131,6 +132,10 @@ module ConferenceCallService
       return response        
     end
 
+    # ===Parameters
+    # <tt>conference_id</tt>:: id of the interest conference
+    # <tt>participant_id</tt>:: id of the coming participant
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
     def new_participant(conference_id, participant, environment = ServiceEnvironment.MOCK, account = nil)
       response_xml = invoke_authenticated("cc:newParticipant") do |request, doc|
         request.add('newParticipantRequest') do |new_participant_request|
@@ -150,8 +155,19 @@ module ConferenceCallService
       response = NewParticipantResponse.new(response_xml)
     end
 
-    def remove_conference
+    # ===Parameters
+    # <tt>conference_id</tt>:: id of the removes conference
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
+    def remove_conference(conference_id, environment = ServiceEnvironment.MOCK,  account = nil)
+      response_xml = invoke_authenticated("cc:removeConference") do |request, doc|
+        request.add('removeConferenceRequest') do |remove_conference_request|
+          remove_conference_request.add('environment', environment)
+          remove_conference_request.add('conferenceId', conference_id.to_s)
+          remove_conference_request.add('account', account) if (account && !account.empty?)
+        end
+      end
 
+      response = RemoveConferenceResponse.new(response_xml)
     end
 
     # Retrieves that status of the given conference.

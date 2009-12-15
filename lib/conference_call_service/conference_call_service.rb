@@ -11,6 +11,8 @@ require File.dirname(__FILE__) + '/participant_details'
 require File.dirname(__FILE__) + '/remove_participant_response'
 require File.dirname(__FILE__) + '/remove_conference_response'
 require File.dirname(__FILE__) + '/get_running_conference_response'
+require File.dirname(__FILE__) + '/get_conference_template_list_response'
+
 
 Handsoap.http_driver = :httpclient
 
@@ -157,7 +159,7 @@ module ConferenceCallService
     end
 
     # ===Parameters
-    # <tt>conference_id</tt>:: id of the removes conference
+    # <tt>conference_id</tt>:: id of the removed conference
     # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
     def remove_conference(conference_id, environment = ServiceEnvironment.MOCK,  account = nil)
       response_xml = invoke_authenticated("cc:removeConference") do |request, doc|
@@ -193,7 +195,11 @@ module ConferenceCallService
 
     end
 
-    def get_running_conference(conference_id,  environment = ServiceEnvironment.MOCK,  account = nil)
+    # Tell whether a conference is running
+    # ===Parameters
+    # <tt>conference_id</tt>:: id of the may-be running conference
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
+    def get_running_conference(conference_id, environment = ServiceEnvironment.MOCK,  account = nil)
       response_xml = invoke_authenticated("cc:getRunningConference") do |request, doc|
         request.add('getRunningConferenceRequest') do |get_running_conference_request|
           get_running_conference_request.add('environment', environment)
@@ -222,8 +228,20 @@ module ConferenceCallService
 
     end
 
-    def get_conference_template_list
+    # Give the list of the templates of the given conference owner
+    # ===Parameters
+    # <tt>owner_id</tt>:: id of the owner of the requested conference
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
+    def get_conference_template_list(owner_id, environment = ServiceEnvironment.MOCK,  account = nil)
+      response_xml = invoke_authenticated("cc:getConferenceTemplateList") do |request, doc|
+        request.add('getConferenceTemplateListRequest') do |get_conference_template_list_request|
+          get_conference_template_list_request.add('environment', environment)
+          get_conference_template_list_request.add('ownerId', owner_id.to_s)
+          get_conference_template_list_request.add('account', account) if (account && !account.empty?)
+        end
+      end
 
+        response = GetConferenceTemplateListResponse.new(response_xml)
     end
 
     def get_conference_template_participant

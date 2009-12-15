@@ -46,6 +46,12 @@ module ConferenceCallService
       response = BasicResponse.new(response_xml)
     end
 
+    # Creates a new conference.
+    # ===Parameters
+    # <tt>owner_id</tt>:: Return only items owned by the given user such as "max.mustermann".
+    # <tt>detail</tt>:: Specifies the conference details like max duration, name and description.
+    # <tt>schedule</tt>:: Specifies when the conference will take place and if its going to be repeated on a regular basis.    
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.        
     def create_conference(owner_id, detail, schedule = nil, environment = ServiceEnvironment.MOCK, account = nil)
       response_xml = invoke_authenticated("cc:createConference") do |request, doc|
         request.add('createConferenceRequest') do |create_request|

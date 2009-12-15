@@ -4,6 +4,7 @@ require File.dirname(__FILE__) + '/conference_details'
 require File.dirname(__FILE__) + '/conference_schedule'
 require File.dirname(__FILE__) + '/get_conference_list_response'
 require File.dirname(__FILE__) + '/create_conference_response'
+require File.dirname(__FILE__) + '/commit_conference_response'
 
 Handsoap.http_driver = :httpclient
 
@@ -34,7 +35,9 @@ module ConferenceCallService
       doc.alias 'cc', @@CONFERENCE_CALL_SCHEMA
     end
 
-
+    # ===Parameters
+    # <tt>conference_id</tt>:: id of the interest conference
+    # <tt>environment</tt>:: Service environment as defined in ServiceEnvironment.
     def commit_conference(conference_id, environment = ServiceEnvironment.MOCK)
       response_xml = invoke_authenticated("cc:commitConference") do |request, doc|
         request.add('commitConferenceRequest') do |commit_request, doc|
@@ -43,7 +46,7 @@ module ConferenceCallService
         end
       end
 
-      response = BasicResponse.new(response_xml)
+      response = CommitConferenceResponse.new(response_xml)
     end
 
     # Creates a new conference.

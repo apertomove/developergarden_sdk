@@ -30,8 +30,13 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
   def test_create_conference
     conf_details = ConferenceCallService::ConferenceDetails.new("A very important conf", "A very impressive descrption", 30)
     schedule = ConferenceCallService::ConferenceSchedule.new
-    response = @service.create_conference("max.mustermann", conf_details, schedule, ServiceEnvironment.SANDBOX)
+    response = @service.create_conference("max.mustermann", conf_details, schedule)
     assert_instance_of(ConferenceCallService::CreateConferenceResponse, response)
   end
 
+  def test_commit_conference
+    conf_id = "1234567890"
+    response = @service.commit_conference(conf_id)
+    assert_instance_of(ConferenceCallService::CreateConferenceResponse, response)
+  end
 end

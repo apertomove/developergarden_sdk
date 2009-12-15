@@ -35,8 +35,13 @@ module ConferenceCallService
     end
 
 
-    def commit_conference
-
+    def commit_conference(conference_id, environment = ServiceEnvironment.MOCK)
+      response_xml = invoke_authenticated("cc:commitConference") do |request, doc|
+        request.add('commitConferenceRequest') do |commit_request, doc|
+          commit_request.add('conferenceId', conference_id)
+          commit_request.add('environment', environment)
+      end
+      end
     end
 
     def create_conference(owner_id, detail, schedule = nil, environment = ServiceEnvironment.MOCK, account = nil)

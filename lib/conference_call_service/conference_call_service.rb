@@ -6,6 +6,8 @@ require File.dirname(__FILE__) + '/get_conference_list_response'
 require File.dirname(__FILE__) + '/create_conference_response'
 require File.dirname(__FILE__) + '/commit_conference_response'
 require File.dirname(__FILE__) + '/get_conference_status_response'
+require File.dirname(__FILE__) + '/new_participant_response'
+require File.dirname(__FILE__) + '/participant_details'
 
 Handsoap.http_driver = :httpclient
 
@@ -133,18 +135,19 @@ module ConferenceCallService
       response_xml = invoke_authenticated("cc:newParticipant") do |request, doc|
         request.add('newParticipantRequest') do |new_participant_request|
           new_participant_request.add('environment', environment)
-          new_participant_request.add('conferenceId', conference_id)
-          new_participant_request.add('participant', participant) do |participant_request|
-            participant_request.add('firstname', participant.firstname)
-            participant_request.add('firstname', participant.firstname)
-            participant_request.add('lastname', participant.lastname)
-            participant_request.add('email', participant.email)
-            participant_request.add('flag', participant.flag)
+          new_participant_request.add('conferenceId', conference_id.to_s)
+          new_participant_request.add('participant') do |participant_request|
+            participant_request.add('firstName', participant.first_name.to_s)
+            participant_request.add('lastName', participant.last_name.to_s)
+            participant_request.add('number', participant.number.to_s)
+            participant_request.add('email', participant.email.to_s)
+            participant_request.add('flags', participant.flags.to_s)
           end
-
         end
+      end
 
-        end
+      response = NewParticipantResponse.new(response_xml)
+
     end
 
     def remove_conference

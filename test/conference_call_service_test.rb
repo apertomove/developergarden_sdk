@@ -50,4 +50,14 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     assert_equal("0000", response.error_code)
       
   end
+
+  def test_new_participant
+    conference_id = "219230"
+    participant = ConferenceCallService::ParticipantDetails.new('lucas', 'pinto', '+493200000001', 'luc@spin.to', 0)
+    response = @service.new_participant(conference_id, participant)
+
+    assert_instance_of(ConferenceCallService::NewParticipantResponse, response)
+    assert_equal("0000", response.error_code)
+    assert_not_nil(response.participant_id)
+  end
 end

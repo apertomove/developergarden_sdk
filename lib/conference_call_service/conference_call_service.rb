@@ -100,14 +100,30 @@ module ConferenceCallService
           list_request.add('account', account) if (account && !account.empty?)
         end
       end
-
+      
       response = GetConferenceListResponse.new(response_xml)
-
+      puts response
       return response
     end
 
-    def get_conference_status
+    # Retrieves that status of the given conference.
+    # ===Parameters
+    # <tt>conference_id</tt>:: 
+    # <tt>what</tt>:: Contraints of the list to be retrieved.
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.        
+    def get_conference_status(conference_id, what = ConferenceConstants.CONFERENCE_LIST_ALL, environment = ServiceEnvironment.MOCK, account = nil)
+      response_xml = invoke_authenticated("cc:getConferenceStatus") do |request, doc|
+        request.add('getConferenceStatusRequest') do |status_request|
+          status_request.add('environment', environment)
+          status_request.add('what', what.to_s)
+          status_request.add('conferenceId', conference_id.to_s)
+          status_request.add('account', account) if (account && !account.empty?)
+        end
+      end
 
+      response = GetConferenceStatusResponse.new(response_xml)
+
+      return response        
     end
 
     def new_participant

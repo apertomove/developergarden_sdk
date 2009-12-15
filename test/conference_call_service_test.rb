@@ -21,7 +21,7 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     response = @service.get_conference_list("max.mustermann", ConferenceCallService::ConferenceConstants.STATUS_ALL, ServiceEnvironment.SANDBOX)
 
     assert_instance_of(ConferenceCallService::GetConferenceListResponse, response)
-    assert_equal("0000", response.error_code)
+    assert_equal("0000", response.error_code)    
   end
 
   def test_create_conference

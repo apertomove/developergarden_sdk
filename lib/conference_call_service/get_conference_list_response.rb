@@ -17,11 +17,17 @@ module ConferenceCallService
       @error_code = ConferenceCallService.xpath_query(doc, "statusCode").to_s
       @error_message = ConferenceCallService.xpath_query(doc, "statusMessage").to_s
 
-      # TODO
-      # @conference_ids = ...
-
+      ConferenceCallService.xpath_query(doc, "conferenceIds").each do |conference_id_xml|
+        @conference_ids << conference_id_xml.to_s        
+      end
 
       raise_on_error(response_xml) if raise_exception_on_error
-    end    
+    end
+
+    def to_s
+      ret = "#{@error_code.to_s}: #{@error_message.to_s}.\n"
+      ret += "Conference ids:\n"
+      @conference_ids
+    end
   end
 end

@@ -129,8 +129,22 @@ module ConferenceCallService
       return response        
     end
 
-    def new_participant
+    def new_participant(conference_id, participant, environment = ServiceEnvironment.MOCK)
+      response_xml = invoke_authenticated("cc:newParticipant") do |request, doc|
+        request.add('newParticipantRequest') do |new_participant_request|
+          new_participant_request.add('environment', environment)
+          new_participant_request.add('conferenceId', conference_id)
+          new_participant_request.add('participant', participant) do |participant_request|
+            participant_request.add('firstname', participant.firstname)
+            participant_request.add('firstname', participant.firstname)
+            participant_request.add('lastname', participant.lastname)
+            participant_request.add('email', participant.email)
+            participant_request.add('flag', participant.flag)
+          end
 
+        end
+
+        end
     end
 
     def remove_conference

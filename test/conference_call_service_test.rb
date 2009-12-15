@@ -37,7 +37,7 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     conf_id = "1234567890"
     response = @service.commit_conference(conf_id)
     assert_instance_of(ConferenceCallService::CommitConferenceResponse, response)
-    #assert_equal("0000", response.error_code)
+    assert_equal("0000", response.error_code)
   end
 
   def test_get_conference_status

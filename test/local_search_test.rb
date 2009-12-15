@@ -3,7 +3,7 @@
 # To be run from the lib folder
 
 require 'test/unit'
-require 'iconv'
+#require 'iconv'
 
 
 require File.dirname(__FILE__) + '/../lib/local_search_service/local_search_service'

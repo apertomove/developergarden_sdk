@@ -9,12 +9,6 @@ Handsoap::Service.logger = $stdout if $DEBUG
 module LocalSearchService
   
 
-  Handsoap.http_driver = :httpclient
-
-# Print http and soap requests and reponses if ruby has been started with -d option.
-  Handsoap::Service.logger = $stdout if $DEBUG
-
-
   # Client to access the developer garden ip location service.
   #
   # See also:

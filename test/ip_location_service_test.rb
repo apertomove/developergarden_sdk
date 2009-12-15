@@ -3,7 +3,7 @@
 # To be run from the lib folder
 
 require 'test/unit'
-require 'iconv'
+#require 'iconv'
 
 
 require File.dirname(__FILE__) + '/../lib/ip_location_service/ip_location_service'
@@ -172,15 +172,15 @@ class IpLocationServiceTest < Test::Unit::TestCase
     end
   end
 
-  def test_locate_ip_production
-    #
-    ip = IpLocationService::IpAddress.new("93.222.255.58")
-    response = @ip_location_service.locate_ip(ip, ServiceEnvironment.PRODUCTION)
-
-    #TODO Encoding
-    puts response.ip_address_locations.first.address
-    puts response.ip_address_locations.first.is_in_region.country_code
-    puts response.ip_address_locations.first.is_in_region.region_name
+#  def test_locate_ip_production
+#    #
+#    ip = IpLocationService::IpAddress.new("93.222.255.58")
+#    response = @ip_location_service.locate_ip(ip, ServiceEnvironment.PRODUCTION)
+#
+#    #TODO Encoding
+#    puts response.ip_address_locations.first.address
+#    puts response.ip_address_locations.first.is_in_region.country_code
+#    puts response.ip_address_locations.first.is_in_region.region_name
 #    Iconv.conv('ISO-8859-1', 'utf-8', response.ip_address_locations.first.is_in_region.region_name)
 #    Iconv.conv('utf-8', 'ISO-8859-1', response.ip_address_locations.first.is_in_region.region_name)
 #
@@ -188,5 +188,5 @@ class IpLocationServiceTest < Test::Unit::TestCase
 #    puts response.ip_address_location.address
 #    puts response.ip_address_location.is_in_region.country_code
 #    puts response.ip_address_location.is_in_region.region_name
-  end
+#  end
 end

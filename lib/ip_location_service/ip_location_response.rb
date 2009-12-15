@@ -7,7 +7,7 @@ module IpLocationService
     # Constructor.
     # ===Parameters
     # <tt>response_xml</tt>:: Xml as returned by a <tt>ip_location</tt>-method call.
-    # <tt>raise_exception_on_error</tt>:: Xml as returned by a <tt>call_status</tt>-method call.
+    # <tt>raise_exception_on_error</tt>:: Raise an exception if an error occurs or not?
     def initialize(response_xml, raise_exception_on_error = true)
 
       doc = response_xml.document      

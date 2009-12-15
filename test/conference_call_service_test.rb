@@ -17,14 +17,11 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     super(method_name)
   end
 
-
   def test_get_conference_list
     response = @service.get_conference_list("max.mustermann", ConferenceCallService::ConferenceConstants.STATUS_ALL, ServiceEnvironment.SANDBOX)
 
     assert_instance_of(ConferenceCallService::GetConferenceListResponse, response)
-
     assert_equal("0000", response.error_code)
-    puts response
   end
 
   def test_create_conference
@@ -32,7 +29,7 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     schedule = ConferenceCallService::ConferenceSchedule.new
     response = @service.create_conference("max.mustermann", conf_details, schedule)
     assert_instance_of(ConferenceCallService::CreateConferenceResponse, response)
-    assert_not_nil(response.conference_id)    
+    assert_not_nil(response.conference_id) 
   end
 
   def test_commit_conference

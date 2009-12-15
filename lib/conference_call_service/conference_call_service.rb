@@ -71,8 +71,7 @@ module ConferenceCallService
           create_request.add('account', account) if (account && !account.empty?)
         end
       end
-
-      puts response_xml.to_xml
+      
       response = CreateConferenceResponse.new(response_xml)
     end
 

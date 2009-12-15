@@ -12,8 +12,8 @@ module IpLocationService
 
       doc = response_xml.document      
 
-      @error_code = IpLocationService.xpath_query(doc, "statusCode").to_s
-      @error_message = IpLocationService.xpath_query(doc, "statusMessage").to_s
+      @error_code     = IpLocationService.xpath_query(doc, "statusCode").to_s
+      @error_message  = IpLocationService.xpath_query(doc, "statusMessage").to_s
       @ip_address_locations = []
 
       ip_address_location_doc = IpLocationService.xpath_query(doc, "ipAddressLocation")

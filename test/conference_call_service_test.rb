@@ -18,10 +18,12 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
   end
 
   def test_get_conference_list
-    response = @service.get_conference_list("max.mustermann", ConferenceCallService::ConferenceConstants.STATUS_ALL, ServiceEnvironment.SANDBOX)
+    response = @service.get_conference_list("max.mustermann", ConferenceCallService::ConferenceConstants.STATUS_ALL, ServiceEnvironment.MOCK)
 
     assert_instance_of(ConferenceCallService::GetConferenceListResponse, response)
-    assert_equal("0000", response.error_code)    
+    assert_equal("0000", response.error_code)
+
+    assert( response.conference_ids.size > 0, "There should be at least one conference id." )    
   end
 
   def test_create_conference
@@ -30,17 +32,22 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     response = @service.create_conference("max.mustermann", conf_details, schedule)
     assert_instance_of(ConferenceCallService::CreateConferenceResponse, response)
     assert_equal("0000", response.error_code)
-    assert_not_nil(response.conference_id) 
+    assert_not_nil(response.conference_id)     
   end
 
   def test_commit_conference
-    conf_id = "1234567890"
+    conf_id = "219230"
     response = @service.commit_conference(conf_id)
     assert_instance_of(ConferenceCallService::CommitConferenceResponse, response)
     #assert_equal("0000", response.error_code)
   end
 
   def test_get_conference_status
-    
+    conference_id = "219230"
+    response = @service.get_conference_status(conference_id, ConferenceCallService::ConferenceConstants.STATUS_ALL, ServiceEnvironment.MOCK)
+
+    assert_instance_of(ConferenceCallService::GetConferenceStatusResponse, response)
+    assert_equal("0000", response.error_code)
+      
   end
 end

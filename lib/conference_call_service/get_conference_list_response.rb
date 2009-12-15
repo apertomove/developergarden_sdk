@@ -25,9 +25,12 @@ module ConferenceCallService
     end
 
     def to_s
-      ret = "#{@error_code.to_s}: #{@error_message.to_s}.\n"
+      ret = "#{@error_code.to_s}: #{@error_message.to_s}\n"
       ret += "Conference ids:\n"
-      @conference_ids
+      @conference_ids.each do |conference_id|
+        ret += "\t#{conference_id.to_s}\n"
+      end
+      ret
     end
   end
 end

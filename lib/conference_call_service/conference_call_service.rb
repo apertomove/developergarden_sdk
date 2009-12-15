@@ -5,6 +5,7 @@ require File.dirname(__FILE__) + '/conference_schedule'
 require File.dirname(__FILE__) + '/get_conference_list_response'
 require File.dirname(__FILE__) + '/create_conference_response'
 require File.dirname(__FILE__) + '/commit_conference_response'
+require File.dirname(__FILE__) + '/get_conference_status_response'
 
 Handsoap.http_driver = :httpclient
 
@@ -104,8 +105,7 @@ module ConferenceCallService
         end
       end
       
-      response = GetConferenceListResponse.new(response_xml)
-      puts response
+      response = GetConferenceListResponse.new(response_xml)      
       return response
     end
 
@@ -125,7 +125,7 @@ module ConferenceCallService
       end
 
       response = GetConferenceStatusResponse.new(response_xml)
-
+      puts response_xml.to_xml
       return response        
     end
 

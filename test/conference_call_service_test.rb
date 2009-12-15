@@ -29,12 +29,14 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     schedule = ConferenceCallService::ConferenceSchedule.new
     response = @service.create_conference("max.mustermann", conf_details, schedule)
     assert_instance_of(ConferenceCallService::CreateConferenceResponse, response)
+    assert_equal("0000", response.error_code)
     assert_not_nil(response.conference_id) 
   end
 
   def test_commit_conference
     conf_id = "1234567890"
     response = @service.commit_conference(conf_id)
+    assert_equal("0000", response.error_code)
     assert_instance_of(BasicResponse, response)
   end
 end

@@ -12,13 +12,14 @@ module ConferenceCallService
     @@RECURRING_MONTHLY   = 4
 
     # Constructor
-    def initialize(minute = Time.now.min, hour = Time.now.hour, day_of_month = Time.now.day, month = Time.now.month, year = Time.now.year, recurring = @@RECURRING_NONE)
+    def initialize(minute = Time.now.min, hour = Time.now.hour, day_of_month = Time.now.day, month = Time.now.month, year = Time.now.year, recurring = @@RECURRING_NONE, notify = 0)
       @minute        = minute
       @hour          = hour
       @day_of_month  = day_of_month
       @month         = month
       @year          = year
       @recurring     = recurring
+      @notify        = notify
     end
 
     #### Static methods

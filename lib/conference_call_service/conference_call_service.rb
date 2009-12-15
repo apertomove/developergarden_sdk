@@ -1,6 +1,9 @@
 require File.dirname(__FILE__) + '/../authenticated_service'
 require File.dirname(__FILE__) + '/conference_constants'
+require File.dirname(__FILE__) + '/conference_details'
+require File.dirname(__FILE__) + '/conference_schedule'
 require File.dirname(__FILE__) + '/get_conference_list_response'
+require File.dirname(__FILE__) + '/create_conference_response'
 
 Handsoap.http_driver = :httpclient
 
@@ -36,8 +39,33 @@ module ConferenceCallService
 
     end
 
-    def create_conference(owner_id, detail, schedule = ConferenceSchedule.new)
+    def create_conference(owner_id, detail, schedule = nil, environment = ServiceEnvironment.MOCK, account = nil)
+      response_xml = invoke_authenticated("cc:createConference") do |request, doc|
+        request.add('createConferenceRequest') do |create_request|
+          create_request.add('environment', environment)
+          create_request.add('ownerId', owner_id.to_s)
+          create_request.add('detail') do |detail_request|
+            detail_request.add('name', detail.name.to_s)
+            detail_request.add('description', detail.description.to_s)
+            detail_request.add('duration', detail.duration.to_s)
+          end
 
+          # schedule
+          if schedule then
+            create_request.add('schedule') do |schedule_request|
+              schedule_request.add('minute', schedule.minute.to_s)
+              schedule_request.add('hour', schedule.hour.to_s)
+              schedule_request.add('dayOfMonth', schedule.day_of_month.to_s)
+              schedule_request.add('month', schedule.month.to_s)
+              schedule_request.add('year', schedule.year.to_s)
+              schedule_request.add('recurring', schedule.recurring.to_s)
+              schedule_request.add('notify', schedule.notify.to_s)
+            end
+          end
+
+          create_request.add('account', account) if (account && !account.empty?)
+        end
+      end
     end
 
 
@@ -48,7 +76,6 @@ module ConferenceCallService
     # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
     # <tt>account</tt>:: IP address for which to perform an ip location.
     def get_conference_list(owner_id, what = ConferenceConstants.CONFERENCE_LIST_ALL, environment = ServiceEnvironment.MOCK, account = nil)
-      response_xml = nil
 
       response_xml = invoke_authenticated("cc:getConferenceList") do |request, doc|
         request.add('getConferenceListRequest') do |list_request|

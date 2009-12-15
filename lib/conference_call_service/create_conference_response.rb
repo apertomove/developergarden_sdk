@@ -17,8 +17,7 @@ module ConferenceCallService
       @error_code = ConferenceCallService.xpath_query(doc, "statusCode").to_s
       @error_message = ConferenceCallService.xpath_query(doc, "statusMessage").to_s
 
-      # TODO
-      # @conference_id = ...
+      @conference_id = ConferenceCallService.xpath_query(doc, "conferenceId").to_s
 
 
       raise_on_error(response_xml) if raise_exception_on_error

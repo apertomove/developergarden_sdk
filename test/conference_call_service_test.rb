@@ -49,7 +49,7 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
 
   def test_get_conference_status
 
-    for_temporary_conference_with_participants do |conference_id|
+    for_temporary_conference_with_participants do |conference_id, participant_ids|
       response = @service.get_conference_status(conference_id, ConferenceCallService::ConferenceConstants.STATUS_ALL, ServiceEnvironment.MOCK)
       
       assert_instance_of(ConferenceCallService::GetConferenceStatusResponse, response)
@@ -75,12 +75,21 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
 
   def test_new_participant
     for_temporary_conference do |conference_id|
-      participant = ConferenceCallService::ParticipantDetails.new('lucas', 'pinto', '+493200000001', 'luc@spin.to', 0)
+      participant = ConferenceCallService::ParticipantDetails.new('pete', 'glocke', '+493200000001', 'pete@spin.to', 0)
       response = @service.new_participant(conference_id, participant)
 
       assert_instance_of(ConferenceCallService::NewParticipantResponse, response)
       assert_equal("0000", response.error_code)
       assert_not_nil(response.participant_id)
+    end
+  end
+
+  def test_update_participant
+    for_temporary_conference_with_participants do |conference_id, participant_ids|
+      participant_detail = ConferenceCallService::ParticipantDetails.new('pete', 'glocke', '+493200000001', 'pete@spin.to', 0)
+      action   = ConferenceCallService::ConferenceConstants.ACTION_MUTE
+      response = @service.update_participant(conference_id, participant_ids.first, participant_detail, action)
+      assert_equal("0000", response.error_code)
     end
   end
 
@@ -160,13 +169,16 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
   def for_temporary_conference_with_participants(&block)
     for_temporary_conference do |conf_id|
 
+      participant_ids = []
       # Add two participants
       participant = ConferenceCallService::ParticipantDetails.new('maxi', 'max', '+493200000001', 'max@spin.to', 0)
       participant2 = ConferenceCallService::ParticipantDetails.new('roger', 'beep', '+493200000001', 'roger@spin.to', 0)
       response = @service.new_participant(conf_id, participant)
+      participant_ids << response.participant_id
       response = @service.new_participant(conf_id, participant2)
+      participant_ids << response.participant_id
       
-      yield(conf_id)
+      yield(conf_id, participant_ids)
     end
   end
 end

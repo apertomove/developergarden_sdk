@@ -25,7 +25,7 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     assert( response.conference_ids.size > 0, "There should be at least one conference id." )
 
     # Comment in to see a list of available conferences
-    #puts response
+    puts response
   end
 
   def test_create_conference
@@ -38,14 +38,14 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
   end
 
   def test_commit_conference
-    conf_id = "16194"
+    conf_id = "967191"
     response = @service.commit_conference(conf_id)
     assert_instance_of(ConferenceCallService::CommitConferenceResponse, response)
     assert_equal("0000", response.error_code)
   end
 
   def test_get_conference_status
-    conference_id = "16194"
+    conference_id = "967191"
     response = @service.get_conference_status(conference_id, ConferenceCallService::ConferenceConstants.STATUS_ALL, ServiceEnvironment.MOCK)
 
     assert_instance_of(ConferenceCallService::GetConferenceStatusResponse, response)
@@ -66,7 +66,7 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
   end
 
   def test_new_participant
-    conference_id = "16194"
+    conference_id = "967191"
     participant = ConferenceCallService::ParticipantDetails.new('lucas', 'pinto', '+493200000001', 'luc@spin.to', 0)
     response = @service.new_participant(conference_id, participant)
 
@@ -77,29 +77,22 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
 
 
   def test_remove_participant
-    conference_id   = "16194"
+    conference_id   = "967191"
     participant_id  = "abc"
 
     response = @service.remove_participant(conference_id, participant_id)
     assert_equal("0000", response.error_code)    
   end
-  
-  def test_remove_conference
-    conf_id = "16194"
-    response = @service.remove_conference(conf_id)
-    assert_instance_of(ConferenceCallService::RemoveConferenceResponse, response)
-    assert_equal("0000", response.error_code)
-  end
 
   def test_get_running_conference
-    conf_id = "16194"
+    conf_id = "967191"
     response = @service.get_running_conference(conf_id)
     assert_instance_of(ConferenceCallService::GetRunningConferenceResponse, response)
     assert_equal("0000", response.error_code)
   end
 
   def test_get_conference_template_list
-    owner_id = "12345"
+    owner_id = "max.mustermann"
     response = @service.get_conference_template_list(owner_id)
     assert_instance_of(ConferenceCallService::GetConferenceTemplateListResponse, response)
     assert_equal("0000", response.error_code)
@@ -107,6 +100,26 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
   end
 
   def test_create_conference_template
-    
+    owner_id = "max.mustermann"
+
+    details = Array.new
+    details << ConferenceCallService::ConferenceDetails.new('Une Grosse Conference', 'Une petite description', 42)
+    details << ConferenceCallService::ConferenceDetails.new('Une petite Conference', 'Une modeste description', 24)
+
+    # giving participants to the method is optional
+    #participants = Array.new
+    #participants << ConferenceCallService::ParticipantDetails.new('Lucas', 'Pinto', '+493200000001', 'luc@spin.to', 0)
+    #participants << ConferenceCallService::ParticipantDetails.new('Jonathan', 'Gainsbeurre', '+493200000001', 'kl@kkl.ak', 0)
+
+    response = @service.create_conference_template(owner_id, details)#, participants)
+    assert_instance_of(ConferenceCallService::CreateConferenceTemplateResponse, response)
+    assert_equal("0000", response.error_code)
+    assert_not_nil(response.template_id)
+  end
+  def test_remove_conference
+    conf_id = "967191"
+    response = @service.remove_conference(conf_id)
+    assert_instance_of(ConferenceCallService::RemoveConferenceResponse, response)
+    assert_equal("0000", response.error_code)
   end
 end

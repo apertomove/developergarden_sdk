@@ -13,6 +13,7 @@ require File.dirname(__FILE__) + '/remove_conference_response'
 require File.dirname(__FILE__) + '/get_running_conference_response'
 require File.dirname(__FILE__) + '/participant'
 require File.dirname(__FILE__) + '/get_conference_template_list_response'
+require File.dirname(__FILE__) + '/create_conference_template_response'
 
 Handsoap.http_driver = :httpclient
 
@@ -224,14 +225,17 @@ module ConferenceCallService
           create_conference_template_request.add('environment', environment)
           create_conference_template_request.add('account', account) if (account && !account.empty?)
           create_conference_template_request.add('ownerId', owner_id.to_s)
-          create_conference_template_request.add('details') do |details_request|
-            details_request.add('name', details.name.to_s)
-            details_request.add('description', details.description.to_s)
-            details_request.add('duration', details.duration.to_s)
+
+          details.each do |detail|
+            create_conference_template_request.add('detail') do |detail_request|
+              detail_request.add('name', detail.name.to_s)
+              detail_request.add('description', detail.description.to_s)
+              detail_request.add('duration', detail.duration.to_s)
+            end
           end
 
           if participants
-            participants.each do
+            participants.each do |participant|
               create_conference_template_request.add('participant') do |participant_request|
                 participant_request.add('firstName', participant.first_name.to_s)
                 participant_request.add('lastName', participant.last_name.to_s)

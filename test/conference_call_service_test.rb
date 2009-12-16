@@ -149,17 +149,15 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
 
   def test_create_conference_template
     owner_id = "max.mustermann"
-
-    details = Array.new
-    details << ConferenceCallService::ConferenceDetails.new('Une Grosse Conference', 'Une petite description', 42)
-    details << ConferenceCallService::ConferenceDetails.new('Une petite Conference', 'Une modeste description', 24)
+    details = ConferenceCallService::ConferenceDetails.new('Une Grosse Conference', 'Une petite description', 42)
 
     # giving participants to the method is optional
-    #participants = Array.new
-    #participants << ConferenceCallService::ParticipantDetails.new('Lucas', 'Pinto', '+493200000001', 'luc@spin.to', 0)
-    #participants << ConferenceCallService::ParticipantDetails.new('Jonathan', 'Gainsbeurre', '+493200000001', 'kl@kkl.ak', 0)
+    participants = Array.new
+    participants << ConferenceCallService::ParticipantDetails.new('Lucas', 'Pinto', '+493200000001', 'luc@spin.to', 0)
+    participants << ConferenceCallService::ParticipantDetails.new('Jonathan', 'Gainsbeurre', '+493200000001', 'kl@kkl.ak', 0)
 
-    response = @service.create_conference_template(owner_id, details)#, participants)
+    response = @service.create_conference_template(owner_id, details, participants)
+    #response = @service.create_conference_template(owner_id, details)
     assert_instance_of(ConferenceCallService::CreateConferenceTemplateResponse, response)
     assert_equal("0000", response.error_code)
     assert_not_nil(response.template_id)

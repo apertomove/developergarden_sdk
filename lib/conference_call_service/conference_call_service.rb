@@ -226,16 +226,16 @@ module ConferenceCallService
           create_conference_template_request.add('account', account) if (account && !account.empty?)
           create_conference_template_request.add('ownerId', owner_id.to_s)
           create_conference_template_request.add('detail') do |detail_request|
-              detail_request.add('name', detail.name.to_s)
-              detail_request.add('description', detail.description.to_s)
-              detail_request.add('duration', detail.duration.to_s)
-            end
+            detail_request.add('name', detail.name.to_s)
+            detail_request.add('description', detail.description.to_s)
+            detail_request.add('duration', detail.duration.to_s)
           end
+          
           if participants
             participants.each do |participant|
               create_conference_template_request.add('participants') do |participant_request|
-                participant_request.add('firstName', participant.first_name.to_s)
-                participant_request.add('lastName', participant.last_name.to_s)
+                participant_request.add('firstName', participant.firstname.to_s)
+                participant_request.add('lastName', participant.lastname.to_s)
                 participant_request.add('number', participant.number.to_s)
                 participant_request.add('email', participant.email.to_s)
                 participant_request.add('flags', participant.flags.to_s)

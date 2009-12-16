@@ -34,21 +34,6 @@ class LocalSearchServiceTest < Test::Unit::TestCase
     assert_equal("5061739", lat)    
   end
 
-  def test_local_search_wrong_params_for_mock_env
-    search_parameter = {
-            :what => "music"
-
-    }
-    response = @service.local_search(search_parameter, ServiceEnvironment.MOCK)
-
-    assert_instance_of(Handsoap::XmlQueryFront::NodeSelection, response.search_result)
-    puts response.search_result.to_xml if @debug
-
-    results_where_locs_where = response.search_result.xpath("//RESULTS/WHERE_LOCS/WHERE").first
-    lat = results_where_locs_where["LAT"]
-    assert_equal("5061739", lat)
-  end
-
 #  def test_local_search_production
 #    search_parameter = {
 #            :what => "key-systems gmbh"

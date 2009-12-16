@@ -11,7 +11,7 @@ module ConferenceCallService
       doc = response_xml.document
       @error_code =     ConferenceCallService.xpath_query(doc, "statusCode").to_s
       @error_message =  ConferenceCallService.xpath_query(doc, "statusMessage").to_s
-      #@participant =    ParticipantDetails.build_from_xml(ConferenceCallService.xpath_query(doc, "participant"))
+      @participant =    ParticipantDetails.build_from_xml(ConferenceCallService.xpath_query(doc, "participant"))
       raise_on_error(response_xml) if raise_exception_on_error
     end
   end

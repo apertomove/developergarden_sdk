@@ -130,9 +130,7 @@ module ConferenceCallService
           status_request.add('account', account) if (account && !account.empty?)
         end
       end
-
-      puts response_xml.to_xml
-      puts "\n\n----------\n\n"
+      
       response = GetConferenceStatusResponse.new(response_xml)
       return response
     end
@@ -148,8 +146,8 @@ module ConferenceCallService
           new_participant_request.add('account', account) if (account && !account.empty?)
           new_participant_request.add('conferenceId', conference_id.to_s)
           new_participant_request.add('participant') do |participant_request|
-            participant_request.add('firstName', participant.first_name.to_s)
-            participant_request.add('lastName', participant.last_name.to_s)
+            participant_request.add('firstName', participant.firstname.to_s)
+            participant_request.add('lastName', participant.lastname.to_s)
             participant_request.add('number', participant.number.to_s)
             participant_request.add('email', participant.email.to_s)
             participant_request.add('flags', participant.flags.to_s)

@@ -29,7 +29,7 @@ module ConferenceCallService
     #### Static methods
 
     def self.build_from_xml(xml_doc)
-      if xml_doc
+      if xml_doc && xml_doc.size > 0 then
         firstname  = ConferenceCallService.xpath_query(xml_doc, "firstName").to_s
         lastname   = ConferenceCallService.xpath_query(xml_doc, "lastName").to_s
         number     = ConferenceCallService.xpath_query(xml_doc, "number").to_s

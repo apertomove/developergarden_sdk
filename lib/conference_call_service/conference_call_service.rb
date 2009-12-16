@@ -163,7 +163,7 @@ module ConferenceCallService
     # ===Parameters
     # <tt>conference_id</tt>:: id of the removed conference
     # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
-    def remove_conference(conference_id, environment = ServiceEnvironment.MOCK,  account = nil)
+    def remove_conference(conference_id, environment = ServiceEnvironment.MOCK, account = nil)
       response_xml = invoke_authenticated("cc:removeConference") do |request, doc|
         request.add('removeConferenceRequest') do |remove_conference_request|
           remove_conference_request.add('environment', environment)
@@ -213,8 +213,40 @@ module ConferenceCallService
       response = GetRunningConferenceResponse.new(response_xml)
     end
 
-    def create_conference_template
+    # ===Parameters
+    # <tt>owner_id</tt>:: id of the owner of the conference template
+    # <tt>details</tt>: details of the conference template. ConferenceDetails Type
+    # <tt>participants</tt>: optional parameter of the type ParticipantDetail
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
+    def create_conference_template(owner_id, details, participants = nil,  environment = ServiceEnvironment.MOCK,  account = nil)
+      response_xml = invoke_authenticated("cc:createConferenceTemplate") do |request, doc|
+        request.add('createConferenceTemplate') do |create_conference_template_request|
+          create_conference_template_request.add('environment', environment)
+          create_conference_template_request.add('account', account) if (account && !account.empty?)
+          create_conference_template_request.add('ownerId', owner_id.to_s)
+          create_conference_template_request.add('details') do |details_request|
+            details_request.add('name', details.name.to_s)
+            details_request.add('description', details.description.to_s)
+            details_request.add('duration', details.duration.to_s)
+          end
 
+          if participants
+            participants.each do
+              create_conference_template_request.add('participant') do |participant_request|
+                participant_request.add('firstName', participant.first_name.to_s)
+                participant_request.add('lastName', participant.last_name.to_s)
+                participant_request.add('number', participant.number.to_s)
+                participant_request.add('email', participant.email.to_s)
+                participant_request.add('flags', participant.flags.to_s)
+              end
+            end
+          end
+          
+        end
+      end
+
+      response = CreateConferenceTemplateResponse.new(response_xml)
+      
     end
 
     def get_conference_template

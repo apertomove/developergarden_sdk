@@ -105,4 +105,8 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     assert_equal("0000", response.error_code)
     assert_not_nil(response.template_ids)
   end
+
+  def test_create_conference_template
+    
+  end
 end

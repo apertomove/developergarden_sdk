@@ -15,6 +15,7 @@ require File.dirname(__FILE__) + '/participant'
 require File.dirname(__FILE__) + '/get_conference_template_list_response'
 require File.dirname(__FILE__) + '/create_conference_template_response'
 require File.dirname(__FILE__) + '/update_participant_response'
+require File.dirname(__FILE__) + '/update_conference_response'
 
 Handsoap.http_driver = :httpclient
 
@@ -71,21 +72,13 @@ module ConferenceCallService
           create_request.add('environment', environment)
           create_request.add('ownerId', owner_id.to_s)
           create_request.add('detail') do |detail_request|
-            detail_request.add('name', detail.name.to_s)
-            detail_request.add('description', detail.description.to_s)
-            detail_request.add('duration', detail.duration.to_s)
+            detail.add_to_handsoap_xml(detail_request)
           end
 
           # schedule
           if schedule then
             create_request.add('schedule') do |schedule_request|
-              schedule_request.add('minute', schedule.minute.to_s)
-              schedule_request.add('hour', schedule.hour.to_s)
-              schedule_request.add('dayOfMonth', schedule.day_of_month.to_s)
-              schedule_request.add('month', schedule.month.to_s)
-              schedule_request.add('year', schedule.year.to_s)
-              schedule_request.add('recurring', schedule.recurring.to_s)
-              schedule_request.add('notify', schedule.notify.to_s)
+              schedule.add_to_handsoap_xml(schedule_request)
             end
           end
 
@@ -148,11 +141,7 @@ module ConferenceCallService
           new_participant_request.add('account', account) if (account && !account.empty?)
           new_participant_request.add('conferenceId', conference_id.to_s)
           new_participant_request.add('participant') do |participant_request|
-            participant_request.add('firstName', participant.firstname.to_s)
-            participant_request.add('lastName', participant.lastname.to_s)
-            participant_request.add('number', participant.number.to_s)
-            participant_request.add('email', participant.email.to_s)
-            participant_request.add('flags', participant.flags.to_s)
+            participant.add_to_handsoap_xml(participant_request)
           end
         end
       end
@@ -179,11 +168,7 @@ module ConferenceCallService
 
           if participant_detail then
             update_participant_request.add('participant') do |participant_request|
-              participant_request.add('firstName', participant_detail.firstname.to_s)
-              participant_request.add('lastName', participant_detail.lastname.to_s)
-              participant_request.add('number', participant_detail.number.to_s)
-              participant_request.add('email', participant_detail.email.to_s)
-              participant_request.add('flags', participant_detail.flags.to_s)
+              participant_detail.add_to_handsoap_xml(participant_request)
             end
           end
         end
@@ -225,13 +210,39 @@ module ConferenceCallService
       response = RemoveParticipantResponse.new(response_xml)
     end
 
-    def update_conference
+    # Updates an existing conference.
+    # ===Parameters
+    # <tt>conference_id</tt>:: Id of the conference
+    # <tt>conference_details</tt>:: Id of the conference
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
+    def update_conference(conference_id, conference_details = nil, schedule = nil, initiator_id = nil, environment = ServiceEnvironment.MOCK, account = nil)
+      response_xml = invoke_authenticated("cc:updateConference") do |request, doc|
+        request.add('updateConferenceRequest') do |remove_request|
+          remove_request.add('environment', environment)
+          remove_request.add('account', account) if (account && !account.empty?)
+          remove_request.add('conferenceId', conference_id.to_s)
+          remove_request.add('initiatorId', initiator_id.to_s)
 
+          if conference_details then
+            remove_request.add('detail') do |detail_request|
+              conference_details.add_to_handsoap_xml(detail_request)
+            end
+          end
+
+          if schedule then
+            remove_request.add('schedule') do |schedule_request|
+              schedule.add_to_handsoap_xml(schedule_request)
+            end
+          end
+        end
+      end
+
+      response = UpdateConferenceResponse.new(response_xml)
     end
 
     # Tell whether a conference is running
     # ===Parameters
-    # <tt>conference_id</tt>:: id of the may-be running conference
+    # <tt>conference_id</tt>:: id of the maybe running conference
     # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
     def get_running_conference(conference_id, environment = ServiceEnvironment.MOCK,  account = nil)
       response_xml = invoke_authenticated("cc:getRunningConference") do |request, doc|
@@ -257,19 +268,13 @@ module ConferenceCallService
           create_conference_template_request.add('account', account) if (account && !account.empty?)
           create_conference_template_request.add('ownerId', owner_id.to_s)
           create_conference_template_request.add('detail') do |detail_request|
-            detail_request.add('name', detail.name.to_s)
-            detail_request.add('description', detail.description.to_s)
-            detail_request.add('duration', detail.duration.to_s)
+            detail.add_to_handsoap_xml(detail_request)
           end
 
           if participants then
             participants.each do |participant|
               create_conference_template_request.add('participants') do |participant_request|
-                participant_request.add('firstName', participant.firstname.to_s)
-                participant_request.add('lastName', participant.lastname.to_s)
-                participant_request.add('number', participant.number.to_s)
-                participant_request.add('email', participant.email.to_s)
-                participant_request.add('flags', participant.flags.to_s)
+                participant.add_to_handsoap_xml(participant_request)
               end
             end
           end

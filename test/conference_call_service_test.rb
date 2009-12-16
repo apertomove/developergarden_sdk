@@ -142,6 +142,17 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     assert_equal("0000", response.error_code)
   end
 
+  def test_update_conference
+    for_temporary_conference_with_participants do |conf_id, participant_ids|
+      conf_details = ConferenceCallService::ConferenceDetails.new('Une Grosse Conference', 'Une petite description', 42)
+      schedule = ConferenceCallService::ConferenceSchedule.new
+      response = @service.update_conference(conf_id, conf_details, schedule, "my_new_initiator")
+
+      assert_instance_of(ConferenceCallService::UpdateConferenceResponse, response)
+      assert_equal("0000", response.error_code)      
+    end
+  end
+
   protected
 
   # Creates a conference and returns its conference id.

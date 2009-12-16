@@ -163,7 +163,7 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
 
   def test_get_conference_template_participant
     for_temporary_template do |template_id|
-      participant_id = "abc"
+      participant_id = "pid1"
 
       response = @service.get_conference_template_participant(template_id,participant_id)
       assert_instance_of(ConferenceCallService::GetConferenceTemplateParticipantResponse, response)

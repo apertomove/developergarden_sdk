@@ -300,7 +300,7 @@ module ConferenceCallService
           get_conference_template_request.add('account', account) if (account && !account.empty?)
         end
       end
-
+      
       response = GetConferenceTemplateResponse.new(response_xml)
     end
 

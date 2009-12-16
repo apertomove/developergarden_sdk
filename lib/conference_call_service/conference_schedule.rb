@@ -40,14 +40,18 @@ module ConferenceCallService
     #### Static methods
 
     def self.build_from_xml(xml_doc)
-      minute = ConferenceCallService.xpath_query(xml_doc, "minute").to_s
-      hour = ConferenceCallService.xpath_query(xml_doc, "hour").to_s
-      day_of_month = ConferenceCallService.xpath_query(xml_doc, "dayOfMonth").to_s
-      month = ConferenceCallService.xpath_query(xml_doc, "month").to_s
-      year = ConferenceCallService.xpath_query(xml_doc, "year").to_s
-      recurring = ConferenceCallService.xpath_query(xml_doc, "recurring").to_s
-      notify = ConferenceCallService.xpath_query(xml_doc, "notify").to_s
-      new(minute, hour, day_of_month, month, year, recurring, notify)
+
+      # If the service responds with non-0000 answer there might me no schedule infos available
+      if xml_doc then
+        minute = ConferenceCallService.xpath_query(xml_doc, "minute").to_s
+        hour = ConferenceCallService.xpath_query(xml_doc, "hour").to_s
+        day_of_month = ConferenceCallService.xpath_query(xml_doc, "dayOfMonth").to_s
+        month = ConferenceCallService.xpath_query(xml_doc, "month").to_s
+        year = ConferenceCallService.xpath_query(xml_doc, "year").to_s
+        recurring = ConferenceCallService.xpath_query(xml_doc, "recurring").to_s
+        notify = ConferenceCallService.xpath_query(xml_doc, "notify").to_s
+        new(minute, hour, day_of_month, month, year, recurring, notify)
+      end
     end
 
     def self.RECURRING_NONE

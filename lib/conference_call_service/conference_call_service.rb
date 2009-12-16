@@ -15,6 +15,7 @@ require File.dirname(__FILE__) + '/participant'
 require File.dirname(__FILE__) + '/get_conference_template_list_response'
 require File.dirname(__FILE__) + '/create_conference_template_response'
 require File.dirname(__FILE__) + '/get_conference_template_response'
+require File.dirname(__FILE__) + '/remove_conference_template_response'
 
 Handsoap.http_driver = :httpclient
 
@@ -220,7 +221,7 @@ module ConferenceCallService
     # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
     def create_conference_template(owner_id, detail, participants = nil, environment = ServiceEnvironment.MOCK,  account = nil)
       response_xml = invoke_authenticated("cc:createConferenceTemplate") do |request, doc|
-        request.add('createConferenceTemplate') do |create_conference_template_request|
+        request.add('createConferenceTemplateRequest') do |create_conference_template_request|
           create_conference_template_request.add('environment', environment)
           create_conference_template_request.add('account', account) if (account && !account.empty?)
           create_conference_template_request.add('ownerId', owner_id.to_s)
@@ -260,7 +261,7 @@ module ConferenceCallService
           get_conference_template_request.add('account', account) if (account && !account.empty?)
         end
       end
-
+      
       response = GetConferenceTemplateResponse.new(response_xml)
     end
 
@@ -268,8 +269,19 @@ module ConferenceCallService
 
     end
 
-    def remove_conference_template
-
+    # ===Parameters
+    # <tt>template_id</tt>:: template od the removed conference
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
+    def remove_conference_template(template_id, environment = ServiceEnvironment.MOCK,  account = nil)
+      response_xml = invoke_authenticated("cc:removeConferenceTemplate") do |request, doc|
+        request.add('getConferenceTemplateRequest') do |remove_conference_template_request|
+          remove_conference_template_request.add('environment', environment)
+          remove_conference_template_request.add('templateId', template_id.to_s)
+          remove_conference_template_request.add('account', account) if (account && !account.empty?)
+        end
+      end
+      
+      response = RemoveConferenceTemplateResponse.new(response_xml)
     end
 
     # Give the list of the templates of the given conference owner

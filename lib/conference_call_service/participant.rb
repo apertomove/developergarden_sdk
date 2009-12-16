@@ -1,12 +1,12 @@
 module ConferenceCallService
   class Participant
-    attr_accessor :id, :details, :status 
+    attr_accessor :id, :details, :status
 
     # Constructor
     def initialize(id, details, status)
-      @id  = id
-      @details   = details
-      @status     = status
+      @id = id
+      @details = details
+      @status = status
 
     end
 
@@ -17,11 +17,13 @@ module ConferenceCallService
     #### Static methods
 
     def self.build_from_xml(xml_doc)
-      id = ConferenceCallService.xpath_query(xml_doc, "participantId").to_s
-      details = ParticipantDetails.build_from_xml( ConferenceCallService.xpath_query(xml_doc, "detail") )
-      status = { :muted => ConferenceCallService.xpath_query(xml_doc, "status/value").to_s }
+      if xml_doc then
+        id = ConferenceCallService.xpath_query(xml_doc, "participantId").to_s
+        details = ParticipantDetails.build_from_xml( ConferenceCallService.xpath_query(xml_doc, "detail") )
+        status = { :muted => ConferenceCallService.xpath_query(xml_doc, "status/value").to_s }
 
-      new(id, details, status)
+        new(id, details, status)
+      end
     end
   end
 end

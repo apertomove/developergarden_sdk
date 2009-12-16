@@ -20,7 +20,7 @@ module ConferenceCallService
       participants_xml = ConferenceCallService.xpath_query(doc, "participants")
       if participants_xml then
         participants_xml.each do |participant_xml|
-          @participants << Participant.build_from_xml(participant_xml).to_s
+          @participants << ParticipantDetails.build_from_xml(participant_xml).to_s
         end
       end
 

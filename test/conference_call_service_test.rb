@@ -163,6 +163,25 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     assert_not_nil(response.template_id)
   end
 
+  def test_get_conference_template
+    template_id = "1"
+
+    response = @service.get_conference_template(template_id)
+
+    assert_instance_of(ConferenceCallService::GetConferenceTemplateResponse, response)
+    assert_equal("0000", response.error_code)
+    assert_not_nil(response.participants)
+    assert_not_nil(response.participants.firstname)
+    assert_not_nil(response.participants.lastname)
+    assert_not_nil(response.participants.number)
+    assert_not_nil(response.participants.email)
+    assert_not_nil(response.participants.flags)
+    assert_not_nil(response.detail)
+    assert_not_nil(response.detail.name)
+    assert_not_nil(response.detail.description)
+    assert_not_nil(response.details.duration)
+  end
+
   def test_remove_conference
     conf_id = create_conference
     response = @service.remove_conference(conf_id)

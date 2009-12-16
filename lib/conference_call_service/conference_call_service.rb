@@ -14,6 +14,7 @@ require File.dirname(__FILE__) + '/get_running_conference_response'
 require File.dirname(__FILE__) + '/participant'
 require File.dirname(__FILE__) + '/get_conference_template_list_response'
 require File.dirname(__FILE__) + '/create_conference_template_response'
+require File.dirname(__FILE__) + '/get_conference_template_response'
 
 Handsoap.http_driver = :httpclient
 
@@ -219,7 +220,7 @@ module ConferenceCallService
     # <tt>detail</tt>: details of the conference template. ConferenceDetails Type
     # <tt>participants</tt>: optional parameter of the type ParticipantDetail
     # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
-    def create_conference_template(owner_id, detail, participants = nil,  environment = ServiceEnvironment.MOCK,  account = nil)
+    def create_conference_template(owner_id, detail, participants = nil, environment = ServiceEnvironment.MOCK,  account = nil)
       response_xml = invoke_authenticated("cc:createConferenceTemplate") do |request, doc|
         request.add('createConferenceTemplate') do |create_conference_template_request|
           create_conference_template_request.add('environment', environment)
@@ -250,8 +251,19 @@ module ConferenceCallService
       
     end
 
-    def get_conference_template
+    # ===Parameters
+    # <tt>template_id</tt>::
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
+    def get_conference_template(template_id, environment = ServiceEnvironment.MOCK,  account = nil)
+      response_xml = invoke_authenticated("cc:getConferenceTemplate") do |request, doc|
+        request.add('getConferenceTemplateRequest') do |get_conference_template_request|
+          get_conference_template_request.add('environment', environment)
+          get_conference_template_request.add('templateId', template_id.to_s)
+          get_conference_template_request.add('account', account) if (account && !account.empty?)
+        end
+      end
 
+      response = GetConferenceTemplateResponse.new(response_xml)
     end
 
     def update_conference_template

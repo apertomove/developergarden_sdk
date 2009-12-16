@@ -2,6 +2,7 @@ require File.dirname(__FILE__) + '/../basic_response'
 
 module ConferenceCallService
   class GetConferenceTemplateParticipantResponse < BasicResponse
+    attr_accessor :participant
     # Constructor
     
     # ===Parameters

@@ -177,6 +177,16 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     end
   end
 
+  def test_remove_conference_template_participant
+    for_temporary_template do |template_id|
+      participant_id = "pid"
+
+      response = @service.remove_conference_template_participant(template_id, participant_id)
+      assert_instance_of(ConferenceCallService::RemoveConferenceTemplateParticipantResponse, response)
+      assert_equal("0000", response.error_code)
+    end
+  end
+
   def test_remove_conference
     conf_id = create_template
     response = @service.remove_conference(conf_id)

@@ -17,24 +17,14 @@ module ConferenceCallService
       @error_code = ConferenceCallService.xpath_query(doc, "statusCode").to_s
       @error_message = ConferenceCallService.xpath_query(doc, "statusMessage").to_s
 
-      #participants_xml = ConferenceCallService.xpath_query(doc, "participants")
-      #puts participants_xml.class
-      #participants_xml.each do |participant_xml|
-      #  @participants << ParticipantDetails.build_from_xml(participant_xml).to_s
-      #end
-
       participants_xml = ConferenceCallService.xpath_query(doc, "participants")
-      puts participants_xml.to_s
-      participants_xml.each do |participant_xml|
-        @participants << Participant.build_from_xml(participant_xml)
+      if participants_xml then
+        participants_xml.each do |participant_xml|
+          @participants << Participant.build_from_xml(participant_xml).to_s
+        end
       end
 
-      puts ConferenceDetails.build_from_xml(ConferenceCallService.xpath_query(doc, "detail")).to_s
-      @details  = ConferenceDetails.build_from_xml(ConferenceCallService.xpath_query(doc, "detail"))
-
-      #details_xml = ConferenceCallService.xpath_query(doc, "detail").to_s
-      #puts details_xml
-      #@details = ConferenceDetails.build_from_xml(details_xml)
+      @details  = ConferenceDetails.build_from_xml(ConferenceCallService.xpath_query(doc, "detail").to_s)
       
       raise_on_error(response_xml) if raise_exception_on_error
     end

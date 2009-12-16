@@ -113,10 +113,11 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
 
   def test_get_conference_template_list
     owner_id = "max.mustermann"
-    response = @service.get_conference_template_list(owner_id)
+    response = @service.get_conference_template_list(owner_id, ServiceEnvironment.SANDBOX)
     assert_instance_of(ConferenceCallService::GetConferenceTemplateListResponse, response)
     assert_equal("0000", response.error_code)
     assert_not_nil(response.template_ids)
+    puts response.template_ids.inspect
   end
 
   def test_create_conference_template
@@ -167,6 +168,10 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     response = @service.remove_conference(conf_id)
     assert_instance_of(ConferenceCallService::RemoveConferenceResponse, response)
     assert_equal("0000", response.error_code)
+  end
+
+  def test_tmp
+    puts create_template        
   end
 
   protected
@@ -223,8 +228,7 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     participants << ConferenceCallService::ParticipantDetails.new('Serge', 'H.', '+493200000001', 'luc@spin.to', 0)
     participants << ConferenceCallService::ParticipantDetails.new('Jonathan', 'Gainsbeurre', '+493200000001', 'kl@kkl.ak', 0)
 
-    response = @service.create_conference_template(owner_id, conf_details, participants)
-    puts response.
+    response = @service.create_conference_template(owner_id, conf_details, participants, ServiceEnvironment.MOCK)
     return response.template_id
   end
 

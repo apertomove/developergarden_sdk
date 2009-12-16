@@ -16,7 +16,7 @@ require File.dirname(__FILE__) + '/get_conference_template_list_response'
 require File.dirname(__FILE__) + '/create_conference_template_response'
 require File.dirname(__FILE__) + '/get_conference_template_response'
 require File.dirname(__FILE__) + '/remove_conference_template_response'
-require File.dirname(__FILE__) + '/update_participant_response'
+#require File.dirname(__FILE__) + '/update_participant_response'
 
 Handsoap.http_driver = :httpclient
 
@@ -294,7 +294,7 @@ module ConferenceCallService
           get_conference_template_request.add('account', account) if (account && !account.empty?)
         end
       end
-      
+
       response = GetConferenceTemplateResponse.new(response_xml)
     end
 

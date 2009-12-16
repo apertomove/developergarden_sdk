@@ -134,6 +134,17 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     assert_not_nil(response.template_id)
   end
 
+  def test_update_conference_template
+    for_temporary_template do |template_id|
+      initiator_id = "pid1"
+      conf_details = ConferenceCallService::ConferenceDetails.new("A very important conf", "A very impressive description", 30)
+
+      response = @service.update_conference_template(template_id, initiator_id, conf_details)
+      assert_instance_of(ConferenceCallService::UpdateConferenceTemplateResponse, response)
+      assert_equal("0000", response.error_code)
+    end
+  end
+
   def test_remove_conference_template
     for_temporary_template do |template_id|
       response = @service.remove_conference_template(template_id)

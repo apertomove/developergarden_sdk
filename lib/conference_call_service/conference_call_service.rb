@@ -22,7 +22,7 @@ require File.dirname(__FILE__) + '/get_conference_template_participant_response'
 require File.dirname(__FILE__) + '/remove_conference_template_participant_response'
 require File.dirname(__FILE__) + '/add_conference_template_participant_response'
 require File.dirname(__FILE__) + '/update_conference_template_participant_response'
-#require File.dirname(__FILE__) + '/update_conference_template_participant_response'
+require File.dirname(__FILE__) + '/update_conference_template_response'
 
 
 Handsoap.http_driver = :httpclient
@@ -309,12 +309,29 @@ module ConferenceCallService
       response = GetConferenceTemplateResponse.new(response_xml)
     end
 
-    def update_conference_template
+    # ===Parameters
+    # <tt>template_id</tt>:: id of the updated template
+    # <tt>initiator_id</tt>:: id of the initiator of the conference
+    # <tt>details</tt>:: details of the conference template
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
+    def update_conference_template(template_id, initiator_id, detail, environment = ServiceEnvironment.MOCK,  account = nil)
+      response_xml = invoke_authenticated("cc:updateConferenceTemplate") do |request, doc|
+        request.add('updateConferenceTemplateRequest') do |update_conference_template_request|
+          update_conference_template_request.add('environment', environment)
+          update_conference_template_request.add('templateId', template_id.to_s)
+          update_conference_template_request.add('initiatorId', initiator_id.to_s)
+          update_conference_template_request.add('detail') do |detail_request|
+            detail.add_to_handsoap_xml(detail_request)
+          end
+          update_conference_template_request.add('account', account) if (account && !account.empty?)
+        end
+      end
 
+      response = UpdateConferenceTemplateResponse.new(response_xml)
     end
 
     # ===Parameters
-    # <tt>template_id</tt>:: template od the removed conference
+    # <tt>template_id</tt>:: template of the removed conference
     # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
     def remove_conference_template(template_id, environment = ServiceEnvironment.MOCK,  account = nil)
       response_xml = invoke_authenticated("cc:removeConferenceTemplate") do |request, doc|

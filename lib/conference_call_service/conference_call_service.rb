@@ -216,27 +216,24 @@ module ConferenceCallService
 
     # ===Parameters
     # <tt>owner_id</tt>:: id of the owner of the conference template
-    # <tt>details</tt>: details of the conference template. ConferenceDetails Type
+    # <tt>detail</tt>: details of the conference template. ConferenceDetails Type
     # <tt>participants</tt>: optional parameter of the type ParticipantDetail
     # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
-    def create_conference_template(owner_id, details, participants = nil,  environment = ServiceEnvironment.MOCK,  account = nil)
+    def create_conference_template(owner_id, detail, participants = nil,  environment = ServiceEnvironment.MOCK,  account = nil)
       response_xml = invoke_authenticated("cc:createConferenceTemplate") do |request, doc|
         request.add('createConferenceTemplate') do |create_conference_template_request|
           create_conference_template_request.add('environment', environment)
           create_conference_template_request.add('account', account) if (account && !account.empty?)
           create_conference_template_request.add('ownerId', owner_id.to_s)
-
-          details.each do |detail|
-            create_conference_template_request.add('detail') do |detail_request|
+          create_conference_template_request.add('detail') do |detail_request|
               detail_request.add('name', detail.name.to_s)
               detail_request.add('description', detail.description.to_s)
               detail_request.add('duration', detail.duration.to_s)
             end
           end
-
           if participants
             participants.each do |participant|
-              create_conference_template_request.add('participant') do |participant_request|
+              create_conference_template_request.add('participants') do |participant_request|
                 participant_request.add('firstName', participant.first_name.to_s)
                 participant_request.add('lastName', participant.last_name.to_s)
                 participant_request.add('number', participant.number.to_s)

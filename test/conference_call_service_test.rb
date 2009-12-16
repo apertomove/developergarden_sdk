@@ -165,7 +165,7 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     for_temporary_template do |template_id|
       participant_id = "pid1"
 
-      response = @service.get_conference_template_participant(template_id,participant_id)
+      response = @service.get_conference_template_participant(template_id, participant_id)
       assert_instance_of(ConferenceCallService::GetConferenceTemplateParticipantResponse, response)
       assert_equal("0000", response.error_code)
       assert_not_nil(response.participant)
@@ -174,6 +174,16 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
       assert_not_nil(response.participant.number)
       assert_not_nil(response.participant.email)
       assert_not_nil(response.participant.flags)
+    end
+  end
+
+  def test_remove_conference_template_participant
+    for_temporary_template do |template_id|
+      participant_id = "pid"
+
+      response = @service.remove_conference_template_participant(template_id, participant_id)
+      assert_instance_of(ConferenceCallService::RemoveConferenceTemplateParticipantResponse, response)
+      assert_equal("0000", response.error_code)
     end
   end
 

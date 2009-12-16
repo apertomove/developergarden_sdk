@@ -19,6 +19,7 @@ require File.dirname(__FILE__) + '/update_conference_response'
 require File.dirname(__FILE__) + '/get_conference_template_response'
 require File.dirname(__FILE__) + '/remove_conference_template_response'
 require File.dirname(__FILE__) + '/get_conference_template_participant_response'
+require File.dirname(__FILE__) + '/remove_conference_template_participant_response'
 
 Handsoap.http_driver = :httpclient
 
@@ -344,7 +345,7 @@ module ConferenceCallService
     # <tt>template_id</tt>:: id of the template in which we call the participant
     # <tt>participant_id</tt>:: id of the called participant
     # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
-    def get_conference_template_participant(template_id, participant_id, environment = ServiceEnvironment.MOCK,  account = nil)
+    def get_conference_template_participant(template_id, participant_id, environment = ServiceEnvironment.MOCK, account = nil)
        response_xml = invoke_authenticated("cc:getConferenceTemplateParticipant") do |request, doc|
         request.add('getConferenceTemplateParticipantRequest') do |get_conference_template_participant_request|
           get_conference_template_participant_request.add('environment', environment)
@@ -361,8 +362,22 @@ module ConferenceCallService
 
     end
 
-    def remove_conference_template_participant
+    # Give the list of the templates of the given conference owner
+    # ===Parameters
+    # <tt>template_id</tt>:: id of the template in which we call the participant
+    # <tt>participant_id</tt>:: id of the called participant
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
+    def remove_conference_template_participant(template_id, participant_id, environment = ServiceEnvironment.MOCK, account = nil)
+       response_xml = invoke_authenticated("cc:removeConferenceTemplateParticipant") do |request, doc|
+        request.add('removeConferenceTemplateParticipantRequest') do |remove_conference_template_participant_request|
+          remove_conference_template_participant_request.add('environment', environment)
+          remove_conference_template_participant_request.add('templateId', template_id.to_s)
+          remove_conference_template_participant_request.add('participantId', participant_id.to_s)
+          remove_conference_template_participant_request.add('account', account) if (account && !account.empty?)
+        end
+      end
 
+      response = RemoveConferenceTemplateParticipantResponse.new(response_xml)
     end
 
     def add_conference_template_participant

@@ -21,6 +21,9 @@ require File.dirname(__FILE__) + '/remove_conference_template_response'
 require File.dirname(__FILE__) + '/get_conference_template_participant_response'
 require File.dirname(__FILE__) + '/remove_conference_template_participant_response'
 require File.dirname(__FILE__) + '/add_conference_template_participant_response'
+require File.dirname(__FILE__) + '/update_conference_template_participant_response'
+#require File.dirname(__FILE__) + '/update_conference_template_participant_response'
+
 
 Handsoap.http_driver = :httpclient
 
@@ -359,8 +362,26 @@ module ConferenceCallService
       response = GetConferenceTemplateParticipantResponse.new(response_xml)
     end
 
-    def update_conference_template_participant
+    # Update the details of a given participant
+    # ===Parameters
+    # <tt>template_id</tt>:: id of the template in which we call the participant
+    # <tt>participant_id</tt>:: id of the changed participant
+    # <tt>participant</tt>:: details of the changed participant
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
+    def update_conference_template_participant(template_id, participant_id, participant, environment = ServiceEnvironment.MOCK, account = nil)
+      response_xml = invoke_authenticated("cc:updateConferenceTemplateParticipant") do |request, doc|
+        request.add('updateConferenceTemplateParticipantRequest') do |update_conference_template_participant_request|
+          update_conference_template_participant_request.add('environment', environment)
+          update_conference_template_participant_request.add('templateId', template_id.to_s)
+          update_conference_template_participant_request.add('participantId', participant_id.to_s)
+          update_conference_template_participant_request.add('participant') do |participant_request|
+            participant.add_to_handsoap_xml(participant_request)
+          end
+          update_conference_template_participant_request.add('account', account) if (account && !account.empty?)
+        end
+      end
 
+      response = UpdateConferenceTemplateParticipantResponse.new(response_xml)
     end
 
     # Give the list of the templates of the given conference owner

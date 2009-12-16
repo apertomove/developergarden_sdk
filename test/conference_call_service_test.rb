@@ -188,6 +188,17 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     end
   end
 
+  def test_update_conference_template_participant
+    for_temporary_template do |template_id|
+      participant_id = "pid1"
+      participant = ConferenceCallService::ParticipantDetails.new('maxi', 'max', '+493200000001', 'max@spin.to', 0)
+      
+      response = @service.update_conference_template_participant(template_id, participant_id, participant)
+      assert_instance_of(ConferenceCallService::UpdateConferenceTemplateParticipantResponse, response)
+      assert_equal("0000", response.error_code)
+    end
+  end
+
   def test_remove_conference_template_participant
     for_temporary_template do |template_id|
       participant_id = "pid"

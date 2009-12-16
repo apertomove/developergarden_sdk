@@ -21,7 +21,6 @@ class BasicService < Handsoap::Service
     doc.add_namespace 'schema', 'http://sts.idm.telekom.com/schema/'
   end
 
-
   # Constructor
   # ===Parameters
   # <tt>username</tt>:: Username, such as myuser@t-online.de

@@ -16,6 +16,7 @@ require File.dirname(__FILE__) + '/get_conference_template_list_response'
 require File.dirname(__FILE__) + '/create_conference_template_response'
 require File.dirname(__FILE__) + '/get_conference_template_response'
 require File.dirname(__FILE__) + '/remove_conference_template_response'
+require File.dirname(__FILE__) + '/update_participant_response'
 
 Handsoap.http_driver = :httpclient
 
@@ -133,7 +134,7 @@ module ConferenceCallService
           status_request.add('account', account) if (account && !account.empty?)
         end
       end
-      
+
       response = GetConferenceStatusResponse.new(response_xml)
       return response
     end
@@ -159,6 +160,38 @@ module ConferenceCallService
       end
 
       response = NewParticipantResponse.new(response_xml)
+    end
+
+    # Updates the settings for the given participant of the given conference call.
+    # ===Parameters
+    # <tt>conference_id</tt>:: id of the interest conference
+    # <tt>participant_id</tt>:: id of the coming participant
+    # <tt>participant_detail</tt>:: Details of the coming participant
+    # <tt>action</tt>:: Action to performed for the given participant. Actions are mute, umute and redial.
+    #                   See ConferenceConstants for the corresponding constants.
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
+    def update_participant(conference_id, participant_id, participant_detail = nil, action = nil, environment = ServiceEnvironment.MOCK, account = nil)
+      response_xml = invoke_authenticated("cc:updateParticipant") do |request, doc|
+        request.add('updateParticipantRequest') do |update_participant_request|
+          update_participant_request.add('environment', environment)
+          update_participant_request.add('account', account) if (account && !account.empty?)
+          update_participant_request.add('conferenceId', conference_id.to_s)
+          update_participant_request.add('participantId', participant_id.to_s)
+          update_participant_request.add('action', action.to_s) if action
+
+          if participant_detail then
+            update_participant_request.add('participant') do |participant_request|
+              participant_request.add('firstName', participant_detail.firstname.to_s)
+              participant_request.add('lastName', participant_detail.lastname.to_s)
+              participant_request.add('number', participant_detail.number.to_s)
+              participant_request.add('email', participant_detail.email.to_s)
+              participant_request.add('flags', participant_detail.flags.to_s)
+            end
+          end
+        end
+      end
+
+      response = UpdateParticipantResponse.new(response_xml)
     end
 
     # ===Parameters
@@ -230,8 +263,8 @@ module ConferenceCallService
             detail_request.add('description', detail.description.to_s)
             detail_request.add('duration', detail.duration.to_s)
           end
-          
-          if participants
+
+          if participants then
             participants.each do |participant|
               create_conference_template_request.add('participants') do |participant_request|
                 participant_request.add('firstName', participant.firstname.to_s)
@@ -242,12 +275,12 @@ module ConferenceCallService
               end
             end
           end
-          
+
         end
       end
 
       response = CreateConferenceTemplateResponse.new(response_xml)
-      
+
     end
 
     # ===Parameters
@@ -297,7 +330,7 @@ module ConferenceCallService
         end
       end
 
-        response = GetConferenceTemplateListResponse.new(response_xml)
+      response = GetConferenceTemplateListResponse.new(response_xml)
     end
 
     def get_conference_template_participant

@@ -19,6 +19,9 @@ module ConferenceCallService
     # Conference Participant Action constant.
     @@ACTION_UNMUTE = 0
 
+    # Conference Participant Action constant.
+    @@ACTION_REDIAL = 2
+
     # Conference list constant.
     @@CONFERENCE_LIST_ALL = 0
 

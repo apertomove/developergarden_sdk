@@ -40,7 +40,7 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
   end
 
   def test_commit_conference
-    with_temporary_conference do |conf_id|
+    for_temporary_conference do |conf_id|
       response = @service.commit_conference(conf_id)
       assert_instance_of(ConferenceCallService::CommitConferenceResponse, response)
       assert_equal("0000", response.error_code)
@@ -48,41 +48,10 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
   end
 
   def test_get_conference_status
-    conference_id = "967191"
-    response = @service.get_conference_status(conference_id, ConferenceCallService::ConferenceConstants.STATUS_ALL, ServiceEnvironment.MOCK)
 
-    assert_instance_of(ConferenceCallService::GetConferenceStatusResponse, response)
-    assert_equal("0000", response.error_code)
-
-    assert_instance_of(ConferenceCallService::ConferenceDetails, response.details)
-    assert_not_nil(response.details.name)
-    assert_not_nil(response.details.description)
-    assert_not_nil(response.details.duration)
-
-    assert_instance_of(ConferenceCallService::ConferenceSchedule, response.schedule)
-    assert_not_nil(response.schedule.minute)
-    assert_not_nil(response.schedule.hour)
-    assert_not_nil(response.schedule.day_of_month)
-    assert_not_nil(response.schedule.month)
-    assert_not_nil(response.schedule.year)
-    assert_not_nil(response.schedule.recurring)
-  end
-
-  def test_new_participant
-    with_temporary_conference do |conference_id|
-      participant = ConferenceCallService::ParticipantDetails.new('lucas', 'pinto', '+493200000001', 'luc@spin.to', 0)
-      response = @service.new_participant(conference_id, participant)
-
-      assert_instance_of(ConferenceCallService::NewParticipantResponse, response)
-      assert_equal("0000", response.error_code)
-      assert_not_nil(response.participant_id)
-    end
-  end
-
-  def test_get_conference_status
-    with_temporary_conference do |conference_id|
+    for_temporary_conference_with_participants do |conference_id|
       response = @service.get_conference_status(conference_id, ConferenceCallService::ConferenceConstants.STATUS_ALL, ServiceEnvironment.MOCK)
-
+      
       assert_instance_of(ConferenceCallService::GetConferenceStatusResponse, response)
       assert_equal("0000", response.error_code)
 
@@ -98,11 +67,14 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
       assert_not_nil(response.schedule.month)
       assert_not_nil(response.schedule.year)
       assert_not_nil(response.schedule.recurring)
+
+      assert_instance_of(ConferenceCallService::Participant, response.participants[0])
+      assert_equal("User", response.participants[0].details.firstname)
     end
   end
 
   def test_new_participant
-    with_temporary_conference do |conference_id|
+    for_temporary_conference do |conference_id|
       participant = ConferenceCallService::ParticipantDetails.new('lucas', 'pinto', '+493200000001', 'luc@spin.to', 0)
       response = @service.new_participant(conference_id, participant)
 
@@ -112,9 +84,8 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     end
   end
 
-
   def test_remove_participant
-    with_temporary_conference do |conference_id|
+    for_temporary_conference do |conference_id|
       participant_id = "abc"
 
       response = @service.remove_participant(conference_id, participant_id)
@@ -123,21 +94,13 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
   end
 
   def test_get_running_conference
-    with_temporary_conference do |conference_id|
+    for_temporary_conference do |conference_id|
       participant_id = "abc"
 
       response = @service.remove_participant(conference_id, participant_id)
       assert_equal("0000", response.error_code)
     end
-  end
-
-  def test_get_running_conference
-    with_temporary_conference do |conf_id|
-      response = @service.get_running_conference(conf_id)
-      assert_instance_of(ConferenceCallService::GetRunningConferenceResponse, response)
-      assert_equal("0000", response.error_code)
-    end
-  end
+  end  
 
   def test_get_conference_template_list
     owner_id = "max.mustermann"
@@ -207,9 +170,22 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
   end
 
   # Creates a conference, executes the given block and deleted the conf afterwards
-  def with_temporary_conference(&block)
+  def for_temporary_conference(&block)
     conf_id = create_conference
     yield(conf_id)
     remove_conference(conf_id)
+  end
+
+  def for_temporary_conference_with_participants(&block)
+    for_temporary_conference do |conf_id|
+
+      # Add two participants
+      participant = ConferenceCallService::ParticipantDetails.new('maxi', 'max', '+493200000001', 'max@spin.to', 0)
+      participant2 = ConferenceCallService::ParticipantDetails.new('roger', 'beep', '+493200000001', 'roger@spin.to', 0)
+      response = @service.new_participant(conf_id, participant)
+      response = @service.new_participant(conf_id, participant2)
+      
+      yield(conf_id)
+    end
   end
 end

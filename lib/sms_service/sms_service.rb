@@ -79,8 +79,5 @@ module SmsService
 
       return SmsResponse.new(response)
     end
-
-
   end
-
 end

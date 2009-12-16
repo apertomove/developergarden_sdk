@@ -40,5 +40,4 @@ class BasicResponse
       raise(ServiceException.new( self.class.new(response_xml, false) ), "The developer garden service you invoked responded with an error: " + @error_message.to_s)
     end
   end
-
 end

@@ -20,6 +20,7 @@ require File.dirname(__FILE__) + '/get_conference_template_response'
 require File.dirname(__FILE__) + '/remove_conference_template_response'
 require File.dirname(__FILE__) + '/get_conference_template_participant_response'
 require File.dirname(__FILE__) + '/remove_conference_template_participant_response'
+require File.dirname(__FILE__) + '/add_conference_template_participant_response'
 
 Handsoap.http_driver = :httpclient
 
@@ -380,8 +381,24 @@ module ConferenceCallService
       response = RemoveConferenceTemplateParticipantResponse.new(response_xml)
     end
 
-    def add_conference_template_participant
+    # Give the list of the templates of the given conference owner
+    # ===Parameters
+    # <tt>template_id</tt>:: conference in which will be added the participant
+    # <tt>participant</tt>:: participant who will be added to the conference
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
+    def add_conference_template_participant(template_id, participant, environment = ServiceEnvironment.MOCK, account = nil)
+       response_xml = invoke_authenticated("cc:addConferenceTemplateParticipant") do |request, doc|
+        request.add('addConferenceTemplateParticipantRequest') do |add_conference_template_participant_request|
+          add_conference_template_participant_request.add('environment', environment)
+          add_conference_template_participant_request.add('templateId', template_id.to_s)
+          add_conference_template_participant_request.add('participant') do |participant_request|
+            participant.add_to_handsoap_xml(participant_request)
+          end
+          add_conference_template_participant_request.add('account', account) if (account && !account.empty?)
+        end
+      end
 
+      response = AddConferenceTemplateParticipantResponse.new(response_xml)
     end
 
 

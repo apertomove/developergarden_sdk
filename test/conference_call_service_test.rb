@@ -177,6 +177,17 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     end
   end
 
+  def test_add_conference_template_participant
+    for_temporary_template do |template_id|
+      participant = ConferenceCallService::ParticipantDetails.new('maxi', 'max', '+493200000001', 'max@spin.to', 0)
+
+      response = @service.add_conference_template_participant(template_id, participant)
+      assert_instance_of(ConferenceCallService::AddConferenceTemplateParticipantResponse, response)
+      assert_equal("0000", response.error_code)
+      assert_not_nil(response.participant_id)
+    end
+  end
+
   def test_remove_conference_template_participant
     for_temporary_template do |template_id|
       participant_id = "pid"

@@ -16,6 +16,9 @@ require File.dirname(__FILE__) + '/get_conference_template_list_response'
 require File.dirname(__FILE__) + '/create_conference_template_response'
 require File.dirname(__FILE__) + '/update_participant_response'
 require File.dirname(__FILE__) + '/update_conference_response'
+require File.dirname(__FILE__) + '/get_conference_template_response'
+require File.dirname(__FILE__) + '/remove_conference_template_response'
+require File.dirname(__FILE__) + '/get_conference_template_participant_response'
 
 Handsoap.http_driver = :httpclient
 
@@ -261,9 +264,9 @@ module ConferenceCallService
     # <tt>detail</tt>: details of the conference template. ConferenceDetails Type
     # <tt>participants</tt>: optional parameter of the type ParticipantDetail
     # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
-    def create_conference_template(owner_id, detail, participants = nil,  environment = ServiceEnvironment.MOCK,  account = nil)
+    def create_conference_template(owner_id, detail, participants = nil, environment = ServiceEnvironment.MOCK,  account = nil)
       response_xml = invoke_authenticated("cc:createConferenceTemplate") do |request, doc|
-        request.add('createConferenceTemplate') do |create_conference_template_request|
+        request.add('createConferenceTemplateRequest') do |create_conference_template_request|
           create_conference_template_request.add('environment', environment)
           create_conference_template_request.add('account', account) if (account && !account.empty?)
           create_conference_template_request.add('ownerId', owner_id.to_s)
@@ -286,16 +289,38 @@ module ConferenceCallService
 
     end
 
-    def get_conference_template
+    # ===Parameters
+    # <tt>template_id</tt>::
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
+    def get_conference_template(template_id, environment = ServiceEnvironment.MOCK,  account = nil)
+      response_xml = invoke_authenticated("cc:getConferenceTemplate") do |request, doc|
+        request.add('getConferenceTemplateRequest') do |get_conference_template_request|
+          get_conference_template_request.add('environment', environment)
+          get_conference_template_request.add('templateId', template_id.to_s)
+          get_conference_template_request.add('account', account) if (account && !account.empty?)
+        end
+      end
 
+      response = GetConferenceTemplateResponse.new(response_xml)
     end
 
     def update_conference_template
 
     end
 
-    def remove_conference_template
-
+    # ===Parameters
+    # <tt>template_id</tt>:: template od the removed conference
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
+    def remove_conference_template(template_id, environment = ServiceEnvironment.MOCK,  account = nil)
+      response_xml = invoke_authenticated("cc:removeConferenceTemplate") do |request, doc|
+        request.add('getConferenceTemplateRequest') do |remove_conference_template_request|
+          remove_conference_template_request.add('environment', environment)
+          remove_conference_template_request.add('templateId', template_id.to_s)
+          remove_conference_template_request.add('account', account) if (account && !account.empty?)
+        end
+      end
+      
+      response = RemoveConferenceTemplateResponse.new(response_xml)
     end
 
     # Give the list of the templates of the given conference owner
@@ -314,8 +339,22 @@ module ConferenceCallService
       response = GetConferenceTemplateListResponse.new(response_xml)
     end
 
-    def get_conference_template_participant
+    # Give the list of the templates of the given conference owner
+    # ===Parameters
+    # <tt>template_id</tt>:: id of the template in which we call the participant
+    # <tt>participant_id</tt>:: id of the called participant
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
+    def get_conference_template_participant(template_id, participant_id, environment = ServiceEnvironment.MOCK,  account = nil)
+       response_xml = invoke_authenticated("cc:getConferenceTemplateParticipant") do |request, doc|
+        request.add('getConferenceTemplateParticipantRequest') do |get_conference_template_participant_request|
+          get_conference_template_participant_request.add('environment', environment)
+          get_conference_template_participant_request.add('templateId', template_id.to_s)
+          get_conference_template_participant_request.add('participantId', participant_id.to_s)
+          get_conference_template_participant_request.add('account', account) if (account && !account.empty?)
+        end
+      end
 
+      response = GetConferenceTemplateParticipantResponse.new(response_xml)
     end
 
     def update_conference_template_participant

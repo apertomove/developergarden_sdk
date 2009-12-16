@@ -25,7 +25,7 @@ module ConferenceCallService
       participants_xml = ConferenceCallService.xpath_query(doc, "participants")
       participants_xml.each do |participant_xml|
         @participants << Participant.build_from_xml(participant_xml)
-      end    
+      end
 
       raise_on_error(response_xml) if raise_exception_on_error
     end

@@ -111,7 +111,7 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     response = @service.get_conference_template_list(owner_id, ServiceEnvironment.SANDBOX)
     assert_instance_of(ConferenceCallService::GetConferenceTemplateListResponse, response)
     assert_equal("0000", response.error_code)
-    assert_not_nil(response.template_ids)
+    assert_not_nil(response.template_ids)    
   end
 
   def test_create_conference_template
@@ -148,30 +148,28 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
   end
 
   def test_get_conference_template
-    for_temporary_template do |template_id|
-      response = @service.get_conference_template(template_id)
+    for_temporary_template(ServiceEnvironment.SANDBOX) do |template_id|      
+      response = @service.get_conference_template(template_id, ServiceEnvironment.SANDBOX)
 
       assert_instance_of(ConferenceCallService::GetConferenceTemplateResponse, response)
       assert_equal("0000", response.error_code)
       assert_not_nil(response.participants)
-      assert_not_nil(response.participants.firstname)
-      assert_not_nil(response.participants.lastname)
-      assert_not_nil(response.participants.number)
-      assert_not_nil(response.participants.email)
-      assert_not_nil(response.participants.flags)
-      assert_not_nil(response.detail)
-      assert_not_nil(response.detail.name)
-      assert_not_nil(response.detail.description)
+      assert_not_nil(response.participants.first.firstname)
+      assert_not_nil(response.participants.first.lastname)
+      assert_not_nil(response.participants.first.number)
+      assert_not_nil(response.participants.first.email)
+      assert_not_nil(response.participants.first.flags)
+      assert_not_nil(response.details)
+      assert_not_nil(response.details.name)
+      assert_not_nil(response.details.description)
       assert_not_nil(response.details.duration)
     end
-
   end
 
   def test_get_conference_template_participant
-    for_temporary_template do |template_id|
-      participant_id = "pid1"
+    for_temporary_template_with_participant_id(ServiceEnvironment.SANDBOX) do |template_id, participant_id|
 
-      response = @service.get_conference_template_participant(template_id, participant_id)
+      response = @service.get_conference_template_participant(template_id, participant_id, ServiceEnvironment.SANDBOX)
       assert_instance_of(ConferenceCallService::GetConferenceTemplateParticipantResponse, response)
       assert_equal("0000", response.error_code)
       assert_not_nil(response.participant)
@@ -185,7 +183,7 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
 
   def test_add_conference_template_participant
     for_temporary_template do |template_id|
-      participant = ConferenceCallService::ParticipantDetails.new('maxi', 'max', '+493200000001', 'max@spin.to', 0)
+      participant = ConferenceCallService::ParticipantDetails.new('John', 'Doe', '+493200000003', 'john@spin.to', 0)
 
       response = @service.add_conference_template_participant(template_id, participant)
       assert_instance_of(ConferenceCallService::AddConferenceTemplateParticipantResponse, response)
@@ -216,7 +214,7 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
   end
 
   def test_remove_conference
-    conf_id = create_template
+    conf_id = create_template_with_participant
     response = @service.remove_conference(conf_id)
     assert_instance_of(ConferenceCallService::RemoveConferenceResponse, response)
     assert_equal("0000", response.error_code)
@@ -249,68 +247,81 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
   protected
 
   # Creates a conference and returns its conference id.
-  def create_conference
+  def create_conference(environment = ServiceEnvironment.MOCK)
     conf_details = ConferenceCallService::ConferenceDetails.new("A very important conf", "A very impressive description", 30)
     schedule = ConferenceCallService::ConferenceSchedule.new
-    response = @service.create_conference("max.mustermann", conf_details, schedule)
+    response = @service.create_conference("max.mustermann", conf_details, schedule, environment)
     return response.conference_id
   end
 
-  def remove_conference(conference_id)
+  def remove_conference(conference_id, environment = ServiceEnvironment.MOCK)
     conf_id = create_conference
     response = @service.remove_conference(conf_id)
-    assert_instance_of(ConferenceCallService::RemoveConferenceResponse, response)
+    assert_instance_of(ConferenceCallService::RemoveConferenceResponse, response, environment)
     assert_equal("0000", response.error_code)
   end
 
   # Creates a conference, executes the given block and deleted the conf afterwards
-  def for_temporary_conference(&block)
-    conf_id = create_conference
+  def for_temporary_conference(environment = ServiceEnvironment.MOCK, &block)
+    conf_id = create_conference(environment)
     yield(conf_id)
-    remove_conference(conf_id)
+    remove_conference(conf_id, environment)
   end
 
-  def for_temporary_conference_with_participants(&block)
-    for_temporary_conference do |conf_id|
+  def for_temporary_conference_with_participants(environment = ServiceEnvironment.MOCK, &block)
+    for_temporary_conference(environment) do |conf_id|
 
       participant_ids = []
       # Add two participants
       participant = ConferenceCallService::ParticipantDetails.new('maxi', 'max', '+493200000001', 'max@spin.to', 0)
-      participant2 = ConferenceCallService::ParticipantDetails.new('roger', 'beep', '+493200000001', 'roger@spin.to', 0)
-      response = @service.new_participant(conf_id, participant)
+      participant2 = ConferenceCallService::ParticipantDetails.new('roger', 'beep', '+493200000002', 'roger@spin.to', 0)
+      response = @service.new_participant(conf_id, participant, environment)
       participant_ids << response.participant_id
-      response = @service.new_participant(conf_id, participant2)
+      response = @service.new_participant(conf_id, participant2, environment)
 
       participant_ids << response.participant_id
       
       yield(conf_id, participant_ids)
     end
-  end
+  end 
 
   # Creates a conference template and returns its conference template id.
-  def create_template
+  def create_template_with_participant(environment = ServiceEnvironment.MOCK)    
     owner_id = "max.mustermann"
     conf_details = ConferenceCallService::ConferenceDetails.new("A very important conf", "A very impressive description", 30)
 
     # giving participants to the method is optional
     participants = Array.new
     participants << ConferenceCallService::ParticipantDetails.new('Serge', 'H.', '+493200000001', 'luc@spin.to', 0)
-    participants << ConferenceCallService::ParticipantDetails.new('Jonathan', 'Gainsbeurre', '+493200000001', 'kl@kkl.ak', 0)
+    participants.first.flags = ConferenceCallService::ParticipantDetails.IS_INITIATOR
+    participants << ConferenceCallService::ParticipantDetails.new('Jonathan', 'Gainsbeurre', '+493200000002', 'kl@kkl.ak', 0)
 
-    response = @service.create_conference_template(owner_id, conf_details, participants, ServiceEnvironment.MOCK)
+    response = @service.create_conference_template(owner_id, conf_details, participants, environment)
     return response.template_id
   end
 
-  def remove_template(template_id)
-    template = create_template
-    response = @service.remove_conference_template(template)
+  def remove_template(template_id, environment = ServiceEnvironment.MOCK)    
+    response = @service.remove_conference_template(template_id, environment)
     assert_instance_of(ConferenceCallService::RemoveConferenceTemplateResponse, response)
     assert_equal("0000", response.error_code)
   end
   # Creates a conference template, executes the given block and deleted the conf afterwards
-  def for_temporary_template(&block)
-    template_id = create_template
+  def for_temporary_template(environment = ServiceEnvironment.MOCK, &block)
+    template_id = create_template_with_participant(environment)
     yield(template_id)
-    remove_template(template_id)
+    remove_template(template_id, environment)
+  end
+
+  def for_temporary_template_with_participant_id(environment = ServiceEnvironment.MOCK, &block)
+    template_id = create_template_with_participant(environment)
+
+    participant = ConferenceCallService::ParticipantDetails.new('Peter', 'Ustinow', '+493200000004', 'peter@spin.to', ConferenceCallService::ParticipantDetails.IS_INITIATOR)
+    response = @service.add_conference_template_participant(template_id, participant, environment)
+    assert_equal("0000", response.error_code) 
+
+    participant_id = response.participant_id 
+
+    yield(template_id, participant_id)
+    remove_template(template_id, environment)
   end
 end

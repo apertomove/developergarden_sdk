@@ -2,8 +2,11 @@ module ConferenceCallService
   class ParticipantDetails
     attr_accessor :firstname, :lastname, :number, :email, :flags
 
+    @@IS_INITIATOR = 1
+    @@IS_NOT_INITIATOR = 0
+
     # Constructor
-    def initialize(firstname, lastname, number, email, flags)
+    def initialize(firstname, lastname, number, email, flags = @@IS_NOT_INITIATOR)
       @firstname = firstname
       @lastname = lastname
       @number = number
@@ -28,8 +31,22 @@ module ConferenceCallService
 
     #### Static methods
 
+    def self.IS_INITIATOR
+      @@IS_INITIATOR
+    end
+
+    def self.IS_NOT_INITIATOR
+      @@IS_NOT_INITIATOR
+    end
+
     def self.build_from_xml(xml_doc)
-      if xml_doc && xml_doc.size > 0 then
+
+      # Depending on the answer there might be a nil object, a NodeSelection or a NokogiriDriver.
+      # For the parsing a NodeSelection and a NokogiriDriver behave similar but in order to prevent further nil errors
+      # we have to see whether the elment is really present. For a nodeselection this is done by using .size > 0
+      # which won't work for the nokogiri driver. Maybe handsoap will clean this up in future releases.
+      if xml_doc && ( (xml_doc.is_a?(Handsoap::XmlQueryFront::NodeSelection) && xml_doc.size > 0) || xml_doc.is_a?(Handsoap::XmlQueryFront::NokogiriDriver ) ) then
+        
         firstname  = ConferenceCallService.xpath_query(xml_doc, "firstName").to_s
         lastname   = ConferenceCallService.xpath_query(xml_doc, "lastName").to_s
         number     = ConferenceCallService.xpath_query(xml_doc, "number").to_s

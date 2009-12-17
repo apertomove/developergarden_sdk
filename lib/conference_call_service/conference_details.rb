@@ -24,7 +24,7 @@ module ConferenceCallService
     #### Static methods
 
     def self.build_from_xml(xml_doc)
-      if xml_doc then
+      if xml_doc then        
         name = ConferenceCallService.xpath_query(xml_doc, "name").to_s
         description = ConferenceCallService.xpath_query(xml_doc, "description").to_s
         duration = ConferenceCallService.xpath_query(xml_doc, "duration").to_s

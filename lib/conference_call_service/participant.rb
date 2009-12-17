@@ -7,7 +7,6 @@ module ConferenceCallService
       @id = id
       @details = details
       @status = status
-
     end
 
     def to_s

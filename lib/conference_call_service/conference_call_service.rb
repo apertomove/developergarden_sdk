@@ -23,6 +23,7 @@ require File.dirname(__FILE__) + '/remove_conference_template_participant_respon
 require File.dirname(__FILE__) + '/add_conference_template_participant_response'
 require File.dirname(__FILE__) + '/update_conference_template_participant_response'
 require File.dirname(__FILE__) + '/update_conference_template_response'
+require File.dirname(__FILE__) + '/get_participant_status_response'
 
 
 Handsoap.http_driver = :httpclient
@@ -141,17 +142,26 @@ module ConferenceCallService
 
     # Retrieves the status of the given participant in the specified conference.
     # ===Parameters
-    # <tt>conference_id</tt>:: id of the interest conference
-    # <tt>participant_id</tt>:: id of the coming participant
+    # <tt>conference_id</tt>:: Id of the intended conference.
+    # <tt>participant_id</tt>:: Id of the desired participant.
     # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
-    def get_participant_status(conference_id, participant, environment = ServiceEnvironment.MOCK, account = nil)
-      
+    def get_participant_status(conference_id, participant_id, environment = ServiceEnvironment.MOCK, account = nil)
+      response_xml = invoke_authenticated("cc:getParticipantStatus") do |request, doc|
+        request.add('getParticipantStatusRequest') do |new_participant_request|
+          new_participant_request.add('environment', environment)
+          new_participant_request.add('account', account) if (account && !account.empty?)
+          new_participant_request.add('conferenceId', conference_id.to_s)
+          new_participant_request.add('participantId', participant_id)
+        end
+      end
+
+      response = GetParticipantStatusResponse.new(response_xml)        
     end
 
     # Adds the given participant to the specified conference.
-    # ===Parameters
-    # <tt>conference_id</tt>:: id of the interest conference
-    # <tt>participant_id</tt>:: id of the coming participant
+    # ===Parameters                                                                                                ra
+    # <tt>conference_id</tt>:: Id of the intended conference.
+    # <tt>participant</tt>:: Details of the participant to be added. 
     # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
     def new_participant(conference_id, participant, environment = ServiceEnvironment.MOCK, account = nil)
       response_xml = invoke_authenticated("cc:newParticipant") do |request, doc|

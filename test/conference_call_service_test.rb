@@ -18,10 +18,8 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
 
   def test_get_conference_list
     response = @service.get_conference_list("max.mustermann", ConferenceCallService::ConferenceConstants.STATUS_ALL, ServiceEnvironment.MOCK)
-
     assert_instance_of(ConferenceCallService::GetConferenceListResponse, response)
     assert_equal("0000", response.error_code)
-
     assert( response.conference_ids.size > 0, "There should be at least one conference id." )
 
     # Comment in to see a list of available conferences
@@ -236,7 +234,16 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
   end
 
   def test_get_participant_status
-    assert(false)
+    for_temporary_conference_with_participants do |conference_id, participant_ids|
+      response = @service.get_participant_status(conference_id, participant_ids.first)
+
+      assert_instance_of(ConferenceCallService::GetParticipantStatusResponse, response)
+      assert_equal("0000", response.error_code)      
+      assert_instance_of(Hash, response.status)
+      assert_equal("+493200000001", response.status["number"])
+      assert_equal("false", response.status["muted"])
+      assert_equal("Joined", response.status["status"])
+    end
   end
 
   protected

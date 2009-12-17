@@ -25,9 +25,7 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     assert( response.conference_ids.size > 0, "There should be at least one conference id." )
 
     # Comment in to see a list of available conferences
-
     # puts response
-
   end
 
   def test_create_conference
@@ -116,7 +114,6 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     assert_instance_of(ConferenceCallService::GetConferenceTemplateListResponse, response)
     assert_equal("0000", response.error_code)
     assert_not_nil(response.template_ids)
-    puts response.template_ids.inspect
   end
 
   def test_create_conference_template
@@ -238,6 +235,10 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
     end
   end
 
+  def test_get_participant_status
+    assert(false)
+  end
+
   protected
 
   # Creates a conference and returns its conference id.
@@ -278,9 +279,6 @@ class ConferenceCallServiceTest < Test::Unit::TestCase
       yield(conf_id, participant_ids)
     end
   end
-
-
-
 
   # Creates a conference template and returns its conference template id.
   def create_template

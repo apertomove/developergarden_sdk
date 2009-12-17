@@ -48,12 +48,13 @@ module ConferenceCallService
 
     endpoint @@CONFERENCE_CALL_SCHEMA_SERVICE_ENDPOINT
 
-
+    # Add namespaces to the handsoap XmlMason document.
     def on_create_document(doc)
       super(doc)
       doc.alias 'cc', @@CONFERENCE_CALL_SCHEMA
     end
 
+    # Stores the created conference to the conference call server.
     # ===Parameters
     # <tt>conference_id</tt>:: id of the interest conference
     # <tt>environment</tt>:: Service environment as defined in ServiceEnvironment.
@@ -101,7 +102,7 @@ module ConferenceCallService
     # Retrieves spatial information about the given ip address.
     # ===Parameters
     # <tt>owner_id</tt>:: Return only items owned by the given user such as "max.mustermann".
-    # <tt>what</tt>:: Contraints of the list to be retrieved.
+    # <tt>what</tt>:: Constraints of the list to be retrieved.
     # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
     # <tt>account</tt>:: IP address for which to perform an ip location.
     def get_conference_list(owner_id, what = ConferenceConstants.CONFERENCE_LIST_ALL, environment = ServiceEnvironment.MOCK, account = nil)
@@ -138,6 +139,16 @@ module ConferenceCallService
       return response
     end
 
+    # Retrieves the status of the given participant in the specified conference.
+    # ===Parameters
+    # <tt>conference_id</tt>:: id of the interest conference
+    # <tt>participant_id</tt>:: id of the coming participant
+    # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
+    def get_participant_status(conference_id, participant, environment = ServiceEnvironment.MOCK, account = nil)
+      
+    end
+
+    # Adds the given participant to the specified conference.
     # ===Parameters
     # <tt>conference_id</tt>:: id of the interest conference
     # <tt>participant_id</tt>:: id of the coming participant
@@ -185,6 +196,7 @@ module ConferenceCallService
       response = UpdateParticipantResponse.new(response_xml)
     end
 
+    # Removes the given conference.
     # ===Parameters
     # <tt>conference_id</tt>:: id of the removed conference
     # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
@@ -264,6 +276,7 @@ module ConferenceCallService
       response = GetRunningConferenceResponse.new(response_xml)
     end
 
+    # Creates a conference template.
     # ===Parameters
     # <tt>owner_id</tt>:: id of the owner of the conference template
     # <tt>detail</tt>: details of the conference template. ConferenceDetails Type
@@ -286,14 +299,13 @@ module ConferenceCallService
               end
             end
           end
-
         end
       end
 
       response = CreateConferenceTemplateResponse.new(response_xml)
-
     end
 
+    # Returns the confernece template with the given id.    
     # ===Parameters
     # <tt>template_id</tt>::
     # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
@@ -309,6 +321,7 @@ module ConferenceCallService
       response = GetConferenceTemplateResponse.new(response_xml)
     end
 
+    # Updates the specified conference with the given parameters.
     # ===Parameters
     # <tt>template_id</tt>:: id of the updated template
     # <tt>initiator_id</tt>:: id of the initiator of the conference
@@ -456,4 +469,3 @@ module ConferenceCallService
     end
   end
 end
-

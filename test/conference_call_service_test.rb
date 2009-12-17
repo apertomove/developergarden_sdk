@@ -6,6 +6,12 @@ require 'test/unit'
 
 require File.dirname(__FILE__) + '/../lib/conference_call_service/conference_call_service'
 
+
+# Some ot the tests here run against the sandbox while most run against the mock environment.
+# The mock environment currently does not allow a complete test coverage so these cases are covered
+# using the sandbox. This shouldn't affect your sandbox quota since these methods won't cost anything.
+# Be aware when looking for failures and pay attention of not mixing sandbox and mock calls since they won't
+# work together because of the inconsistent data in both environments.
 class ConferenceCallServiceTest < Test::Unit::TestCase
 
   # Loading username/password for Tests from config file. Section: account

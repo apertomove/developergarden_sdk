@@ -36,17 +36,17 @@ module VoiceCallService
     # <tt>account</tt>:: Currently unused
     def new_call(a_number, b_number, expiration, max_duration, environment = ServiceEnvironment.MOCK, privacy_a = false, privacy_b = false, greeter = "", account = "")
       response = invoke_authenticated("newCall") do |message, doc|
-        message.add("request")
-        request = message.find("request")
-        request.add('environment', environment)
-        request.add('aNumber', a_number)
-        request.add('bNumber', b_number)
-        request.add('privacyA', privacy_a.to_s)
-        request.add('privacyB', privacy_b.to_s)
-        request.add('expiration', expiration)
-        request.add('maxDuration', max_duration)
-        request.add('greeter', greeter)
-        request.add('account', account)
+        message.add("request") do |request|
+          request.add('environment', environment)
+          request.add('aNumber', a_number)
+          request.add('bNumber', b_number)
+          request.add('privacyA', privacy_a.to_s)
+          request.add('privacyB', privacy_b.to_s)
+          request.add('expiration', expiration)
+          request.add('maxDuration', max_duration)
+          request.add('greeter', greeter)
+          request.add('account', account)
+        end
       end
 
       return VoiceCallResponse.new(response)
@@ -59,11 +59,11 @@ module VoiceCallService
     # <tt>keep_alive</tt>:: Prevent an expiration of the call by calling <tt>call_status</tt> with <tt>keep_alive = 1</tt>.
     def call_status(session_id, environment = ServiceEnvironment.MOCK, keep_alive = 1)
       response = invoke_authenticated("callStatus") do |message, doc|
-        message.add("request")
-        request = message.find("request")
-        request.add('environment', environment)
-        request.add('keepAlive', keep_alive)
-        request.add('sessionId', session_id)
+        message.add("request") do |request|
+          request.add('environment', environment)
+          request.add('keepAlive', keep_alive)
+          request.add('sessionId', session_id)
+        end
       end
 
       return CallStatusResponse.new(response)
@@ -80,10 +80,10 @@ module VoiceCallService
         tdc = message.find("tearDownCall")
         tdc.set_attr("xmlns", "http://webservice.voicebutler.odg.tonline.de")
 
-        message.add("request")
-        request = message.find("request")
-        request.add('environment', environment)
-        request.add('sessionId', session_id)
+        message.add("request") do |request|
+          request.add('environment', environment)
+          request.add('sessionId', session_id)
+        end
       end
 
       return CallStatusResponse.new(response)
@@ -105,30 +105,30 @@ module VoiceCallService
     # <tt>account</tt>:: Currently unused.
     def new_call_sequenced(a_number, b_number, expiration, max_duration, environment = ServiceEnvironment.MOCK, privacy_a = false, privacy_b = false, max_wait = 60, greeter = "", account = "")
       response = invoke_authenticated("newCallSequenced") do |message, doc|
-        message.add("request")
-        request = message.find("request")
-        request.add('environment', environment)
-        request.add('aNumber', a_number)
+        message.add("request") do |request|
+          request.add('environment', environment)
+          request.add('aNumber', a_number)
 
-        # b_number can be an array of strings representing numbers or a single string representing a single number.
-        if b_number.is_a? Array then
-          # It's an array
-          for bn in b_number do
-            request.add('bNumber', bn)
+          # b_number can be an array of strings representing numbers or a single string representing a single number.
+          if b_number.is_a? Array then
+            # It's an array
+            for bn in b_number do
+              request.add('bNumber', bn)
+            end
+          else
+
+            # We assume its a string
+            request.add('bNumber', b_number)
           end
-        else
 
-          # We assume its a string
-          request.add('bNumber', b_number)
+          request.add('privacyA', privacy_a.to_s)
+          request.add('privacyB', privacy_b.to_s)
+          request.add('expiration', expiration)
+          request.add('maxDuration', max_duration)
+          request.add('maxWait', max_wait)
+          request.add('greeter', greeter)
+          request.add('account', account)
         end
-
-        request.add('privacyA', privacy_a.to_s)
-        request.add('privacyB', privacy_b.to_s)
-        request.add('expiration', expiration)
-        request.add('maxDuration', max_duration)
-        request.add('maxWait', max_wait)
-        request.add('greeter', greeter)
-        request.add('account', account)
       end
 
       return VoiceCallResponse.new(response)

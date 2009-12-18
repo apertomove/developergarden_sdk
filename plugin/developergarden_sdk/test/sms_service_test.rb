@@ -5,10 +5,8 @@ require File.dirname(__FILE__) + '/../lib/service_environment'
 class TestSendSmsService < Test::Unit::TestCase
 
   # Loading username/password for Tests from config file. Section: account
-  ACCOUNT           = YAML.load_file(File.dirname(__FILE__) + "/../config/test_settings.yml")["account"]
-
-  # Load the user's setting to decide which environment to be used to run tests.
-  TEST_ENVIRONMENT  = YAML.load_file(File.dirname(__FILE__) + "/../config/test_settings.yml")["test_environment"] 
+  ACCOUNT           = YAML.load_file(File.dirname(__FILE__) + "/../config/test_settings.yml")["account"]  
+  SUCCESS_MESSAGE   = "Success."
 
   # Test send sms to a cell phone.
   def test_send_sms
@@ -17,10 +15,10 @@ class TestSendSmsService < Test::Unit::TestCase
     sms = SmsService::SmsService.new(ACCOUNT["username"], ACCOUNT["password"])
 
     # send sms to cell phone (ENVIRONMENT = 2)
-    sms_response = sms.send_sms("+4932-000001", "Send from ruby telekom sdk", "RubySDK", TEST_ENVIRONMENT, "")
+    sms_response = sms.send_sms("+4932-000001", "Send from ruby telekom sdk", "RubySDK", ServiceEnvironment.MOCK, "")
 
     assert_equal("0000", sms_response.error_code, "Error code was not 0000 (success).")
-    assert_equal("the request was successful", sms_response.error_message, "Request was not successful.")
+    assert_equal(SUCCESS_MESSAGE, sms_response.error_message, "Request was not successful.")
   end
 
   # Test send flash sms to a cell phone.
@@ -28,10 +26,10 @@ class TestSendSmsService < Test::Unit::TestCase
     sms = SmsService::SmsService.new(ACCOUNT["username"], ACCOUNT["password"])
 
     # send sms to cell phone (ENVIRONMENT = 2)
-    sms_response = sms.send_flash_sms("+4932-000001", "Send from ruby handsoap sdk", "RubySDK", TEST_ENVIRONMENT, "")
+    sms_response = sms.send_flash_sms("+4932-000001", "Send from ruby handsoap sdk", "RubySDK", ServiceEnvironment.MOCK, "")
 
     assert_equal("0000", sms_response.error_code, "Error code was not 0000 (success).")
-    assert_equal("the request was successful", sms_response.error_message, "Request was not successful.")
+    assert_equal(SUCCESS_MESSAGE, sms_response.error_message, "Request was not successful.")
   end
 
 
@@ -42,10 +40,10 @@ class TestSendSmsService < Test::Unit::TestCase
     sms = SmsService::SmsService.new(ACCOUNT["username"], ACCOUNT["password"])
 
     # Should throw an error since the originator string is too long.
-    sms_response = sms.send_sms("+4932-000001", "Send from ruby telekom sdk", "OriginatorIsToooooooLong", TEST_ENVIRONMENT, "")
+    sms_response = sms.send_sms("+4932-000001", "Send from ruby telekom sdk", "OriginatorIsToooooooLong", ServiceEnvironment.MOCK, "")
 
     assert_equal("0000", sms_response.error_code, "Error code was not 0000 (success).")
-    assert_equal("the request was successful", sms_response.error_message, "Request was not successful.")    
+    assert_equal(SUCCESS_MESSAGE, sms_response.error_message, "Request was not successful.")
   end
 
   # Test send sms to a phone but pass a originator with oversize (>11 characters).
@@ -55,10 +53,10 @@ class TestSendSmsService < Test::Unit::TestCase
     sms = SmsService::SmsService.new(ACCOUNT["username"], ACCOUNT["password"])
 
     # Should throw an error since the originator string is too long.
-    sms_response = sms.send_sms("+4932-000001", "Send from ruby telekom sdk", "OriginatorIsToooooooLong", TEST_ENVIRONMENT, "")
+    sms_response = sms.send_sms("+4932-000001", "Send from ruby telekom sdk", "OriginatorIsToooooooLong", ServiceEnvironment.MOCK, "")
 
     assert_equal("0000", sms_response.error_code, "Error code was not 0000 (success).")
-    assert_equal("the request was successful", sms_response.error_message, "Request was not successful.")
+    assert_equal(SUCCESS_MESSAGE, sms_response.error_message, "Request was not successful.")
   end
 
   # Test send sms to a phone with some german umlauts.
@@ -67,10 +65,10 @@ class TestSendSmsService < Test::Unit::TestCase
     # Create SmsService instance
     sms = SmsService::SmsService.new(ACCOUNT["username"], ACCOUNT["password"])
 
-    sms_response = sms.send_sms("+4932-000001", "Ein Schloß Österreich ähnelt einem Schloß Überherrn.", "RubySDK", TEST_ENVIRONMENT, "")
+    sms_response = sms.send_sms("+4932-000001", "Ein Schloß Österreich ähnelt einem Schloß Überherrn.", "RubySDK", ServiceEnvironment.MOCK, "")
 
     assert_equal("0000", sms_response.error_code, "Error code was not 0000 (success).")
-    assert_equal("the request was successful", sms_response.error_message, "Request was not successful.")
+    assert_equal(SUCCESS_MESSAGE, sms_response.error_message, "Request was not successful.")
   end
 
   # Tests whether a service exception is thrown if a bad originator string is given.
@@ -80,10 +78,10 @@ class TestSendSmsService < Test::Unit::TestCase
     sms = SmsService::SmsService.new(ACCOUNT["username"], ACCOUNT["password"])
 
     # Should throw an error since the originator string is too long.
-    sms_response = sms.send_flash_sms("+4932-000001", "Send from ruby telekom sdk", "OriginatorIsToooooooooooLong", TEST_ENVIRONMENT, "")
+    sms_response = sms.send_flash_sms("+4932-000001", "Send from ruby telekom sdk", "OriginatorIsToooooooooooLong", ServiceEnvironment.MOCK, "")
 
     assert_equal("0000", sms_response.error_code, "Error code was not 0000 (success).")
-    assert_equal("the request was successful", sms_response.error_message, "Request was not successful.")
+    assert_equal(SUCCESS_MESSAGE, sms_response.error_message, "Request was not successful.")
   end
 
   # Test send sms to a phone but pass a originator with oversize (>11 characters).
@@ -95,9 +93,9 @@ class TestSendSmsService < Test::Unit::TestCase
     sms = SmsService::SmsService.new(ACCOUNT["username"], ACCOUNT["password"])
 
     begin
-
+      
       # Should throw an error since the originator string is too long.
-      sms_response = sms.send_flash_sms("+4932-000001", "Send from ruby telekom sdk", "OriginatorIsTooooooooooooLong", TEST_ENVIRONMENT, "")
+      sms_response = sms.send_flash_sms("+4932-000001", "Send from ruby telekom sdk", "OriginatorIsTooooooooooooLong", ServiceEnvironment.MOCK, "")
     rescue ServiceException => se
       r = se.response
 
@@ -113,9 +111,9 @@ class TestSendSmsService < Test::Unit::TestCase
     # Create SmsService instance
     sms = SmsService::SmsService.new(ACCOUNT["username"], ACCOUNT["password"])
 
-    sms_response = sms.send_flash_sms("+4932-000001", "Ein Schloß Österreich ähnelt einem Schloß Überherrn.", "RubySDK", TEST_ENVIRONMENT, "")
+    sms_response = sms.send_flash_sms("+4932-000001", "Ein Schloß Österreich ähnelt einem Schloß Überherrn.", "RubySDK", ServiceEnvironment.MOCK, "")
 
     assert_equal("0000", sms_response.error_code, "Error code was not 0000 (success).")
-    assert_equal("the request was successful", sms_response.error_message, "Request was not successful.")
+    assert_equal(SUCCESS_MESSAGE, sms_response.error_message, "Request was not successful.")
   end
 end

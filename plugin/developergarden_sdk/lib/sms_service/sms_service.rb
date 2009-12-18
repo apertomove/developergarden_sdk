@@ -68,19 +68,16 @@ module SmsService
       originator = originator[0, 11]
 
       response = invoke_authenticated(action_name) do |message, doc|
-        message.add("request")
-        request = message.find("request")
-        request.add('environment', environment)
-        request.add('number', numbers)
-        request.add('message', sms_message)
-        request.add('originator', originator)
-        request.add('account', account)
+        message.add("request") do |request|
+          request.add('environment', environment)
+          request.add('number', numbers)
+          request.add('message', sms_message)
+          request.add('originator', originator)
+          request.add('account', account)
+        end
       end
 
       return SmsResponse.new(response)
     end
-
-
   end
-
 end

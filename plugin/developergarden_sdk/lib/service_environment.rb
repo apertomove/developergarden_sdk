@@ -10,7 +10,6 @@ class ServiceEnvironment
 
   # Sandbox environment constant
   def self.SANDBOX
-
     @@SANDBOX     = 2
   end
 

@@ -1,5 +1,5 @@
 require 'rubygems'
-gem 'troelskn-handsoap'
+gem 'handsoap'
 
 require 'handsoap'
 require File.dirname(__FILE__) + '/common/xml_tools'
@@ -7,14 +7,19 @@ require File.dirname(__FILE__) + '/service_environment'
 
 # Implements basic logic used by developer garden ruby service implementations.
 class BasicService < Handsoap::Service
-  
+
   @@SERVICE_ID = "https://odg.t-online.de"
 
   # Create some namespaces
-  on_create_document do |doc|
+  def on_create_document(doc)
     doc.alias 'ns1', "http://sts.idm.telekom.com/schema/"
     doc.alias 'xmlns:ns2', "Security"
-  end                     
+  end
+
+  # Create the namespace for a later use in parse_token_data
+  def on_response_document(doc)
+    doc.add_namespace 'schema', 'http://sts.idm.telekom.com/schema/'
+  end
 
   # Constructor
   # ===Parameters
@@ -39,9 +44,9 @@ class BasicService < Handsoap::Service
   # <tt>doc</tt>:: Request XmlMason document.
   # <tt>security_token</tt>:: Security tokens as plain text gathered using the TokenService.
   def build_service_header(doc, security_token)
-    header = build_security_header_common(doc)
-    security = header.find("Security")
-    security.set_value( security_token, :raw)
+    header = build_security_header_common(doc) do |security|
+      security.set_value( security_token, :raw)
+    end
     return header
   end
 
@@ -51,21 +56,22 @@ class BasicService < Handsoap::Service
   # The header of the given document will be enhanced so there is no need to
   # process the returning value.
   # ===Parameters
-  # <tt>doc</tt>:: Request XmlMason document.  
-  def build_security_header_common(doc)
-    
+  # <tt>doc</tt>:: Request XmlMason document.
+  def build_security_header_common(doc, &block)
+
     # Get the header element
     header = doc.find('Header')
 
     # Add plain security element
-    header.add('Security')
+    header.add('Security') do |security|
 
-    # Find security element for further enhancement
-    security = header.find('Security')
+      # Set namespace
+      security.set_attr("xmlns", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd")
+      security.set_attr("env:mustUnderstand", "1")
 
-    # Set namespace
-    security.set_attr("xmlns", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd")
-    security.set_attr("env:mustUnderstand", "1")
+      security = yield(security)
+    end
+
     return header
   end
 
@@ -75,14 +81,33 @@ class BasicService < Handsoap::Service
   # <tt>response</tt>:: Response as returned from a <tt>getTokens</tt> call, for example.
   #
   # ==Return
-  # Returns the security token as plain text to be inserted into a security header build with <tt>build_security_header_common</tt>. 
-  def parse_token_data (response)
-
-    # nokogiri document. Unfortunately it is unable to parse the returning xml completely.
-    # Especially the body is not parsed completely.
+  # Returns the security token as plain text to be inserted into a security header build with <tt>build_security_header_common</tt>.
+  def parse_token_data(response)
     doc = response.document
-    intermediate_token = doc.xpath("//schema:tokenData", "schema" => 'http://sts.idm.telekom.com/schema/').inner_text
+
+    # Get the XmlQueryFront object which is a subclass of an array.
+    intermediate_token = doc.xpath("//schema:tokenData", "schema" => 'http://sts.idm.telekom.com/schema/').to_s
+
+    # The first element is a NokogiriDriver-Object which mixes in the XmlElement module.
+    # In order to preserve the CDATA ...
+    #= xml_element
+    #puts intermediate_token
 
     return intermediate_token
+  end
+
+  # Performs a xpath query in the given namespace for the given document and query string.
+  # === Parameters
+  # <tt>schema</tt>:: Schema to be searched in such as <tt>'http://iplocation.developer.telekom.com/schema/'</tt>
+  # <tt>doc</tt>:: XmlQueryFront document.
+  # <tt>query_string</tt>:: Element to look for
+  # <tt>global_search</tt>:: Searches within all levels using "//" if <tt>global_search = true</tt>.
+  def self.xpath_query_for_schema(schema, doc, query_string, global_search = true)
+    xpath_query = ""
+    xpath_query = "//" if global_search
+    xpath_query += "schema:#{query_string}"
+
+    # Only search if there's at least one element
+    doc.xpath(xpath_query, "schema" => schema)
   end
 end

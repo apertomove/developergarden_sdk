@@ -14,10 +14,8 @@ class BasicResponse
   # <tt>raise_exception_on_error</tt>:: Xml as returned by a <tt>status</tt>-method call.  
   def initialize(response_xml, raise_exception_on_error = true)
     doc = response_xml.document
-
-    @error_code      = doc.xpath("//errorCode").text
-    @error_message   = doc.xpath("//errorMessage").text
-
+    @error_code      = doc.xpath("//errorCode").to_s || doc.xpath("//statusCode").to_s
+    @error_message   = doc.xpath("//errorMessage").to_s || doc.xpath("//statusMessage").to_s
     raise_on_error(response_xml) if raise_exception_on_error
   end
 

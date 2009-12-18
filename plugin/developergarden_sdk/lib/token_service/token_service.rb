@@ -120,22 +120,21 @@ module TokenService
     def build_login_header(doc)
 
       # Get the header element
-      header = build_security_header_common(doc)
+      header = build_security_header_common(doc) do |security|
+        security.add("UsernameToken") do |username_token|
 
-      security = header.find('Security')
-      security.add("UsernameToken")
+          # Create username section
+          username_token.add("Username") do |username|
+            username.set_value(@username)
+          end
 
-      # Create username section
-      username_token = security.find("UsernameToken")
-      username_token.add("Username")
-      username = username_token.find("Username")
-      username.set_value(@username)
-
-      # Create password section
-      username_token.add("Password")
-      password = username_token.find("Password")
-      password.set_attr("Type", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText")
-      password.set_value(@password)
+          # Create password section
+          username_token.add("Password") do |password|
+            password.set_attr("Type", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText")
+            password.set_value(@password)
+          end
+        end
+      end
 
       return header
     end
@@ -151,12 +150,11 @@ module TokenService
     def build_get_tokens_header(doc, intermediate_token)
 
       # Get the header element
-      header = build_security_header_common(doc)
-      security = header.find("Security")
-      security.set_value( intermediate_token, :raw )
+      header = build_security_header_common(doc) do |security|
+        security.set_value( intermediate_token, :raw )
+      end
 
       return header
     end
-
   end
 end

@@ -4,7 +4,11 @@ require File.dirname(__FILE__) + '/token_service/token_service'
 # Base service for all services demanding a security token.
 class AuthenticatedService < BasicService
 
-  def initialize(username, password)
+  # Constructor
+  # ===Parameters
+  # <tt>username</tt>:: Username, such as myuser@t-online.de
+  # <tt>password</tt>:: Password
+  def initialize(username, password, environment = ServiceEnvironment.SANDBOX)
     super(username, password)
 
     @token_service = TokenService::TokenService.new(@username, @password)

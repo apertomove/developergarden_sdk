@@ -13,9 +13,9 @@ class VoiceCallResponse < BasicResponse
   def initialize(response_xml, raise_exception_on_error = true)
     doc = response_xml.document
 
-    @error_code      = doc.xpath("//status").text
-    @error_message   = doc.xpath("//err_msg").text
-    @session_id      = doc.xpath("//sessionId").text
+    @error_code      = doc.xpath("//status").to_s
+    @error_message   = doc.xpath("//err_msg").to_s
+    @session_id      = doc.xpath("//sessionId").to_s
     
     raise_on_error(response_xml) if raise_exception_on_error
   end

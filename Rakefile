@@ -57,6 +57,8 @@ end
 
 desc "update_plugin"
 task :update_plugin do
+  sh %{ rm -R plugin/developergarden_sdk/lib/* }
+  sh %{ rm -R plugin/developergarden_sdk/test/* }
   sh %{ cp -R lib/* plugin/developergarden_sdk/lib/ }
   sh %{ cp -R test/* plugin/developergarden_sdk/test/ }
 end

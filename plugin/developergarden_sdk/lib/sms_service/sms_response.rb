@@ -10,8 +10,8 @@ class SmsResponse < BasicResponse
   def initialize(response_xml, raise_exception_on_error = true)
     doc = response_xml.document
 
-    @error_code      = doc.xpath("//status").text
-    @error_message   = doc.xpath("//description").text
+    @error_code      = doc.xpath("//status").to_s
+    @error_message   = doc.xpath("//description").to_s
 
     raise_on_error(response_xml) if raise_exception_on_error
   end

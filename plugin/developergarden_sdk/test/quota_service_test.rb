@@ -20,7 +20,7 @@ class QuotaServiceTest < Test::Unit::TestCase
     qi = @q.get_quota_information("VoiceButlerSandbox")
 
     assert_equal("0000", qi.error_code, "Error code was not 0000 (success).")
-    assert_equal("the request was successful", qi.error_message, "Request was not successful.")
+    assert_equal("Success.", qi.error_message, "Request was not successful.")
     assert_not_nil(qi.max_quota)
     assert_not_nil(qi.max_user_quota)
     assert_not_nil(qi.quota_level)

@@ -13,14 +13,6 @@ class TokenServiceTest < Test::Unit::TestCase
     @t = TokenService::TokenService.new(ACCOUNT["username"], ACCOUNT["password"])
     super(test_method_name)
   end
-
-  # Tests the login method by verifying whether there is an "Assertion" keyword in the returning string.
-  # The assertion keyword is a mandatory part of the excpected intermediate token xml.
-  def test_login
-    intermediate_token = @t.login
-    
-    assert_match(/Assertion/, intermediate_token, "Expected to find the Assertion tag in the intermediate token but didn't find it.")
-  end
   
   # A get_security_token with invalid credentials should cause a Handsoap::Fault exception
   # Faulstring: 'The security token could not be authenticated or authorized.'

@@ -43,7 +43,7 @@ You can use the gem from pure Ruby applications and of course from Ruby on Rails
 
  require 'rubygems'
  gem 'developergarden_sdk'
- require 'token_Service/token_service'
+ require 'token_service/token_service'
  require 'ip_location_service/ip_location_service'
 
  @ip_location_service = IpLocationService::IpLocationService.new("<USER>@t-online.de", "<PASSWORD>")
@@ -64,7 +64,9 @@ You can use the gem from pure Ruby applications and of course from Ruby on Rails
 === Ruby Example to perform a local search
  require 'rubygems'
  gem 'developergarden_sdk'
- require 'token_Service/token_service'
+ require 'token_service/token_service'
+ require 'token_service/token_service'
+ require 'local_search_service/local_search_service'
 
  @service = LocalSearchService::LocalSearchService.new("<USER>@t-online.de", "<PASSWORD>")
 
@@ -72,7 +74,7 @@ You can use the gem from pure Ruby applications and of course from Ruby on Rails
    :what => "music",
    :near => "Konstanz"
  }
- response = @service.local_search(search_parameter, ServiceEnvironment.MOCK)
+ response = @service.local_search(search_parameter, ServiceEnvironment.PRODUCTION)
 
  # Show response xml
  puts response.search_result.to_xml

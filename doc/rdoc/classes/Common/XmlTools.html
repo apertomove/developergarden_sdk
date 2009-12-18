@@ -92,8 +92,8 @@ Some tools facilitating xml processing.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000019">strip_cdata</a>&nbsp;&nbsp;
-      <a href="#M000018">strip_cdata!</a>&nbsp;&nbsp;
+      <a href="#M000022">strip_cdata</a>&nbsp;&nbsp;
+      <a href="#M000021">strip_cdata!</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -115,11 +115,12 @@ Some tools facilitating xml processing.
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000019" class="method-detail">
-        <a name="M000019"></a>
+      <div id="method-M000022" class="method-detail">
+        <a name="M000022"></a>
 
         <div class="method-heading">
-          <a href="#M000019" class="method-signature">
+          <a href="XmlTools.src/M000022.html" target="Code" class="method-signature"
+            onclick="popupCode('XmlTools.src/M000022.html');return false;">
           <span class="method-name">strip_cdata</span><span class="method-args">(xml_with_cdata)</span>
           </a>
         </div>
@@ -134,26 +135,15 @@ Get rid of surrounding cdata sections.
 
 </td></tr>
 </table>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000019-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000019-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/common/xml_tools.rb, line 19</span>
-19:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">strip_cdata</span>(<span class="ruby-identifier">xml_with_cdata</span>)
-20:       <span class="ruby-identifier">xml_with_cdata</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'&lt;![CDATA['</span>, <span class="ruby-value str">''</span>)
-21:       <span class="ruby-identifier">xml_with_cdata</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">']]&gt;'</span>, <span class="ruby-value str">''</span>)
-22:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">xml_with_cdata</span>
-23:     <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
         </div>
       </div>
 
-      <div id="method-M000018" class="method-detail">
-        <a name="M000018"></a>
+      <div id="method-M000021" class="method-detail">
+        <a name="M000021"></a>
 
         <div class="method-heading">
-          <a href="#M000018" class="method-signature">
+          <a href="XmlTools.src/M000021.html" target="Code" class="method-signature"
+            onclick="popupCode('XmlTools.src/M000021.html');return false;">
           <span class="method-name">strip_cdata!</span><span class="method-args">(xml_with_cdata)</span>
           </a>
         </div>
@@ -169,18 +159,6 @@ the given string itself.
 
 </td></tr>
 </table>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000018-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000018-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/common/xml_tools.rb, line 10</span>
-10:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">strip_cdata!</span>(<span class="ruby-identifier">xml_with_cdata</span>)
-11:       <span class="ruby-identifier">xml_with_cdata</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-value str">'&lt;![CDATA['</span>, <span class="ruby-value str">''</span>)
-12:       <span class="ruby-identifier">xml_with_cdata</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-value str">']]&gt;'</span>, <span class="ruby-value str">''</span>)
-13:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">xml_with_cdata</span>
-14:     <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
         </div>
       </div>
 

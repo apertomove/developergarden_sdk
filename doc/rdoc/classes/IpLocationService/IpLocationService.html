@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: IpLocationService::IpLocationService</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">IpLocationService::IpLocationService</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/ip_location_service/ip_location_service_rb.html">
+                lib/ip_location_service/ip_location_service.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="../AuthenticatedService.html">
+                AuthenticatedService
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Client to access the developer garden ip location service.
+</p>
+<p>
+See also:
+</p>
+<ul>
+<li><a
+href="https://www.developergarden.com/openapi/iplocation">www.developergarden.com/openapi/iplocation</a>
+
+</li>
+<li><a
+href="http://www.developergarden.com/static/docu/de/ch04s02s06.html">www.developergarden.com/static/docu/de/ch04s02s06.html</a>
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000031">IP_LOCATON_SCHEMA</a>&nbsp;&nbsp;
+      <a href="#M000030">locate_ip</a>&nbsp;&nbsp;
+      <a href="#M000032">xpath_query</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000031" class="method-detail">
+        <a name="M000031"></a>
+
+        <div class="method-heading">
+          <a href="IpLocationService.src/M000031.html" target="Code" class="method-signature"
+            onclick="popupCode('IpLocationService.src/M000031.html');return false;">
+          <span class="method-name">IP_LOCATON_SCHEMA</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Static Methods
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000032" class="method-detail">
+        <a name="M000032"></a>
+
+        <div class="method-heading">
+          <a href="IpLocationService.src/M000032.html" target="Code" class="method-signature"
+            onclick="popupCode('IpLocationService.src/M000032.html');return false;">
+          <span class="method-name">xpath_query</span><span class="method-args">(doc, query_string, global_search = true)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Performs a xpath query in the ip location namespace for the given document
+and query string.
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>doc</tt>:</td><td>XmlQueryFront document.
+
+</td></tr>
+<tr><td valign="top"><tt>query_string</tt>:</td><td>Element to look for
+
+</td></tr>
+<tr><td valign="top"><tt>global_search</tt>:</td><td>Searches within all levels using &quot;//&quot; if <tt>global_search =
+true</tt>.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000030" class="method-detail">
+        <a name="M000030"></a>
+
+        <div class="method-heading">
+          <a href="IpLocationService.src/M000030.html" target="Code" class="method-signature"
+            onclick="popupCode('IpLocationService.src/M000030.html');return false;">
+          <span class="method-name">locate_ip</span><span class="method-args">(ip_addresses, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Retrieves spatial information about the given ip address.
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>ip_address</tt>:</td><td><a href="IpAddress.html">IpAddress</a>-object or array of <a
+href="IpAddress.html">IpAddress</a>-objects for which to perform an ip
+location. Can be a single ip address or an array. of ip addresses.
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+<tr><td valign="top"><tt>account</tt>:</td><td>IP address for which to perform an ip location.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

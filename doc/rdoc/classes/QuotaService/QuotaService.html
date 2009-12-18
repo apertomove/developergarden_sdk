@@ -107,8 +107,8 @@ href="https://www.developergarden.com/openapi/dokumentation/services#4.2.6">www.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000029">change_quota_pool</a>&nbsp;&nbsp;
-      <a href="#M000028">get_quota_information</a>&nbsp;&nbsp;
+      <a href="#M000062">change_quota_pool</a>&nbsp;&nbsp;
+      <a href="#M000061">get_quota_information</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -130,11 +130,12 @@ href="https://www.developergarden.com/openapi/dokumentation/services#4.2.6">www.
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000029" class="method-detail">
-        <a name="M000029"></a>
+      <div id="method-M000062" class="method-detail">
+        <a name="M000062"></a>
 
         <div class="method-heading">
-          <a href="#M000029" class="method-signature">
+          <a href="QuotaService.src/M000062.html" target="Code" class="method-signature"
+            onclick="popupCode('QuotaService.src/M000062.html');return false;">
           <span class="method-name">change_quota_pool</span><span class="method-args">(module_id = &quot;VoiceButlerSandbox&quot;, quota_max = 100)</span>
           </a>
         </div>
@@ -153,30 +154,15 @@ Changes the quota for a particular service
 
 </td></tr>
 </table>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000029-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000029-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/quota_service/quota_service.rb, line 43</span>
-43:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">change_quota_pool</span>(<span class="ruby-identifier">module_id</span> = <span class="ruby-value str">&quot;VoiceButlerSandbox&quot;</span>, <span class="ruby-identifier">quota_max</span> = <span class="ruby-value">100</span>)
-44: 
-45:       <span class="ruby-identifier">response</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;changeQuotaPool&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">message</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
-46:         <span class="ruby-identifier">message</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'moduleId'</span>, <span class="ruby-identifier">module_id</span>)
-47:         <span class="ruby-identifier">message</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'quotaMax'</span>, <span class="ruby-identifier">quota_max</span>)
-48:       <span class="ruby-keyword kw">end</span>
-49: 
-50:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">BasicResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response</span>)
-51:     <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
         </div>
       </div>
 
-      <div id="method-M000028" class="method-detail">
-        <a name="M000028"></a>
+      <div id="method-M000061" class="method-detail">
+        <a name="M000061"></a>
 
         <div class="method-heading">
-          <a href="#M000028" class="method-signature">
+          <a href="QuotaService.src/M000061.html" target="Code" class="method-signature"
+            onclick="popupCode('QuotaService.src/M000061.html');return false;">
           <span class="method-name">get_quota_information</span><span class="method-args">(module_id = &quot;VoiceButlerSandbox&quot;)</span>
           </a>
         </div>
@@ -192,23 +178,6 @@ Get the amount of remaining quota points.
 
 </td></tr>
 </table>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000028-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000028-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/quota_service/quota_service.rb, line 28</span>
-28:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_quota_information</span>(<span class="ruby-identifier">module_id</span> = <span class="ruby-value str">&quot;VoiceButlerSandbox&quot;</span>)
-29: 
-30:       <span class="ruby-identifier">response</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;getQuotaInformation&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">message</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
-31:         <span class="ruby-identifier">message</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'moduleId'</span>, <span class="ruby-identifier">module_id</span>)
-32:       <span class="ruby-keyword kw">end</span>
-33: 
-34:       <span class="ruby-identifier">quota_info</span> = <span class="ruby-constant">QuotaInformation</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response</span>)
-35: 
-36:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">quota_info</span>
-37:     <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
         </div>
       </div>
 

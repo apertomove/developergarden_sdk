@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>send_sms_common (SmsService::SmsService)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/sms_service/sms_service.rb, line 65</span>
+65:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send_sms_common</span>(<span class="ruby-identifier">action_name</span>, <span class="ruby-identifier">numbers</span>, <span class="ruby-identifier">sms_message</span>, <span class="ruby-identifier">originator</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-value">2</span>, <span class="ruby-identifier">account</span> = <span class="ruby-value str">&quot;&quot;</span>)
+66: 
+67:       <span class="ruby-comment cmt"># Cut originator down to 11 characters</span>
+68:       <span class="ruby-identifier">originator</span> = <span class="ruby-identifier">originator</span>[<span class="ruby-value">0</span>, <span class="ruby-value">11</span>]
+69: 
+70:       <span class="ruby-identifier">response</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-identifier">action_name</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">message</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+71:         <span class="ruby-identifier">message</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">&quot;request&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span><span class="ruby-operator">|</span>
+72:           <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+73:           <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'number'</span>, <span class="ruby-identifier">numbers</span>)
+74:           <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'message'</span>, <span class="ruby-identifier">sms_message</span>)
+75:           <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'originator'</span>, <span class="ruby-identifier">originator</span>)
+76:           <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>)
+77:         <span class="ruby-keyword kw">end</span>
+78:       <span class="ruby-keyword kw">end</span>
+79: 
+80:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">SmsResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response</span>)
+81:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

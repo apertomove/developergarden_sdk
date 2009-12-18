@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>to_s (IpLocationService::IpAddressLocation)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/ip_location_service/ip_address_location.rb, line 15</span>
+15:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
+16:       <span class="ruby-identifier">ret</span> = <span class="ruby-node">&quot;Address: #{@address.to_s}, IP-Type: #{@ip_type.to_s}, #{@is_in_region.to_s}, &quot;</span>
+17:       <span class="ruby-identifier">ret</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;City: #{@is_in_city.to_s}, Geo: #{@is_in_geo.to_s}, Radius: #{@radius.to_s}&quot;</span>
+18:       <span class="ruby-identifier">ret</span>
+19:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

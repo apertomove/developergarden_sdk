@@ -95,10 +95,10 @@ href="http://www.developergarden.com/openapi/dokumentation/services#4.2.1">www.d
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000035">call_status</a>&nbsp;&nbsp;
-      <a href="#M000034">new_call</a>&nbsp;&nbsp;
-      <a href="#M000037">new_call_sequenced</a>&nbsp;&nbsp;
-      <a href="#M000036">teardown_call</a>&nbsp;&nbsp;
+      <a href="#M000058">call_status</a>&nbsp;&nbsp;
+      <a href="#M000057">new_call</a>&nbsp;&nbsp;
+      <a href="#M000060">new_call_sequenced</a>&nbsp;&nbsp;
+      <a href="#M000059">teardown_call</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -120,11 +120,12 @@ href="http://www.developergarden.com/openapi/dokumentation/services#4.2.1">www.d
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000035" class="method-detail">
-        <a name="M000035"></a>
+      <div id="method-M000058" class="method-detail">
+        <a name="M000058"></a>
 
         <div class="method-heading">
-          <a href="#M000035" class="method-signature">
+          <a href="VoiceCallService.src/M000058.html" target="Code" class="method-signature"
+            onclick="popupCode('VoiceCallService.src/M000058.html');return false;">
           <span class="method-name">call_status</span><span class="method-args">(session_id, environment = ServiceEnvironment.MOCK, keep_alive = 1)</span>
           </a>
         </div>
@@ -143,37 +144,20 @@ href="../ServiceEnvironment.html">ServiceEnvironment</a>.
 
 </td></tr>
 <tr><td valign="top"><tt>keep_alive</tt>:</td><td>Prevent an expiration of the call by calling <tt><a
-href="VoiceCallService.html#M000035">call_status</a></tt> with
+href="VoiceCallService.html#M000058">call_status</a></tt> with
 <tt>keep_alive = 1</tt>.
 
 </td></tr>
 </table>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000035-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000035-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/voice_call_service/voice_call_service.rb, line 60</span>
-60:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">call_status</span>(<span class="ruby-identifier">session_id</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">keep_alive</span> = <span class="ruby-value">1</span>)
-61:       <span class="ruby-identifier">response</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;callStatus&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">message</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
-62:         <span class="ruby-identifier">message</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">&quot;request&quot;</span>)
-63:         <span class="ruby-identifier">request</span> = <span class="ruby-identifier">message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">&quot;request&quot;</span>)
-64:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
-65:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'keepAlive'</span>, <span class="ruby-identifier">keep_alive</span>)
-66:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'sessionId'</span>, <span class="ruby-identifier">session_id</span>)
-67:       <span class="ruby-keyword kw">end</span>
-68: 
-69:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">CallStatusResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response</span>)
-70:     <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
         </div>
       </div>
 
-      <div id="method-M000034" class="method-detail">
-        <a name="M000034"></a>
+      <div id="method-M000057" class="method-detail">
+        <a name="M000057"></a>
 
         <div class="method-heading">
-          <a href="#M000034" class="method-signature">
+          <a href="VoiceCallService.src/M000057.html" target="Code" class="method-signature"
+            onclick="popupCode('VoiceCallService.src/M000057.html');return false;">
           <span class="method-name">new_call</span><span class="method-args">(a_number, b_number, expiration, max_duration, environment = ServiceEnvironment.MOCK, privacy_a = false, privacy_b = false, greeter = &quot;&quot;, account = &quot;&quot;)</span>
           </a>
         </div>
@@ -193,7 +177,7 @@ is called. The call is established after the 2nd participant has picked up.
 
 </td></tr>
 <tr><td valign="top"><tt>expiration</tt>:</td><td>Nr of seconds until the call will be canceled if no <tt><a
-href="VoiceCallService.html#M000035">call_status</a></tt> call is received.
+href="VoiceCallService.html#M000058">call_status</a></tt> call is received.
 
 </td></tr>
 <tr><td valign="top"><tt>max_duration</tt>:</td><td>Maximum duration of the call in secons. In addition to this the system
@@ -216,38 +200,15 @@ limit is applied.
 
 </td></tr>
 </table>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000034-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000034-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/voice_call_service/voice_call_service.rb, line 37</span>
-37:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new_call</span>(<span class="ruby-identifier">a_number</span>, <span class="ruby-identifier">b_number</span>, <span class="ruby-identifier">expiration</span>, <span class="ruby-identifier">max_duration</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">privacy_a</span> = <span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">privacy_b</span> = <span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">greeter</span> = <span class="ruby-value str">&quot;&quot;</span>, <span class="ruby-identifier">account</span> = <span class="ruby-value str">&quot;&quot;</span>)
-38:       <span class="ruby-identifier">response</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;newCall&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">message</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
-39:         <span class="ruby-identifier">message</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">&quot;request&quot;</span>)
-40:         <span class="ruby-identifier">request</span> = <span class="ruby-identifier">message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">&quot;request&quot;</span>)
-41:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
-42:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'aNumber'</span>, <span class="ruby-identifier">a_number</span>)
-43:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'bNumber'</span>, <span class="ruby-identifier">b_number</span>)
-44:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'privacyA'</span>, <span class="ruby-identifier">privacy_a</span>.<span class="ruby-identifier">to_s</span>)
-45:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'privacyB'</span>, <span class="ruby-identifier">privacy_b</span>.<span class="ruby-identifier">to_s</span>)
-46:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'expiration'</span>, <span class="ruby-identifier">expiration</span>)
-47:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'maxDuration'</span>, <span class="ruby-identifier">max_duration</span>)
-48:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'greeter'</span>, <span class="ruby-identifier">greeter</span>)
-49:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>)
-50:       <span class="ruby-keyword kw">end</span>
-51: 
-52:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">VoiceCallResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response</span>)
-53:     <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
         </div>
       </div>
 
-      <div id="method-M000037" class="method-detail">
-        <a name="M000037"></a>
+      <div id="method-M000060" class="method-detail">
+        <a name="M000060"></a>
 
         <div class="method-heading">
-          <a href="#M000037" class="method-signature">
+          <a href="VoiceCallService.src/M000060.html" target="Code" class="method-signature"
+            onclick="popupCode('VoiceCallService.src/M000060.html');return false;">
           <span class="method-name">new_call_sequenced</span><span class="method-args">(a_number, b_number, expiration, max_duration, environment = ServiceEnvironment.MOCK, privacy_a = false, privacy_b = false, max_wait = 60, greeter = &quot;&quot;, account = &quot;&quot;)</span>
           </a>
         </div>
@@ -273,7 +234,7 @@ strings
 </pre>
 <table>
 <tr><td valign="top"><tt>expiration</tt>:</td><td>Nr of seconds until the call will be canceled if no <tt><a
-href="VoiceCallService.html#M000035">call_status</a></tt> with
+href="VoiceCallService.html#M000058">call_status</a></tt> with
 keepalive=true call is received.
 
 </td></tr>
@@ -301,51 +262,15 @@ href="../ServiceEnvironment.html">ServiceEnvironment</a>.
 
 </td></tr>
 </table>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000037-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000037-source">
-<pre>
-     <span class="ruby-comment cmt"># File lib/voice_call_service/voice_call_service.rb, line 106</span>
-106:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new_call_sequenced</span>(<span class="ruby-identifier">a_number</span>, <span class="ruby-identifier">b_number</span>, <span class="ruby-identifier">expiration</span>, <span class="ruby-identifier">max_duration</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">privacy_a</span> = <span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">privacy_b</span> = <span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">max_wait</span> = <span class="ruby-value">60</span>, <span class="ruby-identifier">greeter</span> = <span class="ruby-value str">&quot;&quot;</span>, <span class="ruby-identifier">account</span> = <span class="ruby-value str">&quot;&quot;</span>)
-107:       <span class="ruby-identifier">response</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;newCallSequenced&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">message</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
-108:         <span class="ruby-identifier">message</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">&quot;request&quot;</span>)
-109:         <span class="ruby-identifier">request</span> = <span class="ruby-identifier">message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">&quot;request&quot;</span>)
-110:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
-111:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'aNumber'</span>, <span class="ruby-identifier">a_number</span>)
-112: 
-113:         <span class="ruby-comment cmt"># b_number can be an array of strings representing numbers or a single string representing a single number.</span>
-114:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">b_number</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Array</span> <span class="ruby-keyword kw">then</span>
-115:           <span class="ruby-comment cmt"># It's an array</span>
-116:           <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">bn</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">b_number</span> <span class="ruby-keyword kw">do</span>
-117:             <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'bNumber'</span>, <span class="ruby-identifier">bn</span>)
-118:           <span class="ruby-keyword kw">end</span>
-119:         <span class="ruby-keyword kw">else</span>
-120: 
-121:           <span class="ruby-comment cmt"># We assume its a string</span>
-122:           <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'bNumber'</span>, <span class="ruby-identifier">b_number</span>)
-123:         <span class="ruby-keyword kw">end</span>
-124: 
-125:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'privacyA'</span>, <span class="ruby-identifier">privacy_a</span>.<span class="ruby-identifier">to_s</span>)
-126:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'privacyB'</span>, <span class="ruby-identifier">privacy_b</span>.<span class="ruby-identifier">to_s</span>)
-127:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'expiration'</span>, <span class="ruby-identifier">expiration</span>)
-128:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'maxDuration'</span>, <span class="ruby-identifier">max_duration</span>)
-129:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'maxWait'</span>, <span class="ruby-identifier">max_wait</span>)
-130:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'greeter'</span>, <span class="ruby-identifier">greeter</span>)
-131:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>)
-132:       <span class="ruby-keyword kw">end</span>
-133: 
-134:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">VoiceCallResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response</span>)
-135:     <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
         </div>
       </div>
 
-      <div id="method-M000036" class="method-detail">
-        <a name="M000036"></a>
+      <div id="method-M000059" class="method-detail">
+        <a name="M000059"></a>
 
         <div class="method-heading">
-          <a href="#M000036" class="method-signature">
+          <a href="VoiceCallService.src/M000059.html" target="Code" class="method-signature"
+            onclick="popupCode('VoiceCallService.src/M000059.html');return false;">
           <span class="method-name">teardown_call</span><span class="method-args">(session_id, environment = ServiceEnvironment.MOCK)</span>
           </a>
         </div>
@@ -364,28 +289,6 @@ href="../ServiceEnvironment.html">ServiceEnvironment</a>.
 
 </td></tr>
 </table>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000036-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000036-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/voice_call_service/voice_call_service.rb, line 76</span>
-76:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown_call</span>(<span class="ruby-identifier">session_id</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>)
-77:       <span class="ruby-identifier">response</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;tearDownCall&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">message</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
-78: 
-79:         <span class="ruby-comment cmt"># Add namespace</span>
-80:         <span class="ruby-identifier">tdc</span> = <span class="ruby-identifier">message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">&quot;tearDownCall&quot;</span>)
-81:         <span class="ruby-identifier">tdc</span>.<span class="ruby-identifier">set_attr</span>(<span class="ruby-value str">&quot;xmlns&quot;</span>, <span class="ruby-value str">&quot;http://webservice.voicebutler.odg.tonline.de&quot;</span>)
-82: 
-83:         <span class="ruby-identifier">message</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">&quot;request&quot;</span>)
-84:         <span class="ruby-identifier">request</span> = <span class="ruby-identifier">message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">&quot;request&quot;</span>)
-85:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
-86:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'sessionId'</span>, <span class="ruby-identifier">session_id</span>)
-87:       <span class="ruby-keyword kw">end</span>
-88: 
-89:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">CallStatusResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response</span>)
-90:     <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
         </div>
       </div>
 

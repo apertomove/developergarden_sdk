@@ -56,7 +56,7 @@
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Fri Jul 17 12:57:36 +0200 2009</td>
+      <td>Mon Dec 14 17:07:22 +0100 2009</td>
     </tr>
     </table>
   </div>
@@ -81,114 +81,19 @@ Telekom AG. For more details about the services see
 Depending on your operating system you might want to skip the
 &quot;sudo&quot; command prior to the commands listed here.
 </p>
-<h3>Dependencies</h3>
-<p>
-In order to use this library the following dependencies need to be met:
-</p>
+<h3>Installation</h3>
 <pre>
-  Ruby 1.8.6
-  Ruby Gems &gt;= 1.3.1
+ sudo gem install developergarden_sdk
 </pre>
 <p>
-There might be issues with Ruby 1.8.7 regarding to curb so it is highly
-recommended to use Ruby 1.8.6.
+Dependent gems will be installed automatically.
 </p>
-<h4>Gems</h4>
-<p>
-The following gems need to be installed:
-</p>
-<ul>
-<li>handsoap (Version 0.2.8)
-
-</li>
-<li>nokogiri
-
-</li>
-<li>httpclient (Version 2.1.14)
-
-</li>
-<li>htmlentities
-
-</li>
-</ul>
-<h3>Install the handsoap gem</h3>
-<p>
-For production use the official release of handsoap should be installed.
-More information about handsoap can be found at:
-</p>
-<pre>
- http://github.com/troelskn/handsoap/tree/master
-</pre>
-<h4>Install official handsoap release</h4>
-<pre>
- gem sources -a http://gems.github.com
- sudo gem install troelskn-handsoap
-</pre>
-<h4>Install handsoap developer version</h4>
-<p>
-If you want to use the bleeding edge version of handsoap proceed as
-follows. Note that you do not need to perform these steps if you have
-already installed the official release!
-</p>
-<p>
-Checkout handsoap from github
-</p>
-<pre>
- git clone git://github.com/troelskn/handsoap.git
-</pre>
-<p>
-Install jeweler
-</p>
-<pre>
- sudo gem install jeweler
-</pre>
-<p>
-Build handsoap package
-</p>
-<pre>
- cd handsoap_git_repo
- rake build
-</pre>
-<p>
-Install the resulting gem file
-</p>
-<pre>
- cd pkg
- sudo gem install handsoap-0.2.7.gem
-</pre>
-<p>
-Attention: if you you use the development version you might need to change
-the gem statement in
-</p>
-<pre>
-   basic_service.rb from
-
-   gem 'troelskn-handsoap'
-
-   to
-
-   gem 'handsoap'
-</pre>
-<h3>Installation of the developergarden_sdk Gem</h3>
-<p>
-Install the gem using the following command
-</p>
-<pre>
- gem install developergarden_sdk-0.0.x.gem
-</pre>
-<p>
-Where x stands for the current version. For the version 0.0.4 this could
-look like this:
-</p>
-<pre>
- gem install developergarden_sdk-0.0.x.gem
-</pre>
 <h3>Basic usage</h3>
 <p>
 You can use the gem from pure Ruby applications and of course from Ruby on
 Rails apps as well.
 </p>
-<h4>To use the gem from your Ruby app:</h4>
+<h4>To use the gem from your Ruby app</h4>
 <pre>
  require 'rubygems'
  gem 'developergarden_sdk'
@@ -210,6 +115,48 @@ Rails apps as well.
 
  sms = SmsService::SmsService.new(&quot;&lt;USER&gt;@t-online.de&quot;, &quot;&lt;PASSWORD&gt;&quot;)
  sms_response = sms.send_sms(&quot;+49177 0000001&quot;, &quot;Your message text.&quot;, &quot;RubySDK&quot;, ServiceEnvironment.PRODUCTION, &quot;&quot;)
+</pre>
+<h3>Ruby Example to perform an ip location request</h3>
+<pre>
+ require 'rubygems'
+ gem 'developergarden_sdk'
+ require 'token_Service/token_service'
+ require 'ip_location_service/ip_location_service'
+
+ @ip_location_service = IpLocationService::IpLocationService.new(&quot;&lt;USER&gt;@t-online.de&quot;, &quot;&lt;PASSWORD&gt;&quot;)
+
+ ip = IpLocationService::IpAddress.new(&quot;93.222.255.58&quot;)
+ response = @ip_location_service.locate_ip(ip, ServiceEnvironment.PRODUCTION)
+
+ puts response.ip_address_locations.first.address
+ puts response.ip_address_locations.first.is_in_region.country_code
+ puts response.ip_address_locations.first.is_in_region.region_name
+
+ # If you except a single ip location (if you have passed a single ip to look up)
+ # then you can use the following way to access the location
+ puts response.ip_address_location.address
+ puts response.ip_address_location.is_in_region.country_code
+ puts response.ip_address_location.is_in_region.region_name
+</pre>
+<h3>Ruby Example to perform a local search</h3>
+<pre>
+ require 'rubygems'
+ gem 'developergarden_sdk'
+ require 'token_Service/token_service'
+
+ @service = LocalSearchService::LocalSearchService.new(&quot;&lt;USER&gt;@t-online.de&quot;, &quot;&lt;PASSWORD&gt;&quot;)
+
+ search_parameter = {
+   :what =&gt; &quot;music&quot;,
+   :near =&gt; &quot;Konstanz&quot;
+ }
+ response = @service.local_search(search_parameter, ServiceEnvironment.MOCK)
+
+ # Show response xml
+ puts response.search_result.to_xml
+ results_where_locs_where = response.search_result.xpath(&quot;//RESULTS/WHERE_LOCS/WHERE&quot;).first
+ lat = results_where_locs_where[&quot;LAT&quot;]
+ puts lat
 </pre>
 <h4>To use your gem from your Ruby on Rails app</h4>
 <p>
@@ -243,112 +190,6 @@ In your environment.rb add the following line in the config block:
 In order to see more examples have a look the unit tests included in the
 gem&#8216;s source code. You might also want to have a look at the actual
 source code and source code comments.
-</p>
-<h3>Debug</h3>
-<p>
-Per default all generated and received soap xml messages are not visible.
-These can be print to stdout for debugging purposes by starting the ruby
-interpreter with the -d option. You will then see all http xml soap
-requests and responses. This can be done by invoking your ruby app by using
-a shebang like this:
-</p>
-<pre>
- #!/usr/bin/ruby -d
-</pre>
-<h3>Testing</h3>
-<p>
-Before you run the tests you will need to modify config/test_settings.yml
-by entering your developer garden credentials.
-</p>
-<p>
-Executing tests will be done in the &quot;sandbox&quot; or &quot;mock&quot;
-environment which are free of charge. Be ware that the services itself have
-quotas on these test environments so your tests may fail after a while. The
-quotas are on a daily basis so they should pass again the next day.
-</p>
-<p>
-Failures when reaching the SANDBOX QUOTA might look like this:
-</p>
-<pre>
- 0030 quotas have exceeded
-</pre>
-<p>
-Phone numbers in test files are fictive and for testing purposes only.
-</p>
-<p>
-The testsuite can be run by invoking the test raketask.
-</p>
-<pre>
- cd /home/yourhome/developergarden_sdk
- rake test
-</pre>
-<p>
-In order to run a single test perform the following command:
-</p>
-<pre>
- cd /home/yourhome/developergarden_sdk/lib
- ruby -d ../test/voice_call_service_test.rb --name teardown_call
-</pre>
-<h4><a href="../classes/QuotaService.html">QuotaService</a></h4>
-<ul>
-<li><a href="../classes/QuotaService.html">QuotaService</a> can be tested as it
-is. There is no need to pass an environment such as &quot;production&quot;
-or &quot;sandbox&quot; because
-
-</li>
-</ul>
-<p>
-it is free of charge.
-</p>
-<h4><a href="../classes/SmsService.html">SmsService</a></h4>
-<ul>
-<li><a href="../classes/SmsService.html">SmsService</a> can be tested using the
-&quot;sandbox&quot; environment. Be aware that there is a 5 credit quota
-per day. So you can
-
-</li>
-</ul>
-<p>
-send 5 test sms per day. After that you will receive a corresponding quota
-error message.
-</p>
-<h4><a href="../classes/VoiceCallService.html">VoiceCallService</a></h4>
-<ul>
-<li>In the &quot;sandbox&quot; environment there is a quota limit of 5 calls
-per day (each up to 10 sec) for the <a
-href="../classes/VoiceCallService.html">VoiceCallService</a>
-
-</li>
-<li>In the &quot;production&quot; environment a call may not last more than 60
-minutes. After 60 min the call will be cancelled.
-
-</li>
-<li>There is also a quota for the &quot;mock&quot; environment.
-
-</li>
-</ul>
-<p>
-For more information about service environments have a look at the
-documentation at <a
-href="http://www.developergarden.com">www.developergarden.com</a>
-</p>
-<h3>Build the developergarden_sdk gem</h3>
-<p>
-You can build the gem by invoking the gem rake task
-</p>
-<pre>
- rake gem
-</pre>
-<p>
-The resulting gem will be generated to the pkg/ directory and can be
-installed like this:
-</p>
-<pre>
- sudo gem install developergarden_sdk-0.0.6.gem
-</pre>
-<p>
-Depending on the current version number you will need to adapt the gem
-filename correspondingly.
 </p>
 <h2>More Information</h2>
 <p>

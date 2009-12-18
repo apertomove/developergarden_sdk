@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>add_to_handsoap_xml (ConferenceCallService::ConferenceSchedule)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/conference_call_service/conference_schedule.rb, line 30</span>
+30:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_to_handsoap_xml</span>(<span class="ruby-identifier">xml_doc</span>)
+31:       <span class="ruby-identifier">xml_doc</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'minute'</span>, <span class="ruby-ivar">@minute</span>.<span class="ruby-identifier">to_s</span>)
+32:       <span class="ruby-identifier">xml_doc</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'hour'</span>, <span class="ruby-ivar">@hour</span>.<span class="ruby-identifier">to_s</span>)
+33:       <span class="ruby-identifier">xml_doc</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'dayOfMonth'</span>, <span class="ruby-ivar">@day_of_month</span>.<span class="ruby-identifier">to_s</span>)
+34:       <span class="ruby-identifier">xml_doc</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'month'</span>, <span class="ruby-ivar">@month</span>.<span class="ruby-identifier">to_s</span>)
+35:       <span class="ruby-identifier">xml_doc</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'year'</span>, <span class="ruby-ivar">@year</span>.<span class="ruby-identifier">to_s</span>)
+36:       <span class="ruby-identifier">xml_doc</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'recurring'</span>, <span class="ruby-ivar">@recurring</span>.<span class="ruby-identifier">to_s</span>)
+37:       <span class="ruby-identifier">xml_doc</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'notify'</span>, <span class="ruby-ivar">@notify</span>.<span class="ruby-identifier">to_s</span>)
+38:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: ConferenceCallService::ConferenceCallService</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">ConferenceCallService::ConferenceCallService</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/conference_call_service/conference_call_service_rb.html">
+                lib/conference_call_service/conference_call_service.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="../AuthenticatedService.html">
+                AuthenticatedService
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Client to access the developer garden conference call service.
+</p>
+<p>
+See also:
+</p>
+<ul>
+<li><a
+href="https://www.developergarden.com/openapi/conferencecall">www.developergarden.com/openapi/conferencecall</a>
+
+</li>
+<li><a
+href="http://www.developergarden.com/static/docu/de/ch04s02s02.html">www.developergarden.com/static/docu/de/ch04s02s02.html</a>
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000125">CONFERENCE_CALL_SCHEMA</a>&nbsp;&nbsp;
+      <a href="#M000124">add_conference_template_participant</a>&nbsp;&nbsp;
+      <a href="#M000105">commit_conference</a>&nbsp;&nbsp;
+      <a href="#M000106">create_conference</a>&nbsp;&nbsp;
+      <a href="#M000116">create_conference_template</a>&nbsp;&nbsp;
+      <a href="#M000107">get_conference_list</a>&nbsp;&nbsp;
+      <a href="#M000108">get_conference_status</a>&nbsp;&nbsp;
+      <a href="#M000117">get_conference_template</a>&nbsp;&nbsp;
+      <a href="#M000120">get_conference_template_list</a>&nbsp;&nbsp;
+      <a href="#M000121">get_conference_template_participant</a>&nbsp;&nbsp;
+      <a href="#M000109">get_participant_status</a>&nbsp;&nbsp;
+      <a href="#M000115">get_running_conference</a>&nbsp;&nbsp;
+      <a href="#M000110">new_participant</a>&nbsp;&nbsp;
+      <a href="#M000104">on_create_document</a>&nbsp;&nbsp;
+      <a href="#M000112">remove_conference</a>&nbsp;&nbsp;
+      <a href="#M000119">remove_conference_template</a>&nbsp;&nbsp;
+      <a href="#M000123">remove_conference_template_participant</a>&nbsp;&nbsp;
+      <a href="#M000113">remove_participant</a>&nbsp;&nbsp;
+      <a href="#M000114">update_conference</a>&nbsp;&nbsp;
+      <a href="#M000118">update_conference_template</a>&nbsp;&nbsp;
+      <a href="#M000122">update_conference_template_participant</a>&nbsp;&nbsp;
+      <a href="#M000111">update_participant</a>&nbsp;&nbsp;
+      <a href="#M000126">xpath_query</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000125" class="method-detail">
+        <a name="M000125"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000125.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000125.html');return false;">
+          <span class="method-name">CONFERENCE_CALL_SCHEMA</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Static Methods
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000126" class="method-detail">
+        <a name="M000126"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000126.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000126.html');return false;">
+          <span class="method-name">xpath_query</span><span class="method-args">(doc, query_string, global_search = true)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Performs a xpath query in the ip location namespace for the given document
+and query string.
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>doc</tt>:</td><td>XmlQueryFront document.
+
+</td></tr>
+<tr><td valign="top"><tt>query_string</tt>:</td><td>Element to look for
+
+</td></tr>
+<tr><td valign="top"><tt>global_search</tt>:</td><td>Searches within all levels using &quot;//&quot; if <tt>global_search =
+true</tt>.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000124" class="method-detail">
+        <a name="M000124"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000124.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000124.html');return false;">
+          <span class="method-name">add_conference_template_participant</span><span class="method-args">(template_id, participant, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Give the list of the templates of the given conference owner
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>template_id</tt>:</td><td>conference in which will be added the participant
+
+</td></tr>
+<tr><td valign="top"><tt>participant</tt>:</td><td>participant who will be added to the conference
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000105" class="method-detail">
+        <a name="M000105"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000105.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000105.html');return false;">
+          <span class="method-name">commit_conference</span><span class="method-args">(conference_id, environment = ServiceEnvironment.MOCK)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Stores the created conference to the conference call server.
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>conference_id</tt>:</td><td>id of the interest conference
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in <a
+href="../ServiceEnvironment.html">ServiceEnvironment</a>.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000106" class="method-detail">
+        <a name="M000106"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000106.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000106.html');return false;">
+          <span class="method-name">create_conference</span><span class="method-args">(owner_id, detail, schedule = nil, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates a new conference.
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>owner_id</tt>:</td><td>Return only items owned by the given user such as
+&quot;max.mustermann&quot;.
+
+</td></tr>
+<tr><td valign="top"><tt>detail</tt>:</td><td>Specifies the conference details like max duration, name and description.
+
+</td></tr>
+<tr><td valign="top"><tt>schedule</tt>:</td><td>Specifies when the conference will take place and if its going to be
+repeated on a regular basis.
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000116" class="method-detail">
+        <a name="M000116"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000116.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000116.html');return false;">
+          <span class="method-name">create_conference_template</span><span class="method-args">(owner_id, detail, participants = nil, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates a conference template.
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>owner_id</tt>:</td><td>id of the owner of the conference template
+
+</td></tr>
+</table>
+<p>
+<tt>detail</tt>: details of the conference template. <a
+href="ConferenceDetails.html">ConferenceDetails</a> Type
+<tt>participants</tt>: optional parameter of the type ParticipantDetail
+</p>
+<table>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000107" class="method-detail">
+        <a name="M000107"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000107.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000107.html');return false;">
+          <span class="method-name">get_conference_list</span><span class="method-args">(owner_id, what = ConferenceConstants.CONFERENCE_LIST_ALL, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Retrieves spatial information about the given ip address.
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>owner_id</tt>:</td><td>Return only items owned by the given user such as
+&quot;max.mustermann&quot;.
+
+</td></tr>
+<tr><td valign="top"><tt>what</tt>:</td><td>Constraints of the list to be retrieved.
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+<tr><td valign="top"><tt>account</tt>:</td><td>IP address for which to perform an ip location.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000108" class="method-detail">
+        <a name="M000108"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000108.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000108.html');return false;">
+          <span class="method-name">get_conference_status</span><span class="method-args">(conference_id, what = ConferenceConstants.CONFERENCE_LIST_ALL, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Retrieves that status of the given conference.
+</p>
+<h3>Parameters</h3>
+<p>
+<tt>conference_id</tt>::
+</p>
+<table>
+<tr><td valign="top"><tt>what</tt>:</td><td>Contraints of the list to be retrieved.
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000117" class="method-detail">
+        <a name="M000117"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000117.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000117.html');return false;">
+          <span class="method-name">get_conference_template</span><span class="method-args">(template_id, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the confernece template with the given id.
+</p>
+<h3>Parameters</h3>
+<p>
+<tt>template_id</tt>::
+</p>
+<table>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000120" class="method-detail">
+        <a name="M000120"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000120.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000120.html');return false;">
+          <span class="method-name">get_conference_template_list</span><span class="method-args">(owner_id, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Give the list of the templates of the given conference owner
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>owner_id</tt>:</td><td>id of the owner of the requested conference
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000121" class="method-detail">
+        <a name="M000121"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000121.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000121.html');return false;">
+          <span class="method-name">get_conference_template_participant</span><span class="method-args">(template_id, participant_id, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Give the list of the templates of the given conference owner
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>template_id</tt>:</td><td>id of the template in which we call the participant
+
+</td></tr>
+<tr><td valign="top"><tt>participant_id</tt>:</td><td>id of the called participant
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000109" class="method-detail">
+        <a name="M000109"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000109.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000109.html');return false;">
+          <span class="method-name">get_participant_status</span><span class="method-args">(conference_id, participant_id, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Retrieves the status of the given participant in the specified conference.
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>conference_id</tt>:</td><td>Id of the intended conference.
+
+</td></tr>
+<tr><td valign="top"><tt>participant_id</tt>:</td><td>Id of the desired participant.
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000115" class="method-detail">
+        <a name="M000115"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000115.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000115.html');return false;">
+          <span class="method-name">get_running_conference</span><span class="method-args">(conference_id, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Tell whether a conference is running
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>conference_id</tt>:</td><td>id of the maybe running conference
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000110" class="method-detail">
+        <a name="M000110"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000110.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000110.html');return false;">
+          <span class="method-name">new_participant</span><span class="method-args">(conference_id, participant, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Adds the given participant to the specified conference.
+</p>
+<h3>Parameters ra</h3>
+<table>
+<tr><td valign="top"><tt>conference_id</tt>:</td><td>Id of the intended conference.
+
+</td></tr>
+<tr><td valign="top"><tt>participant</tt>:</td><td>Details of the participant to be added.
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000104" class="method-detail">
+        <a name="M000104"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000104.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000104.html');return false;">
+          <span class="method-name">on_create_document</span><span class="method-args">(doc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Add namespaces to the handsoap XmlMason document.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000112" class="method-detail">
+        <a name="M000112"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000112.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000112.html');return false;">
+          <span class="method-name">remove_conference</span><span class="method-args">(conference_id, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Removes the given conference.
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>conference_id</tt>:</td><td>id of the removed conference
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000119" class="method-detail">
+        <a name="M000119"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000119.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000119.html');return false;">
+          <span class="method-name">remove_conference_template</span><span class="method-args">(template_id, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>template_id</tt>:</td><td>template of the removed conference
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000123" class="method-detail">
+        <a name="M000123"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000123.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000123.html');return false;">
+          <span class="method-name">remove_conference_template_participant</span><span class="method-args">(template_id, participant_id, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Give the list of the templates of the given conference owner
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>template_id</tt>:</td><td>id of the template in which we call the participant
+
+</td></tr>
+<tr><td valign="top"><tt>participant_id</tt>:</td><td>id of the called participant
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000113" class="method-detail">
+        <a name="M000113"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000113.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000113.html');return false;">
+          <span class="method-name">remove_participant</span><span class="method-args">(conference_id, participant_id, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Retrieves that status of the given conference.
+</p>
+<h3>Parameters</h3>
+<p>
+<tt>conference_id</tt>::
+</p>
+<table>
+<tr><td valign="top"><tt>what</tt>:</td><td>Contraints of the list to be retrieved.
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000114" class="method-detail">
+        <a name="M000114"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000114.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000114.html');return false;">
+          <span class="method-name">update_conference</span><span class="method-args">(conference_id, conference_details = nil, schedule = nil, initiator_id = nil, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Updates an existing conference.
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>conference_id</tt>:</td><td>Id of the conference
+
+</td></tr>
+<tr><td valign="top"><tt>conference_details</tt>:</td><td>Id of the conference
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000118" class="method-detail">
+        <a name="M000118"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000118.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000118.html');return false;">
+          <span class="method-name">update_conference_template</span><span class="method-args">(template_id, initiator_id, detail, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Updates the specified conference with the given parameters.
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>template_id</tt>:</td><td>id of the updated template
+
+</td></tr>
+<tr><td valign="top"><tt>initiator_id</tt>:</td><td>id of the initiator of the conference
+
+</td></tr>
+<tr><td valign="top"><tt>details</tt>:</td><td>details of the conference template
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000122" class="method-detail">
+        <a name="M000122"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000122.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000122.html');return false;">
+          <span class="method-name">update_conference_template_participant</span><span class="method-args">(template_id, participant_id, participant, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Update the details of a given participant
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>template_id</tt>:</td><td>id of the template in which we call the participant
+
+</td></tr>
+<tr><td valign="top"><tt>participant_id</tt>:</td><td>id of the changed participant
+
+</td></tr>
+<tr><td valign="top"><tt>participant</tt>:</td><td>details of the changed participant
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000111" class="method-detail">
+        <a name="M000111"></a>
+
+        <div class="method-heading">
+          <a href="ConferenceCallService.src/M000111.html" target="Code" class="method-signature"
+            onclick="popupCode('ConferenceCallService.src/M000111.html');return false;">
+          <span class="method-name">update_participant</span><span class="method-args">(conference_id, participant_id, participant_detail = nil, action = nil, environment = ServiceEnvironment.MOCK, account = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Updates the settings for the given participant of the given conference
+call.
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>conference_id</tt>:</td><td>id of the interest conference
+
+</td></tr>
+<tr><td valign="top"><tt>participant_id</tt>:</td><td>id of the coming participant
+
+</td></tr>
+<tr><td valign="top"><tt>participant_detail</tt>:</td><td>Details of the coming participant
+
+</td></tr>
+<tr><td valign="top"><tt>action</tt>:</td><td>Action to performed for the given participant. Actions are mute, umute and
+redial. See <a href="ConferenceConstants.html">ConferenceConstants</a> for
+the corresponding constants.
+
+</td></tr>
+<tr><td valign="top"><tt>environment</tt>:</td><td>Service environment as defined in ServiceLevel.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

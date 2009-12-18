@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ConferenceCallService</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ConferenceCallService</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/conference_call_service/add_conference_template_participant_response_rb.html">
+                lib/conference_call_service/add_conference_template_participant_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/commit_conference_response_rb.html">
+                lib/conference_call_service/commit_conference_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/conference_call_service_rb.html">
+                lib/conference_call_service/conference_call_service.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/conference_constants_rb.html">
+                lib/conference_call_service/conference_constants.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/conference_details_rb.html">
+                lib/conference_call_service/conference_details.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/conference_schedule_rb.html">
+                lib/conference_call_service/conference_schedule.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/create_conference_response_rb.html">
+                lib/conference_call_service/create_conference_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/create_conference_template_response_rb.html">
+                lib/conference_call_service/create_conference_template_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/get_conference_list_response_rb.html">
+                lib/conference_call_service/get_conference_list_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/get_conference_status_response_rb.html">
+                lib/conference_call_service/get_conference_status_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/get_conference_template_list_response_rb.html">
+                lib/conference_call_service/get_conference_template_list_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/get_conference_template_participant_response_rb.html">
+                lib/conference_call_service/get_conference_template_participant_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/get_conference_template_response_rb.html">
+                lib/conference_call_service/get_conference_template_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/get_participant_status_response_rb.html">
+                lib/conference_call_service/get_participant_status_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/get_running_conference_response_rb.html">
+                lib/conference_call_service/get_running_conference_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/new_participant_response_rb.html">
+                lib/conference_call_service/new_participant_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/participant_rb.html">
+                lib/conference_call_service/participant.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/participant_details_rb.html">
+                lib/conference_call_service/participant_details.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/remove_conference_response_rb.html">
+                lib/conference_call_service/remove_conference_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/remove_conference_template_participant_response_rb.html">
+                lib/conference_call_service/remove_conference_template_participant_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/remove_conference_template_response_rb.html">
+                lib/conference_call_service/remove_conference_template_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/remove_participant_response_rb.html">
+                lib/conference_call_service/remove_participant_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/update_conference_response_rb.html">
+                lib/conference_call_service/update_conference_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/update_conference_template_participant_response_rb.html">
+                lib/conference_call_service/update_conference_template_participant_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/update_conference_template_response_rb.html">
+                lib/conference_call_service/update_conference_template_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/conference_call_service/update_participant_response_rb.html">
+                lib/conference_call_service/update_participant_response.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="ConferenceCallService/AddConferenceTemplateParticipantResponse.html" class="link">ConferenceCallService::AddConferenceTemplateParticipantResponse</a><br />
+Class <a href="ConferenceCallService/CommitConferenceResponse.html" class="link">ConferenceCallService::CommitConferenceResponse</a><br />
+Class <a href="ConferenceCallService/ConferenceCallService.html" class="link">ConferenceCallService::ConferenceCallService</a><br />
+Class <a href="ConferenceCallService/ConferenceConstants.html" class="link">ConferenceCallService::ConferenceConstants</a><br />
+Class <a href="ConferenceCallService/ConferenceDetails.html" class="link">ConferenceCallService::ConferenceDetails</a><br />
+Class <a href="ConferenceCallService/ConferenceSchedule.html" class="link">ConferenceCallService::ConferenceSchedule</a><br />
+Class <a href="ConferenceCallService/CreateConferenceResponse.html" class="link">ConferenceCallService::CreateConferenceResponse</a><br />
+Class <a href="ConferenceCallService/CreateConferenceTemplateResponse.html" class="link">ConferenceCallService::CreateConferenceTemplateResponse</a><br />
+Class <a href="ConferenceCallService/GetConferenceListResponse.html" class="link">ConferenceCallService::GetConferenceListResponse</a><br />
+Class <a href="ConferenceCallService/GetConferenceStatusResponse.html" class="link">ConferenceCallService::GetConferenceStatusResponse</a><br />
+Class <a href="ConferenceCallService/GetConferenceTemplateListResponse.html" class="link">ConferenceCallService::GetConferenceTemplateListResponse</a><br />
+Class <a href="ConferenceCallService/GetConferenceTemplateParticipantResponse.html" class="link">ConferenceCallService::GetConferenceTemplateParticipantResponse</a><br />
+Class <a href="ConferenceCallService/GetConferenceTemplateResponse.html" class="link">ConferenceCallService::GetConferenceTemplateResponse</a><br />
+Class <a href="ConferenceCallService/GetParticipantStatusResponse.html" class="link">ConferenceCallService::GetParticipantStatusResponse</a><br />
+Class <a href="ConferenceCallService/GetRunningConferenceResponse.html" class="link">ConferenceCallService::GetRunningConferenceResponse</a><br />
+Class <a href="ConferenceCallService/NewParticipantResponse.html" class="link">ConferenceCallService::NewParticipantResponse</a><br />
+Class <a href="ConferenceCallService/Participant.html" class="link">ConferenceCallService::Participant</a><br />
+Class <a href="ConferenceCallService/ParticipantDetails.html" class="link">ConferenceCallService::ParticipantDetails</a><br />
+Class <a href="ConferenceCallService/RemoveConferenceResponse.html" class="link">ConferenceCallService::RemoveConferenceResponse</a><br />
+Class <a href="ConferenceCallService/RemoveConferenceTemplateParticipantResponse.html" class="link">ConferenceCallService::RemoveConferenceTemplateParticipantResponse</a><br />
+Class <a href="ConferenceCallService/RemoveConferenceTemplateResponse.html" class="link">ConferenceCallService::RemoveConferenceTemplateResponse</a><br />
+Class <a href="ConferenceCallService/RemoveParticipantResponse.html" class="link">ConferenceCallService::RemoveParticipantResponse</a><br />
+Class <a href="ConferenceCallService/UpdateConferenceResponse.html" class="link">ConferenceCallService::UpdateConferenceResponse</a><br />
+Class <a href="ConferenceCallService/UpdateConferenceTemplateParticipantResponse.html" class="link">ConferenceCallService::UpdateConferenceTemplateParticipantResponse</a><br />
+Class <a href="ConferenceCallService/UpdateConferenceTemplateResponse.html" class="link">ConferenceCallService::UpdateConferenceTemplateResponse</a><br />
+Class <a href="ConferenceCallService/UpdateParticipantResponse.html" class="link">ConferenceCallService::UpdateParticipantResponse</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

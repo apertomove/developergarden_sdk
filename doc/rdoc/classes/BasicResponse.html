@@ -92,10 +92,10 @@ Base class for service responses.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000012">inizialize</a>&nbsp;&nbsp;
-      <a href="#M000013">new</a>&nbsp;&nbsp;
-      <a href="#M000015">raise_on_error</a>&nbsp;&nbsp;
-      <a href="#M000014">to_s</a>&nbsp;&nbsp;
+      <a href="#M000005">inizialize</a>&nbsp;&nbsp;
+      <a href="#M000006">new</a>&nbsp;&nbsp;
+      <a href="#M000008">raise_on_error</a>&nbsp;&nbsp;
+      <a href="#M000007">to_s</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -135,11 +135,12 @@ Base class for service responses.
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000013" class="method-detail">
-        <a name="M000013"></a>
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
 
         <div class="method-heading">
-          <a href="#M000013" class="method-signature">
+          <a href="BasicResponse.src/M000006.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicResponse.src/M000006.html');return false;">
           <span class="method-name">new</span><span class="method-args">(response_xml, raise_exception_on_error = true)</span>
           </a>
         </div>
@@ -157,31 +158,17 @@ Constructor.
 
 </td></tr>
 </table>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000013-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000013-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/basic_response.rb, line 15</span>
-15:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">response_xml</span>, <span class="ruby-identifier">raise_exception_on_error</span> = <span class="ruby-keyword kw">true</span>)
-16:     <span class="ruby-identifier">doc</span> = <span class="ruby-identifier">response_xml</span>.<span class="ruby-identifier">document</span>
-17: 
-18:     <span class="ruby-ivar">@error_code</span>      = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">xpath</span>(<span class="ruby-value str">&quot;//errorCode&quot;</span>).<span class="ruby-identifier">text</span>
-19:     <span class="ruby-ivar">@error_message</span>   = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">xpath</span>(<span class="ruby-value str">&quot;//errorMessage&quot;</span>).<span class="ruby-identifier">text</span>
-20: 
-21:     <span class="ruby-identifier">raise_on_error</span>(<span class="ruby-identifier">response_xml</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">raise_exception_on_error</span>
-22:   <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
         </div>
       </div>
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000012" class="method-detail">
-        <a name="M000012"></a>
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
 
         <div class="method-heading">
-          <a href="#M000012" class="method-signature">
+          <a href="BasicResponse.src/M000005.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicResponse.src/M000005.html');return false;">
           <span class="method-name">inizialize</span><span class="method-args">()</span>
           </a>
         </div>
@@ -190,23 +177,15 @@ Constructor.
           <p>
 Constructor
 </p>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000012-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000012-source">
-<pre>
-   <span class="ruby-comment cmt"># File lib/basic_response.rb, line 8</span>
-8:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inizialize</span>
-9:   <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
         </div>
       </div>
 
-      <div id="method-M000015" class="method-detail">
-        <a name="M000015"></a>
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
 
         <div class="method-heading">
-          <a href="#M000015" class="method-signature">
+          <a href="BasicResponse.src/M000008.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicResponse.src/M000008.html');return false;">
           <span class="method-name">raise_on_error</span><span class="method-args">(response_xml)</span>
           </a>
         </div>
@@ -220,32 +199,15 @@ sufficient for services using the BaseResponse directly but subclasses of
 BaseResponse need to call this method at the end of their constructure
 <tt>initialize</tt>.
 </p>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000015-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000015-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/basic_response.rb, line 34</span>
-34:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">raise_on_error</span>(<span class="ruby-identifier">response_xml</span>)
-35:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@error_code</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@error_code</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span>  <span class="ruby-ivar">@error_code</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;0000&quot;</span> <span class="ruby-keyword kw">then</span>
-36: 
-37:       <span class="ruby-comment cmt"># It is important to create the exception with self.class.new and not only BasicResponse.new</span>
-38:       <span class="ruby-comment cmt"># This is because this method can be also invoked from a subclass. If a VoiceCallResponse object for example</span>
-39:       <span class="ruby-comment cmt"># raises an exception you will receive &quot;VoiceCallResponse&quot; from self.class. This is very important because</span>
-40:       <span class="ruby-comment cmt"># only the VoiceCallResponse knows that in this case the response code is called &lt;tt&gt;status&lt;/tt&gt;.</span>
-41:       <span class="ruby-comment cmt"># This is because there is an inconsistency within the different service responses. </span>
-42:       <span class="ruby-identifier">raise</span>(<span class="ruby-constant">ServiceException</span>.<span class="ruby-identifier">new</span>( <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>, <span class="ruby-keyword kw">false</span>) ), <span class="ruby-value str">&quot;The developer garden service you invoked responded with an error: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@error_message</span>.<span class="ruby-identifier">to_s</span>)
-43:     <span class="ruby-keyword kw">end</span>
-44:   <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
         </div>
       </div>
 
-      <div id="method-M000014" class="method-detail">
-        <a name="M000014"></a>
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
 
         <div class="method-heading">
-          <a href="#M000014" class="method-signature">
+          <a href="BasicResponse.src/M000007.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicResponse.src/M000007.html');return false;">
           <span class="method-name">to_s</span><span class="method-args">()</span>
           </a>
         </div>
@@ -254,16 +216,6 @@ BaseResponse need to call this method at the end of their constructure
           <p>
 Returns <tt>self.inspect</tt>. Good for debugging purposes.
 </p>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000014-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000014-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/basic_response.rb, line 25</span>
-25:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
-26:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">inspect</span>
-27:   <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
         </div>
       </div>
 

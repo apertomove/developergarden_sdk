@@ -13,7 +13,7 @@ require 'fileutils'
 
 spec = Gem::Specification.new do |s|
   s.name = 'developergarden_sdk'
-  s.version = '0.0.8.1'
+  s.version = '0.9.0'
   s.homepage = 'http://www.developergarden.com'
   s.has_rdoc = true
   s.extra_rdoc_files = ['README', 'LICENSE']
@@ -25,8 +25,8 @@ spec = Gem::Specification.new do |s|
 
   # GEM dependencies
   s.add_dependency 'httpclient', '= 2.1.5.2'
-  s.add_dependency 'nokogiri', '>= 1.3.1'
-  s.add_dependency 'troelskn-handsoap', '= 0.2.8'
+  s.add_dependency 'nokogiri', '>= 1.4.0'
+  s.add_dependency 'handsoap', '= 1.1.4'
   s.add_dependency 'htmlentities', '>= 4.0.0'
 
   s.files = %w(LICENSE README Rakefile) + Dir.glob("{bin,lib,spec}/**/*")

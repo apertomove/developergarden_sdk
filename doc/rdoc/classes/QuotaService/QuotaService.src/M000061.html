@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>get_quota_information (QuotaService::QuotaService)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/quota_service/quota_service.rb, line 28</span>
+28:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_quota_information</span>(<span class="ruby-identifier">module_id</span> = <span class="ruby-value str">&quot;VoiceButlerSandbox&quot;</span>)
+29: 
+30:       <span class="ruby-identifier">response</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;getQuotaInformation&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">message</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+31:         <span class="ruby-identifier">message</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'moduleId'</span>, <span class="ruby-identifier">module_id</span>)
+32:       <span class="ruby-keyword kw">end</span>
+33: 
+34:       <span class="ruby-identifier">quota_info</span> = <span class="ruby-constant">QuotaInformation</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response</span>)
+35: 
+36:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">quota_info</span>
+37:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

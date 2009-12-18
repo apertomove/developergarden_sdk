@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>get_security_token (TokenService::TokenService)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/token_service/token_service.rb, line 66</span>
+66:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_security_token</span>
+67: 
+68:       <span class="ruby-comment cmt"># Reauthenticates if the security token has expired.</span>
+69:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@security_token</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">then</span>
+70:         <span class="ruby-identifier">authenticate</span>
+71:       <span class="ruby-keyword kw">end</span>
+72: 
+73:       <span class="ruby-comment cmt"># Look at the validity dates of the token and locally check whether the token is still valid.</span>
+74:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@@PERFORM_LOCAL_TOKEN_CHECKS</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">SecurityTokenValidator</span>.<span class="ruby-identifier">token_invalid?</span>(<span class="ruby-ivar">@security_token</span>) <span class="ruby-keyword kw">then</span>
+75:         <span class="ruby-identifier">authenticate</span>
+76:       <span class="ruby-keyword kw">end</span>
+77: 
+78:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@security_token</span>
+79:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

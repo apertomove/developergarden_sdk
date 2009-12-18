@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>build_service_header (BasicService)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/basic_service.rb, line 46</span>
+46:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build_service_header</span>(<span class="ruby-identifier">doc</span>, <span class="ruby-identifier">security_token</span>)
+47:     <span class="ruby-identifier">header</span> = <span class="ruby-identifier">build_security_header_common</span>(<span class="ruby-identifier">doc</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">security</span><span class="ruby-operator">|</span>
+48:       <span class="ruby-identifier">security</span>.<span class="ruby-identifier">set_value</span>( <span class="ruby-identifier">security_token</span>, <span class="ruby-identifier">:raw</span>)
+49:     <span class="ruby-keyword kw">end</span>
+50:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">header</span>
+51:   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -93,10 +93,13 @@ implementations.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000003">build_security_header_common</a>&nbsp;&nbsp;
-      <a href="#M000002">build_service_header</a>&nbsp;&nbsp;
-      <a href="#M000004">get_token_data_from_response</a>&nbsp;&nbsp;
-      <a href="#M000001">new</a>&nbsp;&nbsp;
+      <a href="#M000013">build_security_header_common</a>&nbsp;&nbsp;
+      <a href="#M000012">build_service_header</a>&nbsp;&nbsp;
+      <a href="#M000011">new</a>&nbsp;&nbsp;
+      <a href="#M000009">on_create_document</a>&nbsp;&nbsp;
+      <a href="#M000010">on_response_document</a>&nbsp;&nbsp;
+      <a href="#M000014">parse_token_data</a>&nbsp;&nbsp;
+      <a href="#M000015">xpath_query_for_schema</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -118,11 +121,12 @@ implementations.
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000001" class="method-detail">
-        <a name="M000001"></a>
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
 
         <div class="method-heading">
-          <a href="#M000001" class="method-signature">
+          <a href="BasicService.src/M000011.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicService.src/M000011.html');return false;">
           <span class="method-name">new</span><span class="method-args">(username, password, environment = ServiceEnvironment.SANDBOX)</span>
           </a>
         </div>
@@ -144,29 +148,92 @@ href="ServiceEnvironment.html">ServiceEnvironment</a>
 
 </td></tr>
 </table>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000001-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000001-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/basic_service.rb, line 24</span>
-24:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">username</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">SANDBOX</span>)
-25:     <span class="ruby-ivar">@username</span> = <span class="ruby-identifier">username</span>
-26:     <span class="ruby-ivar">@password</span> = <span class="ruby-identifier">password</span>
-27:     <span class="ruby-ivar">@environment</span> = <span class="ruby-identifier">environment</span>
-28:   <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Protected Class methods</h3>
+
+      <div id="method-M000015" class="method-detail">
+        <a name="M000015"></a>
+
+        <div class="method-heading">
+          <a href="BasicService.src/M000015.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicService.src/M000015.html');return false;">
+          <span class="method-name">xpath_query_for_schema</span><span class="method-args">(schema, doc, query_string, global_search = true)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Performs a xpath query in the given namespace for the given document and
+query string.
+</p>
+<h3>Parameters</h3>
+<table>
+<tr><td valign="top"><tt>schema</tt>:</td><td>Schema to be searched in such as <tt>&#8216;<a
+href="http://iplocation.developer.telekom.com/schema">iplocation.developer.telekom.com/schema</a>/&#8217;</tt>
+
+</td></tr>
+<tr><td valign="top"><tt>doc</tt>:</td><td>XmlQueryFront document.
+
+</td></tr>
+<tr><td valign="top"><tt>query_string</tt>:</td><td>Element to look for
+
+</td></tr>
+<tr><td valign="top"><tt>global_search</tt>:</td><td>Searches within all levels using &quot;//&quot; if <tt>global_search =
+true</tt>.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
+
+        <div class="method-heading">
+          <a href="BasicService.src/M000009.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicService.src/M000009.html');return false;">
+          <span class="method-name">on_create_document</span><span class="method-args">(doc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create some namespaces
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="BasicService.src/M000010.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicService.src/M000010.html');return false;">
+          <span class="method-name">on_response_document</span><span class="method-args">(doc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create the namespace for a later use in <a
+href="BasicService.html#M000014">parse_token_data</a>
+</p>
         </div>
       </div>
 
       <h3 class="section-bar">Protected Instance methods</h3>
 
-      <div id="method-M000003" class="method-detail">
-        <a name="M000003"></a>
+      <div id="method-M000013" class="method-detail">
+        <a name="M000013"></a>
 
         <div class="method-heading">
-          <a href="#M000003" class="method-signature">
-          <span class="method-name">build_security_header_common</span><span class="method-args">(doc)</span>
+          <a href="BasicService.src/M000013.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicService.src/M000013.html');return false;">
+          <span class="method-name">build_security_header_common</span><span class="method-args">(doc) {|security| ...}</span>
           </a>
         </div>
       
@@ -186,37 +253,15 @@ process the returning value.
 
 </td></tr>
 </table>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000003-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/basic_service.rb, line 55</span>
-55:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build_security_header_common</span>(<span class="ruby-identifier">doc</span>)
-56:     
-57:     <span class="ruby-comment cmt"># Get the header element</span>
-58:     <span class="ruby-identifier">header</span> = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">'Header'</span>)
-59: 
-60:     <span class="ruby-comment cmt"># Add plain security element</span>
-61:     <span class="ruby-identifier">header</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'Security'</span>)
-62: 
-63:     <span class="ruby-comment cmt"># Find security element for further enhancement</span>
-64:     <span class="ruby-identifier">security</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">'Security'</span>)
-65: 
-66:     <span class="ruby-comment cmt"># Set namespace</span>
-67:     <span class="ruby-identifier">security</span>.<span class="ruby-identifier">set_attr</span>(<span class="ruby-value str">&quot;xmlns&quot;</span>, <span class="ruby-value str">&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd&quot;</span>)
-68:     <span class="ruby-identifier">security</span>.<span class="ruby-identifier">set_attr</span>(<span class="ruby-value str">&quot;env:mustUnderstand&quot;</span>, <span class="ruby-value str">&quot;1&quot;</span>)
-69:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">header</span>
-70:   <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
         </div>
       </div>
 
-      <div id="method-M000002" class="method-detail">
-        <a name="M000002"></a>
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
 
         <div class="method-heading">
-          <a href="#M000002" class="method-signature">
+          <a href="BasicService.src/M000012.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicService.src/M000012.html');return false;">
           <span class="method-name">build_service_header</span><span class="method-args">(doc, security_token)</span>
           </a>
         </div>
@@ -241,28 +286,16 @@ href="TokenService.html">TokenService</a>.
 
 </td></tr>
 </table>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000002-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000002-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/basic_service.rb, line 41</span>
-41:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build_service_header</span>(<span class="ruby-identifier">doc</span>, <span class="ruby-identifier">security_token</span>)
-42:     <span class="ruby-identifier">header</span> = <span class="ruby-identifier">build_security_header_common</span>(<span class="ruby-identifier">doc</span>)
-43:     <span class="ruby-identifier">security</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">&quot;Security&quot;</span>)
-44:     <span class="ruby-identifier">security</span>.<span class="ruby-identifier">set_value</span>( <span class="ruby-identifier">security_token</span>, <span class="ruby-identifier">:raw</span>)
-45:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">header</span>
-46:   <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
         </div>
       </div>
 
-      <div id="method-M000004" class="method-detail">
-        <a name="M000004"></a>
+      <div id="method-M000014" class="method-detail">
+        <a name="M000014"></a>
 
         <div class="method-heading">
-          <a href="#M000004" class="method-signature">
-          <span class="method-name">get_token_data_from_response</span><span class="method-args">(response)</span>
+          <a href="BasicService.src/M000014.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicService.src/M000014.html');return false;">
+          <span class="method-name">parse_token_data</span><span class="method-args">(response)</span>
           </a>
         </div>
       
@@ -280,24 +313,8 @@ Extracts any token from the response and returns it.
 <p>
 Returns the security token as plain text to be inserted into a security
 header build with <tt><a
-href="BasicService.html#M000003">build_security_header_common</a></tt>.
+href="BasicService.html#M000013">build_security_header_common</a></tt>.
 </p>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000004-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/basic_service.rb, line 79</span>
-79:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_token_data_from_response</span>(<span class="ruby-identifier">response</span>)
-80: 
-81:     <span class="ruby-comment cmt"># nokogiri document. Unfortunately it is unable to parse the returning xml completely.</span>
-82:     <span class="ruby-comment cmt"># Especially the body is not parsed completely.</span>
-83:     <span class="ruby-identifier">doc</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">document</span>
-84:     <span class="ruby-identifier">intermediate_token</span> = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">xpath</span>(<span class="ruby-value str">&quot;//schema:tokenData&quot;</span>, <span class="ruby-value str">&quot;schema&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'http://sts.idm.telekom.com/schema/'</span>).<span class="ruby-identifier">inner_text</span>
-85: 
-86:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">intermediate_token</span>
-87:   <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
         </div>
       </div>
 

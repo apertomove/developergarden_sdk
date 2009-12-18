@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (QuotaService::QuotaInformation)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/quota_service/quota_information.rb, line 13</span>
+13:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">response_xml</span>, <span class="ruby-identifier">raise_exception_on_error</span> = <span class="ruby-keyword kw">true</span>)
+14:       <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">response_xml</span>)
+15: 
+16:       <span class="ruby-identifier">doc</span> = <span class="ruby-identifier">response_xml</span>.<span class="ruby-identifier">document</span>
+17:       <span class="ruby-ivar">@max_quota</span>       = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">xpath</span>(<span class="ruby-value str">&quot;//maxQuota&quot;</span>).<span class="ruby-identifier">to_s</span>
+18:       <span class="ruby-ivar">@max_user_quota</span>  = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">xpath</span>(<span class="ruby-value str">&quot;//maxUserQuota&quot;</span>).<span class="ruby-identifier">to_s</span>
+19:       <span class="ruby-ivar">@quota_level</span>     = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">xpath</span>(<span class="ruby-value str">&quot;//quotaLevel&quot;</span>).<span class="ruby-identifier">to_s</span>
+20: 
+21:       <span class="ruby-identifier">raise_on_error</span>(<span class="ruby-identifier">response_xml</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">raise_exception_on_error</span>
+22:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

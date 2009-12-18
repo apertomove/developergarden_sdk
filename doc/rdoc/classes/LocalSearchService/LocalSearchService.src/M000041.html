@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>local_search (LocalSearchService::LocalSearchService)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/local_search_service/local_search_service.rb, line 52</span>
+52:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">local_search</span>(<span class="ruby-identifier">search_parameter</span> = { <span class="ruby-identifier">:what</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;test&quot;</span> }, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>)
+53:       <span class="ruby-identifier">response</span> = <span class="ruby-keyword kw">nil</span>
+54: 
+55:       <span class="ruby-identifier">response</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;local:LocalSearchRequest&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+56:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+57: 
+58:         <span class="ruby-identifier">search_parameter</span>.<span class="ruby-identifier">each_pair</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">param</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+59:           <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'searchParameters'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">params</span><span class="ruby-operator">|</span>
+60:             <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">then</span>
+61:               <span class="ruby-identifier">params</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">&quot;parameter&quot;</span>, <span class="ruby-identifier">param</span>.<span class="ruby-identifier">to_s</span>)
+62:               <span class="ruby-identifier">params</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">&quot;value&quot;</span>, <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span>)
+63:             <span class="ruby-keyword kw">end</span>
+64:           <span class="ruby-keyword kw">end</span>
+65:         <span class="ruby-keyword kw">end</span>
+66:       <span class="ruby-keyword kw">end</span>
+67: 
+68:       <span class="ruby-identifier">puts</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">to_xml</span>
+69: 
+70:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">LocalSearchResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response</span>)
+71: 
+72:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">response</span>
+73:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

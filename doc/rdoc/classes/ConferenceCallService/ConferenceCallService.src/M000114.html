@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>update_conference (ConferenceCallService::ConferenceCallService)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 248</span>
+248:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_conference</span>(<span class="ruby-identifier">conference_id</span>, <span class="ruby-identifier">conference_details</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">schedule</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">initiator_id</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+249:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:updateConference&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+250:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'updateConferenceRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">remove_request</span><span class="ruby-operator">|</span>
+251:           <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+252:           <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+253:           <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'conferenceId'</span>, <span class="ruby-identifier">conference_id</span>.<span class="ruby-identifier">to_s</span>)
+254:           <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'initiatorId'</span>, <span class="ruby-identifier">initiator_id</span>.<span class="ruby-identifier">to_s</span>)
+255: 
+256:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">conference_details</span> <span class="ruby-keyword kw">then</span>
+257:             <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'detail'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">detail_request</span><span class="ruby-operator">|</span>
+258:               <span class="ruby-identifier">conference_details</span>.<span class="ruby-identifier">add_to_handsoap_xml</span>(<span class="ruby-identifier">detail_request</span>)
+259:             <span class="ruby-keyword kw">end</span>
+260:           <span class="ruby-keyword kw">end</span>
+261: 
+262:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">schedule</span> <span class="ruby-keyword kw">then</span>
+263:             <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'schedule'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">schedule_request</span><span class="ruby-operator">|</span>
+264:               <span class="ruby-identifier">schedule</span>.<span class="ruby-identifier">add_to_handsoap_xml</span>(<span class="ruby-identifier">schedule_request</span>)
+265:             <span class="ruby-keyword kw">end</span>
+266:           <span class="ruby-keyword kw">end</span>
+267:         <span class="ruby-keyword kw">end</span>
+268:       <span class="ruby-keyword kw">end</span>
+269: 
+270:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">UpdateConferenceResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+271:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>build_get_tokens_header (TokenService::TokenService)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/token_service/token_service.rb, line 150</span>
+150:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build_get_tokens_header</span>(<span class="ruby-identifier">doc</span>, <span class="ruby-identifier">intermediate_token</span>)
+151: 
+152:       <span class="ruby-comment cmt"># Get the header element</span>
+153:       <span class="ruby-identifier">header</span> = <span class="ruby-identifier">build_security_header_common</span>(<span class="ruby-identifier">doc</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">security</span><span class="ruby-operator">|</span>
+154:         <span class="ruby-identifier">security</span>.<span class="ruby-identifier">set_value</span>( <span class="ruby-identifier">intermediate_token</span>, <span class="ruby-identifier">:raw</span> )
+155:       <span class="ruby-keyword kw">end</span>
+156: 
+157:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">header</span>
+158:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

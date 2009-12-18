@@ -6,11 +6,29 @@ In order to use the current development version of the developergarden_sdk here 
 For production use the official release of handsoap should be installed.
 
 More information about handsoap can be found at:
- http://github.com/troelskn/handsoap/tree/master
+ http://github.com/unwire/handsoap/
 
 ==== Install official handsoap release
- gem sources -a http://gems.github.com
- sudo gem install troelskn-handsoap 
+ gem sources -a http://gemcutter.org
+ sudo gem install handsoap curb nokogiri
+
+Installation of nokogiri requires libxml2.
+
+Some examples to install lixml2:
+
+On Debian/Ubuntu
+ sudo aptitude install libxml2 libxml2-dev libxslt libxslt-dev build-essential
+
+On MacOS using MacPorts
+ port install libxml2
+
+On Redhat like systems
+ yum install libxml2-devel
+
+Installation of curb requires curl.
+
+On DebianUbuntu
+ sudo aptitude install curl curl-ssl libcurl4-dev
 
 ==== Install handsoap developer version
 In most cases you don't need the developer version of handsoap. The official release will do the trick.
@@ -18,7 +36,7 @@ However, if you want to use the bleeding edge version of handsoap proceed as fol
 Note that you do not need to perform these steps if you have already installed the official release!
 
 Checkout handsoap from github
- git clone git://github.com/troelskn/handsoap.git
+ git://github.com/unwire/handsoap.git
 
 Install jeweler
  sudo gem install jeweler
@@ -34,7 +52,7 @@ Install the resulting gem file
 Attention: if you you use the development version you might need to change the gem statement in
    basic_service.rb from
 
-   gem 'troelskn-handsoap'
+   gem 'unwire-handsoap'
 
    to
 
@@ -81,7 +99,7 @@ Executing tests will be done in the "sandbox" or "mock" environment which are fr
 Be ware that the services itself have quotas on these test environments so your tests may fail after a while.
 The quotas are on a daily basis so they should pass again the next day.
 
-Failures when reaching the SANDBOX QUOTA might look like this:
+Failures when reaching the SANDBOX QUOTA might look like this:                                                                            d
  0030 quotas have exceeded
 
 Phone numbers in test files are fictive and for testing purposes only.
@@ -106,6 +124,17 @@ send 5 test sms per day. After that you will receive a corresponding quota error
 * In the "sandbox" environment there is a quota limit of 5 calls per day (each up to 10 sec) for the VoiceCallService
 * In the "production" environment a call may not last more than 60 minutes. After 60 min the call will be cancelled.
 * There is also a quota for the "mock" environment.
+
+==== IpLocationService
+* Test for this service will be run against the MOCK environment.
+
+==== LocalSearchService
+* Test for this service will be run against the MOCK environment.
+
+==== ConferenceCallService
+* Most tests will run against the MOCK environment.
+* Those tests running against the SANDBOX don't use up your daily quota so they should run without any error even
+    if you run them multiple times.
 
 For more information about service environments have a look at the documentation at http://www.developergarden.com
 

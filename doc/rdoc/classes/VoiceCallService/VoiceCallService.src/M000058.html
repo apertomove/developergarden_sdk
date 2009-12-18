@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>call_status (VoiceCallService::VoiceCallService)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/voice_call_service/voice_call_service.rb, line 60</span>
+60:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">call_status</span>(<span class="ruby-identifier">session_id</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">keep_alive</span> = <span class="ruby-value">1</span>)
+61:       <span class="ruby-identifier">response</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;callStatus&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">message</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+62:         <span class="ruby-identifier">message</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">&quot;request&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span><span class="ruby-operator">|</span>
+63:           <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+64:           <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'keepAlive'</span>, <span class="ruby-identifier">keep_alive</span>)
+65:           <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'sessionId'</span>, <span class="ruby-identifier">session_id</span>)
+66:         <span class="ruby-keyword kw">end</span>
+67:       <span class="ruby-keyword kw">end</span>
+68: 
+69:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">CallStatusResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response</span>)
+70:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

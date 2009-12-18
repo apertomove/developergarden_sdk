@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>on_create_document (LocalSearchService::LocalSearchService)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/local_search_service/local_search_service.rb, line 29</span>
+29:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">on_create_document</span>(<span class="ruby-identifier">doc</span>)
+30:       <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">doc</span>)
+31:       <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">alias</span> <span class="ruby-value str">'local'</span>, <span class="ruby-ivar">@@LOCAL_SEARCH_SCHEMA</span>
+32:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

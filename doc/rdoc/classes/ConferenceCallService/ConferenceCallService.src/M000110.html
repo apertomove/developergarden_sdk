@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new_participant (ConferenceCallService::ConferenceCallService)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 166</span>
+166:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new_participant</span>(<span class="ruby-identifier">conference_id</span>, <span class="ruby-identifier">participant</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+167:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:newParticipant&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+168:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'newParticipantRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">new_participant_request</span><span class="ruby-operator">|</span>
+169:           <span class="ruby-identifier">new_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+170:           <span class="ruby-identifier">new_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+171:           <span class="ruby-identifier">new_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'conferenceId'</span>, <span class="ruby-identifier">conference_id</span>.<span class="ruby-identifier">to_s</span>)
+172:           <span class="ruby-identifier">new_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'participant'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">participant_request</span><span class="ruby-operator">|</span>
+173:             <span class="ruby-identifier">participant</span>.<span class="ruby-identifier">add_to_handsoap_xml</span>(<span class="ruby-identifier">participant_request</span>)
+174:           <span class="ruby-keyword kw">end</span>
+175:         <span class="ruby-keyword kw">end</span>
+176:       <span class="ruby-keyword kw">end</span>
+177: 
+178:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">NewParticipantResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+179:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

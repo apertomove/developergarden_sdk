@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>get_tokens (TokenService::TokenService)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/token_service/token_service.rb, line 98</span>
+ 98:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_tokens</span>(<span class="ruby-identifier">intermediate_token</span>)
+ 99:       <span class="ruby-identifier">response</span> = <span class="ruby-identifier">invoke</span>(<span class="ruby-value str">&quot;getTokens&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">message</span><span class="ruby-operator">|</span>
+100:         <span class="ruby-identifier">doc</span> = <span class="ruby-identifier">message</span>.<span class="ruby-identifier">document</span>
+101: 
+102:         <span class="ruby-comment cmt"># Build the login header</span>
+103:         <span class="ruby-identifier">build_get_tokens_header</span>(<span class="ruby-identifier">doc</span>, <span class="ruby-identifier">intermediate_token</span>)
+104: 
+105:         <span class="ruby-identifier">message</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'ns1:serviceId'</span>, <span class="ruby-ivar">@@SERVICE_ID</span>)
+106:       <span class="ruby-keyword kw">end</span>
+107: 
+108:       <span class="ruby-identifier">security_token</span> = <span class="ruby-identifier">parse_token_data</span>(<span class="ruby-identifier">response</span>)
+109: 
+110:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">security_token</span>
+111:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

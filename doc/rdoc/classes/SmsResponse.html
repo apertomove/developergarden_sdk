@@ -95,7 +95,7 @@ href="SmsService.html">SmsService</a></tt>.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000005">new</a>&nbsp;&nbsp;
+      <a href="#M000002">new</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -117,11 +117,12 @@ href="SmsService.html">SmsService</a></tt>.
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000005" class="method-detail">
-        <a name="M000005"></a>
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
 
         <div class="method-heading">
-          <a href="#M000005" class="method-signature">
+          <a href="SmsResponse.src/M000002.html" target="Code" class="method-signature"
+            onclick="popupCode('SmsResponse.src/M000002.html');return false;">
           <span class="method-name">new</span><span class="method-args">(response_xml, raise_exception_on_error = true)</span>
           </a>
         </div>
@@ -139,21 +140,6 @@ Constructor.
 
 </td></tr>
 </table>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000005-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/sms_service/sms_response.rb, line 10</span>
-10:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">response_xml</span>, <span class="ruby-identifier">raise_exception_on_error</span> = <span class="ruby-keyword kw">true</span>)
-11:     <span class="ruby-identifier">doc</span> = <span class="ruby-identifier">response_xml</span>.<span class="ruby-identifier">document</span>
-12: 
-13:     <span class="ruby-ivar">@error_code</span>      = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">xpath</span>(<span class="ruby-value str">&quot;//status&quot;</span>).<span class="ruby-identifier">text</span>
-14:     <span class="ruby-ivar">@error_message</span>   = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">xpath</span>(<span class="ruby-value str">&quot;//description&quot;</span>).<span class="ruby-identifier">text</span>
-15: 
-16:     <span class="ruby-identifier">raise_on_error</span>(<span class="ruby-identifier">response_xml</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">raise_exception_on_error</span>
-17:   <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
         </div>
       </div>
 

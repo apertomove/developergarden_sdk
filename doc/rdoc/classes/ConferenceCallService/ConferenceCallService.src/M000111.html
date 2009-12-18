@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>update_participant (ConferenceCallService::ConferenceCallService)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 189</span>
+189:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_participant</span>(<span class="ruby-identifier">conference_id</span>, <span class="ruby-identifier">participant_id</span>, <span class="ruby-identifier">participant_detail</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">action</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+190:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:updateParticipant&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+191:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'updateParticipantRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">update_participant_request</span><span class="ruby-operator">|</span>
+192:           <span class="ruby-identifier">update_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+193:           <span class="ruby-identifier">update_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+194:           <span class="ruby-identifier">update_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'conferenceId'</span>, <span class="ruby-identifier">conference_id</span>.<span class="ruby-identifier">to_s</span>)
+195:           <span class="ruby-identifier">update_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'participantId'</span>, <span class="ruby-identifier">participant_id</span>.<span class="ruby-identifier">to_s</span>)
+196:           <span class="ruby-identifier">update_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'action'</span>, <span class="ruby-identifier">action</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">action</span>
+197: 
+198:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">participant_detail</span> <span class="ruby-keyword kw">then</span>
+199:             <span class="ruby-identifier">update_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'participant'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">participant_request</span><span class="ruby-operator">|</span>
+200:               <span class="ruby-identifier">participant_detail</span>.<span class="ruby-identifier">add_to_handsoap_xml</span>(<span class="ruby-identifier">participant_request</span>)
+201:             <span class="ruby-keyword kw">end</span>
+202:           <span class="ruby-keyword kw">end</span>
+203:         <span class="ruby-keyword kw">end</span>
+204:       <span class="ruby-keyword kw">end</span>
+205: 
+206:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">UpdateParticipantResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+207:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

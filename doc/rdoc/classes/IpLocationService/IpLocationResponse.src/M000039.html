@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>to_s (IpLocationService::IpLocationResponse)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/ip_location_service/ip_location_response.rb, line 38</span>
+38:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
+39:       <span class="ruby-identifier">ret</span> = <span class="ruby-node">&quot;Status: #{@error_code}, Message: #{@error_message}\nLocations:\n&quot;</span>
+40:       <span class="ruby-ivar">@ip_address_locations</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ipl</span><span class="ruby-operator">|</span>
+41:         <span class="ruby-identifier">ret</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;\t#{ipl}\n&quot;</span>
+42:       <span class="ruby-keyword kw">end</span>
+43:       <span class="ruby-identifier">ret</span>
+44:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

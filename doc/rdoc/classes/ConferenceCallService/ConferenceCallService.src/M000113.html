@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>remove_participant (ConferenceCallService::ConferenceCallService)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 230</span>
+230:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_participant</span>(<span class="ruby-identifier">conference_id</span>, <span class="ruby-identifier">participant_id</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+231:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:removeParticipant&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+232:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'removeParticipantRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">remove_request</span><span class="ruby-operator">|</span>
+233:           <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+234:           <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+235:           <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'conferenceId'</span>, <span class="ruby-identifier">conference_id</span>.<span class="ruby-identifier">to_s</span>)
+236:           <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'participantId'</span>, <span class="ruby-identifier">participant_id</span>.<span class="ruby-identifier">to_s</span>)
+237:         <span class="ruby-keyword kw">end</span>
+238:       <span class="ruby-keyword kw">end</span>
+239: 
+240:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">RemoveParticipantResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+241:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

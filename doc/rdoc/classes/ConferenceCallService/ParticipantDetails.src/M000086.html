@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>build_from_xml (ConferenceCallService::ParticipantDetails)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/conference_call_service/participant_details.rb, line 42</span>
+42:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">build_from_xml</span>(<span class="ruby-identifier">xml_doc</span>)
+43: 
+44:       <span class="ruby-comment cmt"># Depending on the answer there might be a nil object, a NodeSelection or a NokogiriDriver.</span>
+45:       <span class="ruby-comment cmt"># For the parsing a NodeSelection and a NokogiriDriver behave similar but in order to prevent further nil errors</span>
+46:       <span class="ruby-comment cmt"># we have to see whether the elment is really present. For a nodeselection this is done by using .size &gt; 0</span>
+47:       <span class="ruby-comment cmt"># which won't work for the nokogiri driver. Maybe handsoap will clean this up in future releases.</span>
+48:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">xml_doc</span> <span class="ruby-operator">&amp;&amp;</span> ( (<span class="ruby-identifier">xml_doc</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Handsoap</span><span class="ruby-operator">::</span><span class="ruby-constant">XmlQueryFront</span><span class="ruby-operator">::</span><span class="ruby-constant">NodeSelection</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">xml_doc</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">xml_doc</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Handsoap</span><span class="ruby-operator">::</span><span class="ruby-constant">XmlQueryFront</span><span class="ruby-operator">::</span><span class="ruby-constant">NokogiriDriver</span> ) ) <span class="ruby-keyword kw">then</span>
+49:         
+50:         <span class="ruby-identifier">firstname</span>  = <span class="ruby-constant">ConferenceCallService</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">xml_doc</span>, <span class="ruby-value str">&quot;firstName&quot;</span>).<span class="ruby-identifier">to_s</span>
+51:         <span class="ruby-identifier">lastname</span>   = <span class="ruby-constant">ConferenceCallService</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">xml_doc</span>, <span class="ruby-value str">&quot;lastName&quot;</span>).<span class="ruby-identifier">to_s</span>
+52:         <span class="ruby-identifier">number</span>     = <span class="ruby-constant">ConferenceCallService</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">xml_doc</span>, <span class="ruby-value str">&quot;number&quot;</span>).<span class="ruby-identifier">to_s</span>
+53:         <span class="ruby-identifier">email</span>      = <span class="ruby-constant">ConferenceCallService</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">xml_doc</span>, <span class="ruby-value str">&quot;email&quot;</span>).<span class="ruby-identifier">to_s</span>
+54:         <span class="ruby-identifier">flags</span>      = <span class="ruby-constant">ConferenceCallService</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">xml_doc</span>, <span class="ruby-value str">&quot;flags&quot;</span>).<span class="ruby-identifier">to_s</span>
+55:         <span class="ruby-identifier">new</span>(<span class="ruby-identifier">firstname</span>, <span class="ruby-identifier">lastname</span>, <span class="ruby-identifier">number</span>, <span class="ruby-identifier">email</span> , <span class="ruby-identifier">flags</span>)
+56:       <span class="ruby-keyword kw">end</span>
+57:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

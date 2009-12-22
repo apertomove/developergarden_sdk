@@ -56,7 +56,7 @@
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Mon Dec 14 17:07:22 +0100 2009</td>
+      <td>Tue Dec 22 15:04:52 +0100 2009</td>
     </tr>
     </table>
   </div>
@@ -120,7 +120,7 @@ Rails apps as well.
 <pre>
  require 'rubygems'
  gem 'developergarden_sdk'
- require 'token_Service/token_service'
+ require 'token_service/token_service'
  require 'ip_location_service/ip_location_service'
 
  @ip_location_service = IpLocationService::IpLocationService.new(&quot;&lt;USER&gt;@t-online.de&quot;, &quot;&lt;PASSWORD&gt;&quot;)
@@ -142,7 +142,9 @@ Rails apps as well.
 <pre>
  require 'rubygems'
  gem 'developergarden_sdk'
- require 'token_Service/token_service'
+ require 'token_service/token_service'
+ require 'token_service/token_service'
+ require 'local_search_service/local_search_service'
 
  @service = LocalSearchService::LocalSearchService.new(&quot;&lt;USER&gt;@t-online.de&quot;, &quot;&lt;PASSWORD&gt;&quot;)
 
@@ -150,13 +152,38 @@ Rails apps as well.
    :what =&gt; &quot;music&quot;,
    :near =&gt; &quot;Konstanz&quot;
  }
- response = @service.local_search(search_parameter, ServiceEnvironment.MOCK)
+ response = @service.local_search(search_parameter, ServiceEnvironment.PRODUCTION)
 
  # Show response xml
  puts response.search_result.to_xml
  results_where_locs_where = response.search_result.xpath(&quot;//RESULTS/WHERE_LOCS/WHERE&quot;).first
  lat = results_where_locs_where[&quot;LAT&quot;]
  puts lat
+</pre>
+<h3>Ruby Example to create a conference call</h3>
+<pre>
+ require 'rubygems'
+ gem 'developergarden_sdk'
+ require 'token_Service/token_service'
+ require 'conference_call_service/conference_call_service'
+
+ environment = ServiceEnvironment.PRODUCTION
+
+ service = ConferenceCallService::ConferenceCallService.new(&quot;&lt;USERNAME&gt;@t-online.de&quot;, &quot;&lt;PASSWORD&gt;&quot;)
+
+ conf_details = ConferenceCallService::ConferenceDetails.new(&quot;A very important conf&quot;, &quot;A very impressive description&quot;, 30)
+
+ response = service.create_conference(&quot;max.mustermann&quot;, conf_details, nil, environment)
+
+ conf_id = response.conference_id
+
+ participant = ConferenceCallService::ParticipantDetails.new('maxi', 'max', '&lt;NUMBER A&gt;', 'max@spin.to', 1)
+ participant2 = ConferenceCallService::ParticipantDetails.new('roger', 'beep', '&lt;NUMBER B&gt;', 'roger@spin.to', 0)
+
+ service.new_participant(conf_id, participant, environment)
+ service.new_participant(conf_id, participant2, environment)
+
+ service.commit_conference(conf_id, ServiceEnvironment.PRODUCTION)
 </pre>
 <h4>To use your gem from your Ruby on Rails app</h4>
 <p>

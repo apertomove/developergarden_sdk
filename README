@@ -82,6 +82,30 @@ You can use the gem from pure Ruby applications and of course from Ruby on Rails
  lat = results_where_locs_where["LAT"]
  puts lat
 
+=== Ruby Example to create a conference call
+ require 'rubygems'
+ gem 'developergarden_sdk'
+ require 'token_Service/token_service'
+ require 'conference_call_service/conference_call_service'
+
+ environment = ServiceEnvironment.PRODUCTION
+
+ service = ConferenceCallService::ConferenceCallService.new("<USERNAME>@t-online.de", "<PASSWORD>")
+
+ conf_details = ConferenceCallService::ConferenceDetails.new("A very important conf", "A very impressive description", 30)
+
+ response = service.create_conference("max.mustermann", conf_details, nil, environment)
+
+ conf_id = response.conference_id
+
+ participant = ConferenceCallService::ParticipantDetails.new('maxi', 'max', '<NUMBER A>', 'max@spin.to', 1)
+ participant2 = ConferenceCallService::ParticipantDetails.new('roger', 'beep', '<NUMBER B>', 'roger@spin.to', 0)
+
+ service.new_participant(conf_id, participant, environment)
+ service.new_participant(conf_id, participant2, environment)
+
+ service.commit_conference(conf_id, ServiceEnvironment.PRODUCTION)
+
 ==== To use your gem from your Ruby on Rails app
 In your environment.rb add the following line in the config block:
  config.gem 'developergarden_sdk'

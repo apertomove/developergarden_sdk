@@ -33,15 +33,4 @@ class LocalSearchServiceTest < Test::Unit::TestCase
     lat = results_where_locs_where["LAT"]
     assert_equal("5061739", lat)    
   end
-
-#  def test_local_search_production
-#    search_parameter = {
-#            :what => "key-systems gmbh"
-#    }
-#    response = @service.local_search(search_parameter, ServiceEnvironment.PRODUCTION)
-#
-#    assert_instance_of(Handsoap::XmlQueryFront::NodeSelection, response.search_result)
-#    puts response.search_result.to_xml
-#
-#  end
 end

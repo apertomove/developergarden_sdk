@@ -123,7 +123,7 @@ module ConferenceCallService
 
     # Retrieves that status of the given conference.
     # ===Parameters
-    # <tt>conference_id</tt>:: 
+    # <tt>conference_id</tt>:: Id of the conference of interest.
     # <tt>what</tt>:: Contraints of the list to be retrieved.
     # <tt>environment</tt>:: Service environment as defined in ServiceLevel.        
     def get_conference_status(conference_id, what = ConferenceConstants.CONFERENCE_LIST_ALL, environment = ServiceEnvironment.MOCK, account = nil)
@@ -225,7 +225,7 @@ module ConferenceCallService
     # Retrieves that status of the given conference.
     # ===Parameters
     # <tt>conference_id</tt>::
-    # <tt>what</tt>:: Contraints of the list to be retrieved.
+    # <tt>what</tt>:: Constraints of the list to be retrieved.
     # <tt>environment</tt>:: Service environment as defined in ServiceLevel.    
     def remove_participant(conference_id, participant_id, environment = ServiceEnvironment.MOCK, account = nil)
       response_xml = invoke_authenticated("cc:removeParticipant") do |request, doc|
@@ -289,8 +289,8 @@ module ConferenceCallService
     # Creates a conference template.
     # ===Parameters
     # <tt>owner_id</tt>:: id of the owner of the conference template
-    # <tt>detail</tt>: details of the conference template. ConferenceDetails Type
-    # <tt>participants</tt>: optional parameter of the type ParticipantDetail
+    # <tt>detail</tt>:: details of the conference template. ConferenceDetails Type
+    # <tt>participants</tt>:: optional parameter of the type ParticipantDetail
     # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
     def create_conference_template(owner_id, detail, participants = nil, environment = ServiceEnvironment.MOCK,  account = nil)
       response_xml = invoke_authenticated("cc:createConferenceTemplate") do |request, doc|
@@ -317,7 +317,7 @@ module ConferenceCallService
 
     # Returns the confernece template with the given id.    
     # ===Parameters
-    # <tt>template_id</tt>::
+    # <tt>template_id</tt>:: Id of the template of interest.
     # <tt>environment</tt>:: Service environment as defined in ServiceLevel.
     def get_conference_template(template_id, environment = ServiceEnvironment.MOCK,  account = nil)
       response_xml = invoke_authenticated("cc:getConferenceTemplate") do |request, doc|

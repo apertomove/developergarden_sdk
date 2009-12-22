@@ -65,8 +65,6 @@ module LocalSearchService
         end
       end
 
-      puts response.to_xml
-
       response = LocalSearchResponse.new(response)
 
       return response

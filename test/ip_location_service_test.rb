@@ -56,8 +56,7 @@ class IpLocationServiceTest < Test::Unit::TestCase
     region_xml_doc = IpLocationService::IpLocationService.xpath_query(ip_address_location_doc, "isInRegion", false)
 
     assert_nothing_raised do
-      region = IpLocationService::Region.build_from_xml(region_xml_doc)
-      puts region
+      region = IpLocationService::Region.build_from_xml(region_xml_doc)      
     end
   end
 

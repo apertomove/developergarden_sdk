@@ -1,0 +1,147 @@
+== developergarden_sdk
+This library provides access to open development services of the Deutsche Telekom AG.
+For more details about the services see
+
+ http://www.developergarden.com
+
+Depending on your operating system you might want to skip the "sudo" command prior to the
+commands listed here.
+
+
+=== Installation
+ sudo gem install developergarden_sdk
+
+Dependent gems will be installed automatically.
+
+=== Basic usage
+You can use the gem from pure Ruby applications and of course from Ruby on Rails apps as well.
+
+==== To use the gem from your Ruby app
+
+ require 'rubygems'
+ gem 'developergarden_sdk'
+ require 'token_Service/token_service'
+ require 'sms_service/sms_service'
+ require 'voice_call_service/voice_call_service'
+ require 'quota_service/quota_service'
+ require 'service_environment'
+
+==== Ruby Example to send a sms
+ #!/usr/bin/env ruby -d
+
+ require 'rubygems'
+ gem 'developergarden_sdk'
+ require 'token_Service/token_service'
+ require 'sms_service/sms_service'
+ require 'service_environment'
+
+ sms = SmsService::SmsService.new("<USER>@t-online.de", "<PASSWORD>")
+ sms_response = sms.send_sms("+49177 0000001", "Your message text.", "RubySDK", ServiceEnvironment.PRODUCTION, "")
+
+
+=== Ruby Example to perform an ip location request
+
+ require 'rubygems'
+ gem 'developergarden_sdk'
+ require 'token_service/token_service'
+ require 'ip_location_service/ip_location_service'
+
+ @ip_location_service = IpLocationService::IpLocationService.new("<USER>@t-online.de", "<PASSWORD>")
+
+ ip = IpLocationService::IpAddress.new("93.222.255.58")
+ response = @ip_location_service.locate_ip(ip, ServiceEnvironment.PRODUCTION)
+
+ puts response.ip_address_locations.first.address
+ puts response.ip_address_locations.first.is_in_region.country_code
+ puts response.ip_address_locations.first.is_in_region.region_name
+
+ # If you except a single ip location (if you have passed a single ip to look up)
+ # then you can use the following way to access the location
+ puts response.ip_address_location.address
+ puts response.ip_address_location.is_in_region.country_code
+ puts response.ip_address_location.is_in_region.region_name
+
+=== Ruby Example to perform a local search
+ require 'rubygems'
+ gem 'developergarden_sdk'
+ require 'token_service/token_service'
+ require 'token_service/token_service'
+ require 'local_search_service/local_search_service'
+
+ @service = LocalSearchService::LocalSearchService.new("<USER>@t-online.de", "<PASSWORD>")
+
+ search_parameter = {
+   :what => "music",
+   :near => "Konstanz"
+ }
+ response = @service.local_search(search_parameter, ServiceEnvironment.PRODUCTION)
+
+ # Show response xml
+ puts response.search_result.to_xml
+ results_where_locs_where = response.search_result.xpath("//RESULTS/WHERE_LOCS/WHERE").first
+ lat = results_where_locs_where["LAT"]
+ puts lat
+
+=== Ruby Example to create a conference call
+ require 'rubygems'
+ gem 'developergarden_sdk'
+ require 'token_Service/token_service'
+ require 'conference_call_service/conference_call_service'
+
+ environment = ServiceEnvironment.PRODUCTION
+
+ service = ConferenceCallService::ConferenceCallService.new("<USERNAME>@t-online.de", "<PASSWORD>")
+
+ conf_details = ConferenceCallService::ConferenceDetails.new("A very important conf", "A very impressive description", 30)
+
+ response = service.create_conference("max.mustermann", conf_details, nil, environment)
+
+ conf_id = response.conference_id
+
+ participant = ConferenceCallService::ParticipantDetails.new('maxi', 'max', '<NUMBER A>', 'max@spin.to', 1)
+ participant2 = ConferenceCallService::ParticipantDetails.new('roger', 'beep', '<NUMBER B>', 'roger@spin.to', 0)
+
+ service.new_participant(conf_id, participant, environment)
+ service.new_participant(conf_id, participant2, environment)
+
+ service.commit_conference(conf_id, ServiceEnvironment.PRODUCTION)
+
+==== To use your gem from your Ruby on Rails app
+In your environment.rb add the following line in the config block:
+ config.gem 'developergarden_sdk'
+
+==== Ruby on Rails Example
+
+ class SmsNotification
+
+   USERNAME = "<USER>@t-online.de"
+   PASSWORD = "<PASSWORD>"
+
+   # Send SMS to Numbers.
+   def send_sms(number, message, originator, environment = 2)
+
+   # Create new SmsService instance
+   @sms = SmsService::SmsService.new(USERNAME, PASSWORD)
+
+   # Send SMS to cell phone
+   @sms.send_sms(number, message, originator, environment)
+   
+   end
+
+ end
+
+=== More Examples
+In order to see more examples have a look the unit tests included in the gem's source code.
+You might also want to have a look at the actual source code and source code comments.
+
+
+==More Information
+More information about developer garden services can be found at:
+ http://www.developergarden.com
+
+==FAQ
+=== Did not understand "MustUnderstand" header(s)
+ Handsoap::Fault: Handsoap::Fault { :code => 'soapenv:MustUnderstand', :reason => 'Did not understand "MustUnderstand" header(s):{http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd}Security' }
+
+You will receive this error message if a mandatory header element is not present or the remote service was unable to process it.
+Most likely this will happen if something is wrong during the authentication process such as missing parameters like username, password.

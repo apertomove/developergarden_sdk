@@ -13,7 +13,7 @@ module VoiceCallService
   # Establish voice calls between two participants
   # See also: http://www.developergarden.com/openapi/dokumentation/services#4.2.1.
   class VoiceCallService < AuthenticatedService
-    @@VOICE_CALL_SERVICE_ENDPOINT = {
+    @@VOICE_CALL_SERVICE_ENDPOINT = {                      +
             :uri => "https://gateway.developer.telekom.com/p3gw-mod-odg-voicebutler/services/VoiceButlerService",
             :version => 1
     }

@@ -111,4 +111,13 @@ class QuotaServiceTest < Test::Unit::TestCase
       @q.change_quota_pool(nil, 5)
     end
   end
+
+  def test_get_account_balance_of_main_account
+    response = @q.get_account_balance
+
+    assert_equal("0000", response.error_code, "Error code was not 0000 (success).")
+    assert_instance_of(Array, response.account_balances)
+    assert_not_nil(response.account_balances.first.account)
+    assert_not_nil(response.account_balances.first.credits)
+  end
 end

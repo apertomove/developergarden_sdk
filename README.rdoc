@@ -26,6 +26,38 @@ You can use the gem from pure Ruby applications and of course from Ruby on Rails
  require 'quota_service/quota_service'
  require 'service_environment'
 
+==== Ruby Example to validate a number
+
+ #!/usr/bin/env ruby -d
+
+ require 'rubygems'
+ gem 'developergarden_sdk'
+ require 'token_Service/token_service'
+ require 'sms_validation_service/sms_validation_service'
+ require 'service_environment'
+
+ service = SmsService::SmsValidationService.new("<USER>@t-online.de", "<PASSWORD>")
+
+ message = "Das Keyword zur Validierung Ihrer Rufnummer lautet #key# und gültig bix #validUntil#."
+ number  = "+49-12345678"
+ originator = "McGuyver"
+
+ response = service.send_validation_keyword(message, number, originator, ServiceEnvironment.MOCK)
+
+ # No you receive an sms with the validation keyword
+
+ keyword = "SECRET"
+ response = service.validate(keyword, number, ServiceEnvironment.MOCK)
+
+ # No the number should be validated.
+
+ # Let verify this by having a look at the list of validated numbers:
+ response = service.get_validated_numbers(ServiceEnvironment.MOCK)
+
+ response.validated_numbers.each do |number|
+   puts number.number + " is valid until " + number.validated_until
+ end
+
 ==== Ruby Example to send a sms
  #!/usr/bin/env ruby -d
 
@@ -38,8 +70,7 @@ You can use the gem from pure Ruby applications and of course from Ruby on Rails
  sms = SmsService::SmsService.new("<USER>@t-online.de", "<PASSWORD>")
  sms_response = sms.send_sms("+49177 0000001", "Your message text.", "RubySDK", ServiceEnvironment.PRODUCTION, "")
 
-
-=== Ruby Example to perform an ip location request
+==== Ruby Example to perform an ip location request
 
  require 'rubygems'
  gem 'developergarden_sdk'
@@ -61,10 +92,9 @@ You can use the gem from pure Ruby applications and of course from Ruby on Rails
  puts response.ip_address_location.is_in_region.country_code
  puts response.ip_address_location.is_in_region.region_name
 
-=== Ruby Example to perform a local search
+==== Ruby Example to perform a local search
  require 'rubygems'
  gem 'developergarden_sdk'
- require 'token_service/token_service'
  require 'token_service/token_service'
  require 'local_search_service/local_search_service'
 
@@ -82,7 +112,27 @@ You can use the gem from pure Ruby applications and of course from Ruby on Rails
  lat = results_where_locs_where["LAT"]
  puts lat
 
-=== Ruby Example to create a conference call
+==== Ruby Example to create a voice call
+
+ #!/usr/bin/env ruby
+
+ require 'rubygems'
+ gem 'developergarden_sdk'
+ require 'token_Service/token_service'
+ require 'voice_call_service/voice_call_service'
+ require 'service_environment'
+
+ voice_call_service = VoiceCallService::VoiceCallService.new("<USERNAME>@t-online.de", "<PASSWORD>")
+ voice_call = voice_call_service.new_call("+496978082205", "+496814413", 0, 600, ServiceEnvironment.PRODUCTION)
+
+ 100.times do |i|
+   status = voice_call_service.call_status(voice_call.session_id, ServiceEnvironment.PRODUCTION, keep_alive = 1)
+
+   # Don't poll too often since this might cause strange effects in your app.
+   sleep 5
+ end
+
+==== Ruby Example to create a conference call
  require 'rubygems'
  gem 'developergarden_sdk'
  require 'token_Service/token_service'

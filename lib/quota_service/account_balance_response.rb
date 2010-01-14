@@ -19,9 +19,10 @@ class AccountBalanceResponse < BasicResponse
     if accounts_xml.is_a?(Handsoap::XmlQueryFront::NodeSelection) then
       accounts_xml.each do |account_xml|
         account = Account.build_from_xml(account_xml)        
-        account_balances << account
-        puts account.to_s
+        account_balances << account        
       end
+    else
+      raise "Unexpected response format."
     end
 
     raise_on_error(response_xml) if raise_exception_on_error

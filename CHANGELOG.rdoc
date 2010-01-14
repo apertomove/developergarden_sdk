@@ -24,3 +24,16 @@
 == 0.0.8
 
 == 0.0.8.1
+
+== 0.9.1
+* Implemented IP Location Service
+* Implemented Local Search Service
+* Implemented Conference Call Service
+* Moved to github
+* Switched to gemcutter
+* Updated to a newer version of handsoap
+* Updated to a newer version of nokogiri
+
+== 0.9.2
+* Implemented SmsValidationService
+* Implemented get_account_balance for QuotaService

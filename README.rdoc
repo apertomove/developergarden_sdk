@@ -33,7 +33,7 @@ You can use the gem from pure Ruby applications and of course from Ruby on Rails
  require 'rubygems'
  gem 'developergarden_sdk'
  require 'token_Service/token_service'
- require 'sms_validation_service/sms_validation_service'
+ require 'sms_service/sms_validation_service'
  require 'service_environment'
 
  service = SmsService::SmsValidationService.new("<USER>@t-online.de", "<PASSWORD>")

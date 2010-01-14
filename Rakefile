@@ -13,7 +13,7 @@ require 'fileutils'
 
 spec = Gem::Specification.new do |s|
   s.name = 'developergarden_sdk'
-  s.version = '0.9.1'
+  s.version = '0.9.2'
   s.homepage = 'http://www.developergarden.com'
   s.has_rdoc = true
   s.extra_rdoc_files = ['README', 'LICENSE']

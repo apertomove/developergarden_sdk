@@ -71,6 +71,21 @@ module SmsService
 
       return SmsSendValidationResponse.new(response)
     end
+    
+    # Invalidate the given number.
+    # ===Parameters
+    # <tt>number</tt>:: Number to be invalidated         
+    # <tt>environment</tt>:: Note that only the MOCK and PRODUCTION environments can be used. Numbers already validated
+    #   in the PRODUCTIOn environment can also be used for sending text messages in the SANDBOX ENVIRONMENT.
+    #   Validations with the keyword <tt>SECRET</tt> in the MOCK environment should always succeed.
+    def invalidate(number, environment = ServiceEnvironment.MOCK)
+      response = invoke_authenticated('smsvs:invalidateRequest') do |request, doc|
+        request.add('number', number)              
+        request.add('environment', environment)
+      end
+
+      return SmsSendValidationResponse.new(response)
+    end
 
     # Retrieves a list of already validated numbers.
     # ===Parameters     

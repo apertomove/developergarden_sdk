@@ -5,7 +5,7 @@ require File.dirname(__FILE__) + '/../basic_response'
 class CallStatusResponse < BasicResponse
 
   attr_accessor :connection_time_a, :connection_time_b, :description_a, :description_b, :reason_a, :reason_b
-  attr_accessor :state_a, :state_b
+  attr_accessor :state_a, :state_b, :be164, :bindex
 
   # Constructor.
   # ===Parameters
@@ -25,6 +25,9 @@ class CallStatusResponse < BasicResponse
     @reason_b = doc.xpath("//reasonb").to_s
     @state_a = doc.xpath("//statea").to_s
     @state_b = doc.xpath("//stateb").to_s
+    @be164 = doc.xpath("//be164").to_s
+    @bindex = doc.xpath("//bindex").to_s
+
 
     raise_on_error(response_xml) if raise_exception_on_error
   end

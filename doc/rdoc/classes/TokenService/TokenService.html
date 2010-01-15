@@ -87,7 +87,7 @@ authentication against the security token service. Authentication is
 performed in two steps:
 </p>
 <ol>
-<li>Call <tt><a href="TokenService.html#M000048">login</a></tt> to gather an
+<li>Call <tt><a href="TokenService.html#M000057">login</a></tt> to gather an
 intermediate token
 
 </li>
@@ -120,12 +120,12 @@ security is passed in the soap header, instead.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000050">authenticate</a>&nbsp;&nbsp;
-      <a href="#M000053">build_get_tokens_header</a>&nbsp;&nbsp;
-      <a href="#M000052">build_login_header</a>&nbsp;&nbsp;
-      <a href="#M000049">get_security_token</a>&nbsp;&nbsp;
-      <a href="#M000051">get_tokens</a>&nbsp;&nbsp;
-      <a href="#M000048">login</a>&nbsp;&nbsp;
+      <a href="#M000059">authenticate</a>&nbsp;&nbsp;
+      <a href="#M000062">build_get_tokens_header</a>&nbsp;&nbsp;
+      <a href="#M000061">build_login_header</a>&nbsp;&nbsp;
+      <a href="#M000058">get_security_token</a>&nbsp;&nbsp;
+      <a href="#M000060">get_tokens</a>&nbsp;&nbsp;
+      <a href="#M000057">login</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -147,12 +147,11 @@ security is passed in the soap header, instead.
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000049" class="method-detail">
-        <a name="M000049"></a>
+      <div id="method-M000058" class="method-detail">
+        <a name="M000058"></a>
 
         <div class="method-heading">
-          <a href="TokenService.src/M000049.html" target="Code" class="method-signature"
-            onclick="popupCode('TokenService.src/M000049.html');return false;">
+          <a href="#M000058" class="method-signature">
           <span class="method-name">get_security_token</span><span class="method-args">()</span>
           </a>
         </div>
@@ -166,15 +165,35 @@ Reauthenticates if the security token has expired.
 <p>
 Security token as plain text/xml.
 </p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000058-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000058-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/token_service/token_service.rb, line 66</span>
+66:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_security_token</span>
+67: 
+68:       <span class="ruby-comment cmt"># Reauthenticates if the security token has expired.</span>
+69:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@security_token</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">then</span>
+70:         <span class="ruby-identifier">authenticate</span>
+71:       <span class="ruby-keyword kw">end</span>
+72: 
+73:       <span class="ruby-comment cmt"># Look at the validity dates of the token and locally check whether the token is still valid.</span>
+74:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@@PERFORM_LOCAL_TOKEN_CHECKS</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">SecurityTokenValidator</span>.<span class="ruby-identifier">token_invalid?</span>(<span class="ruby-ivar">@security_token</span>) <span class="ruby-keyword kw">then</span>
+75:         <span class="ruby-identifier">authenticate</span>
+76:       <span class="ruby-keyword kw">end</span>
+77: 
+78:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@security_token</span>
+79:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000048" class="method-detail">
-        <a name="M000048"></a>
+      <div id="method-M000057" class="method-detail">
+        <a name="M000057"></a>
 
         <div class="method-heading">
-          <a href="TokenService.src/M000048.html" target="Code" class="method-signature"
-            onclick="popupCode('TokenService.src/M000048.html');return false;">
+          <a href="#M000057" class="method-signature">
           <span class="method-name">login</span><span class="method-args">()</span>
           </a>
         </div>
@@ -183,17 +202,35 @@ Security token as plain text/xml.
           <p>
 Call the the security token service to gather an intermediate token.
 </p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000057-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000057-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/token_service/token_service.rb, line 47</span>
+47:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">login</span>
+48:       <span class="ruby-identifier">response</span> = <span class="ruby-identifier">invoke</span>(<span class="ruby-value str">&quot;login&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">message</span><span class="ruby-operator">|</span>
+49:         <span class="ruby-identifier">doc</span> = <span class="ruby-identifier">message</span>.<span class="ruby-identifier">document</span>
+50: 
+51:         <span class="ruby-comment cmt"># Build the login header</span>
+52:         <span class="ruby-identifier">build_login_header</span>(<span class="ruby-identifier">doc</span>)
+53:       <span class="ruby-keyword kw">end</span>
+54: 
+55:       <span class="ruby-identifier">intermediate_token</span> = <span class="ruby-identifier">parse_token_data</span>(<span class="ruby-identifier">response</span>)
+56: 
+57:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">intermediate_token</span>
+58:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
       <h3 class="section-bar">Protected Instance methods</h3>
 
-      <div id="method-M000050" class="method-detail">
-        <a name="M000050"></a>
+      <div id="method-M000059" class="method-detail">
+        <a name="M000059"></a>
 
         <div class="method-heading">
-          <a href="TokenService.src/M000050.html" target="Code" class="method-signature"
-            onclick="popupCode('TokenService.src/M000050.html');return false;">
+          <a href="#M000059" class="method-signature">
           <span class="method-name">authenticate</span><span class="method-args">()</span>
           </a>
         </div>
@@ -208,15 +245,27 @@ service calls.
 <p>
 Security token as plain text/xml.
 </p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000059-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000059-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/token_service/token_service.rb, line 87</span>
+87:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">authenticate</span>
+88:       <span class="ruby-identifier">intermediate_token</span> = <span class="ruby-identifier">login</span>
+89:       <span class="ruby-ivar">@security_token</span> = <span class="ruby-identifier">get_tokens</span>(<span class="ruby-identifier">intermediate_token</span>)
+90: 
+91:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@security_token</span>
+92:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000053" class="method-detail">
-        <a name="M000053"></a>
+      <div id="method-M000062" class="method-detail">
+        <a name="M000062"></a>
 
         <div class="method-heading">
-          <a href="TokenService.src/M000053.html" target="Code" class="method-signature"
-            onclick="popupCode('TokenService.src/M000053.html');return false;">
+          <a href="#M000062" class="method-signature">
           <span class="method-name">build_get_tokens_header</span><span class="method-args">(doc, intermediate_token)</span>
           </a>
         </div>
@@ -236,19 +285,34 @@ process the returning value.
 
 </td></tr>
 <tr><td valign="top"><tt>intermediate_token</tt>:</td><td>Intermediate token gathered by invoking the <tt><a
-href="TokenService.html#M000048">login</a></tt>-Method
+href="TokenService.html#M000057">login</a></tt>-Method
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000062-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000062-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/token_service/token_service.rb, line 150</span>
+150:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build_get_tokens_header</span>(<span class="ruby-identifier">doc</span>, <span class="ruby-identifier">intermediate_token</span>)
+151: 
+152:       <span class="ruby-comment cmt"># Get the header element</span>
+153:       <span class="ruby-identifier">header</span> = <span class="ruby-identifier">build_security_header_common</span>(<span class="ruby-identifier">doc</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">security</span><span class="ruby-operator">|</span>
+154:         <span class="ruby-identifier">security</span>.<span class="ruby-identifier">set_value</span>( <span class="ruby-identifier">intermediate_token</span>, <span class="ruby-identifier">:raw</span> )
+155:       <span class="ruby-keyword kw">end</span>
+156: 
+157:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">header</span>
+158:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000052" class="method-detail">
-        <a name="M000052"></a>
+      <div id="method-M000061" class="method-detail">
+        <a name="M000061"></a>
 
         <div class="method-heading">
-          <a href="TokenService.src/M000052.html" target="Code" class="method-signature"
-            onclick="popupCode('TokenService.src/M000052.html');return false;">
+          <a href="#M000061" class="method-signature">
           <span class="method-name">build_login_header</span><span class="method-args">(doc)</span>
           </a>
         </div>
@@ -256,7 +320,7 @@ href="TokenService.html#M000048">login</a></tt>-Method
         <div class="method-description">
           <p>
 Builds the header including the username/password token to call the <a
-href="TokenService.html#M000048">login</a> method in order to gather an
+href="TokenService.html#M000057">login</a> method in order to gather an
 intermediate token.
 </p>
 <p>
@@ -269,15 +333,42 @@ process the returning value.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000061-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000061-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/token_service/token_service.rb, line 120</span>
+120:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build_login_header</span>(<span class="ruby-identifier">doc</span>)
+121: 
+122:       <span class="ruby-comment cmt"># Get the header element</span>
+123:       <span class="ruby-identifier">header</span> = <span class="ruby-identifier">build_security_header_common</span>(<span class="ruby-identifier">doc</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">security</span><span class="ruby-operator">|</span>
+124:         <span class="ruby-identifier">security</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">&quot;UsernameToken&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">username_token</span><span class="ruby-operator">|</span>
+125: 
+126:           <span class="ruby-comment cmt"># Create username section</span>
+127:           <span class="ruby-identifier">username_token</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">&quot;Username&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">username</span><span class="ruby-operator">|</span>
+128:             <span class="ruby-identifier">username</span>.<span class="ruby-identifier">set_value</span>(<span class="ruby-ivar">@username</span>)
+129:           <span class="ruby-keyword kw">end</span>
+130: 
+131:           <span class="ruby-comment cmt"># Create password section</span>
+132:           <span class="ruby-identifier">username_token</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">&quot;Password&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">password</span><span class="ruby-operator">|</span>
+133:             <span class="ruby-identifier">password</span>.<span class="ruby-identifier">set_attr</span>(<span class="ruby-value str">&quot;Type&quot;</span>, <span class="ruby-value str">&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText&quot;</span>)
+134:             <span class="ruby-identifier">password</span>.<span class="ruby-identifier">set_value</span>(<span class="ruby-ivar">@password</span>)
+135:           <span class="ruby-keyword kw">end</span>
+136:         <span class="ruby-keyword kw">end</span>
+137:       <span class="ruby-keyword kw">end</span>
+138: 
+139:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">header</span>
+140:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000051" class="method-detail">
-        <a name="M000051"></a>
+      <div id="method-M000060" class="method-detail">
+        <a name="M000060"></a>
 
         <div class="method-heading">
-          <a href="TokenService.src/M000051.html" target="Code" class="method-signature"
-            onclick="popupCode('TokenService.src/M000051.html');return false;">
+          <a href="#M000060" class="method-signature">
           <span class="method-name">get_tokens</span><span class="method-args">(intermediate_token)</span>
           </a>
         </div>
@@ -290,10 +381,31 @@ token(s). Security tokens are needed to perform further service calls.
 <h3>Parameters</h3>
 <table>
 <tr><td valign="top"><tt>intermediate_token</tt>:</td><td>Intermediate token gathered by invoking the <tt><a
-href="TokenService.html#M000048">login</a></tt>-Method
+href="TokenService.html#M000057">login</a></tt>-Method
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000060-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000060-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/token_service/token_service.rb, line 98</span>
+ 98:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_tokens</span>(<span class="ruby-identifier">intermediate_token</span>)
+ 99:       <span class="ruby-identifier">response</span> = <span class="ruby-identifier">invoke</span>(<span class="ruby-value str">&quot;getTokens&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">message</span><span class="ruby-operator">|</span>
+100:         <span class="ruby-identifier">doc</span> = <span class="ruby-identifier">message</span>.<span class="ruby-identifier">document</span>
+101: 
+102:         <span class="ruby-comment cmt"># Build the login header</span>
+103:         <span class="ruby-identifier">build_get_tokens_header</span>(<span class="ruby-identifier">doc</span>, <span class="ruby-identifier">intermediate_token</span>)
+104: 
+105:         <span class="ruby-identifier">message</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'ns1:serviceId'</span>, <span class="ruby-ivar">@@SERVICE_ID</span>)
+106:       <span class="ruby-keyword kw">end</span>
+107: 
+108:       <span class="ruby-identifier">security_token</span> = <span class="ruby-identifier">parse_token_data</span>(<span class="ruby-identifier">response</span>)
+109: 
+110:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">security_token</span>
+111:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 

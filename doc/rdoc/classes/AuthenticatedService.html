@@ -94,8 +94,8 @@ Base service for all services demanding a security token.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000020">invoke_authenticated</a>&nbsp;&nbsp;
-      <a href="#M000019">new</a>&nbsp;&nbsp;
+      <a href="#M000029">invoke_authenticated</a>&nbsp;&nbsp;
+      <a href="#M000028">new</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -117,12 +117,11 @@ Base service for all services demanding a security token.
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000019" class="method-detail">
-        <a name="M000019"></a>
+      <div id="method-M000028" class="method-detail">
+        <a name="M000028"></a>
 
         <div class="method-heading">
-          <a href="AuthenticatedService.src/M000019.html" target="Code" class="method-signature"
-            onclick="popupCode('AuthenticatedService.src/M000019.html');return false;">
+          <a href="#M000028" class="method-signature">
           <span class="method-name">new</span><span class="method-args">(username, password, environment = ServiceEnvironment.SANDBOX)</span>
           </a>
         </div>
@@ -140,17 +139,28 @@ Constructor
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000028-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000028-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/authenticated_service.rb, line 11</span>
+11:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">username</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">SANDBOX</span>)
+12:     <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">username</span>, <span class="ruby-identifier">password</span>)
+13: 
+14:     <span class="ruby-ivar">@token_service</span> = <span class="ruby-constant">TokenService</span><span class="ruby-operator">::</span><span class="ruby-constant">TokenService</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@username</span>, <span class="ruby-ivar">@password</span>)
+15:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000020" class="method-detail">
-        <a name="M000020"></a>
+      <div id="method-M000029" class="method-detail">
+        <a name="M000029"></a>
 
         <div class="method-heading">
-          <a href="AuthenticatedService.src/M000020.html" target="Code" class="method-signature"
-            onclick="popupCode('AuthenticatedService.src/M000020.html');return false;">
+          <a href="#M000029" class="method-signature">
           <span class="method-name">invoke_authenticated</span><span class="method-args">(action) {|message, doc| ...}</span>
           </a>
         </div>
@@ -161,6 +171,28 @@ Invokes the given action and also adds the security token to the SOAP
 header. Using this method authentication is totally hidden from the rest of
 the application.
 </p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000029-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000029-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/authenticated_service.rb, line 19</span>
+19:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-identifier">action</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+20: 
+21:     <span class="ruby-identifier">security_token</span> = <span class="ruby-ivar">@token_service</span>.<span class="ruby-identifier">get_security_token</span>
+22: 
+23:     <span class="ruby-identifier">response</span> = <span class="ruby-identifier">invoke</span>(<span class="ruby-identifier">action</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">message</span><span class="ruby-operator">|</span>
+24:       <span class="ruby-identifier">doc</span> = <span class="ruby-identifier">message</span>.<span class="ruby-identifier">document</span>
+25:       
+26:       <span class="ruby-comment cmt"># Build the login header</span>
+27:       <span class="ruby-identifier">build_service_header</span>(<span class="ruby-identifier">doc</span>, <span class="ruby-identifier">security_token</span>)
+28: 
+29:       <span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">message</span>, <span class="ruby-identifier">doc</span>)
+30:     <span class="ruby-keyword kw">end</span>
+31: 
+32:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">response</span>
+33:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 

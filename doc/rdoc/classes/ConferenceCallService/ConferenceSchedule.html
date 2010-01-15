@@ -93,14 +93,14 @@ relative to the UTC timezone.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000136">RECURRING_HOURLY</a>&nbsp;&nbsp;
-      <a href="#M000138">RECURRING_MONTHLY</a>&nbsp;&nbsp;
-      <a href="#M000135">RECURRING_NONE</a>&nbsp;&nbsp;
-      <a href="#M000137">RECURRING_WEEKLY</a>&nbsp;&nbsp;
-      <a href="#M000133">add_to_handsoap_xml</a>&nbsp;&nbsp;
-      <a href="#M000134">build_from_xml</a>&nbsp;&nbsp;
-      <a href="#M000131">new</a>&nbsp;&nbsp;
-      <a href="#M000132">to_s</a>&nbsp;&nbsp;
+      <a href="#M000150">RECURRING_HOURLY</a>&nbsp;&nbsp;
+      <a href="#M000152">RECURRING_MONTHLY</a>&nbsp;&nbsp;
+      <a href="#M000149">RECURRING_NONE</a>&nbsp;&nbsp;
+      <a href="#M000151">RECURRING_WEEKLY</a>&nbsp;&nbsp;
+      <a href="#M000147">add_to_handsoap_xml</a>&nbsp;&nbsp;
+      <a href="#M000148">build_from_xml</a>&nbsp;&nbsp;
+      <a href="#M000145">new</a>&nbsp;&nbsp;
+      <a href="#M000146">to_s</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -165,68 +165,103 @@ relative to the UTC timezone.
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000136" class="method-detail">
-        <a name="M000136"></a>
+      <div id="method-M000150" class="method-detail">
+        <a name="M000150"></a>
 
         <div class="method-heading">
-          <a href="ConferenceSchedule.src/M000136.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceSchedule.src/M000136.html');return false;">
+          <a href="#M000150" class="method-signature">
           <span class="method-name">RECURRING_HOURLY</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000150-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000150-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/conference_call_service/conference_schedule.rb, line 61</span>
+61:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-constant">RECURRING_HOURLY</span>
+62:       <span class="ruby-ivar">@@RECURRING_HOURLY</span>
+63:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000138" class="method-detail">
-        <a name="M000138"></a>
+      <div id="method-M000152" class="method-detail">
+        <a name="M000152"></a>
 
         <div class="method-heading">
-          <a href="ConferenceSchedule.src/M000138.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceSchedule.src/M000138.html');return false;">
+          <a href="#M000152" class="method-signature">
           <span class="method-name">RECURRING_MONTHLY</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000152-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000152-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/conference_call_service/conference_schedule.rb, line 69</span>
+69:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-constant">RECURRING_MONTHLY</span>
+70:       <span class="ruby-ivar">@@RECURRING_MONTHLY</span>
+71:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000135" class="method-detail">
-        <a name="M000135"></a>
+      <div id="method-M000149" class="method-detail">
+        <a name="M000149"></a>
 
         <div class="method-heading">
-          <a href="ConferenceSchedule.src/M000135.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceSchedule.src/M000135.html');return false;">
+          <a href="#M000149" class="method-signature">
           <span class="method-name">RECURRING_NONE</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000149-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000149-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/conference_call_service/conference_schedule.rb, line 57</span>
+57:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-constant">RECURRING_NONE</span>
+58:       <span class="ruby-ivar">@@RECURRING_NONE</span>
+59:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000137" class="method-detail">
-        <a name="M000137"></a>
+      <div id="method-M000151" class="method-detail">
+        <a name="M000151"></a>
 
         <div class="method-heading">
-          <a href="ConferenceSchedule.src/M000137.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceSchedule.src/M000137.html');return false;">
+          <a href="#M000151" class="method-signature">
           <span class="method-name">RECURRING_WEEKLY</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000151-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000151-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/conference_call_service/conference_schedule.rb, line 65</span>
+65:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-constant">RECURRING_WEEKLY</span>
+66:       <span class="ruby-ivar">@@RECURRING_WEEKLY</span>
+67:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000134" class="method-detail">
-        <a name="M000134"></a>
+      <div id="method-M000148" class="method-detail">
+        <a name="M000148"></a>
 
         <div class="method-heading">
-          <a href="ConferenceSchedule.src/M000134.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceSchedule.src/M000134.html');return false;">
+          <a href="#M000148" class="method-signature">
           <span class="method-name">build_from_xml</span><span class="method-args">(xml_doc)</span>
           </a>
         </div>
@@ -235,15 +270,35 @@ relative to the UTC timezone.
           <p>
 Static methods
 </p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000148-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000148-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/conference_call_service/conference_schedule.rb, line 42</span>
+42:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">build_from_xml</span>(<span class="ruby-identifier">xml_doc</span>)
+43: 
+44:       <span class="ruby-comment cmt"># If the service responds with non-0000 answer there might me no schedule infos available</span>
+45:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">xml_doc</span> <span class="ruby-keyword kw">then</span>
+46:         <span class="ruby-identifier">minute</span> = <span class="ruby-constant">ConferenceCallService</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">xml_doc</span>, <span class="ruby-value str">&quot;minute&quot;</span>).<span class="ruby-identifier">to_s</span>
+47:         <span class="ruby-identifier">hour</span> = <span class="ruby-constant">ConferenceCallService</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">xml_doc</span>, <span class="ruby-value str">&quot;hour&quot;</span>).<span class="ruby-identifier">to_s</span>
+48:         <span class="ruby-identifier">day_of_month</span> = <span class="ruby-constant">ConferenceCallService</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">xml_doc</span>, <span class="ruby-value str">&quot;dayOfMonth&quot;</span>).<span class="ruby-identifier">to_s</span>
+49:         <span class="ruby-identifier">month</span> = <span class="ruby-constant">ConferenceCallService</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">xml_doc</span>, <span class="ruby-value str">&quot;month&quot;</span>).<span class="ruby-identifier">to_s</span>
+50:         <span class="ruby-identifier">year</span> = <span class="ruby-constant">ConferenceCallService</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">xml_doc</span>, <span class="ruby-value str">&quot;year&quot;</span>).<span class="ruby-identifier">to_s</span>
+51:         <span class="ruby-identifier">recurring</span> = <span class="ruby-constant">ConferenceCallService</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">xml_doc</span>, <span class="ruby-value str">&quot;recurring&quot;</span>).<span class="ruby-identifier">to_s</span>
+52:         <span class="ruby-identifier">notify</span> = <span class="ruby-constant">ConferenceCallService</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">xml_doc</span>, <span class="ruby-value str">&quot;notify&quot;</span>).<span class="ruby-identifier">to_s</span>
+53:         <span class="ruby-identifier">new</span>(<span class="ruby-identifier">minute</span>, <span class="ruby-identifier">hour</span>, <span class="ruby-identifier">day_of_month</span>, <span class="ruby-identifier">month</span>, <span class="ruby-identifier">year</span>, <span class="ruby-identifier">recurring</span>, <span class="ruby-identifier">notify</span>)
+54:       <span class="ruby-keyword kw">end</span>
+55:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000131" class="method-detail">
-        <a name="M000131"></a>
+      <div id="method-M000145" class="method-detail">
+        <a name="M000145"></a>
 
         <div class="method-heading">
-          <a href="ConferenceSchedule.src/M000131.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceSchedule.src/M000131.html');return false;">
+          <a href="#M000145" class="method-signature">
           <span class="method-name">new</span><span class="method-args">(minute = Time.now.min, hour = Time.now.hour, day_of_month = Time.now.day, month = Time.now.month, year = Time.now.year, recurring = @@RECURRING_NONE, notify = 0)</span>
           </a>
         </div>
@@ -252,36 +307,77 @@ Static methods
           <p>
 Constructor
 </p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000145-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000145-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/conference_call_service/conference_schedule.rb, line 15</span>
+15:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">minute</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">min</span>, <span class="ruby-identifier">hour</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">hour</span>, <span class="ruby-identifier">day_of_month</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">day</span>, <span class="ruby-identifier">month</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">month</span>, <span class="ruby-identifier">year</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">year</span>, <span class="ruby-identifier">recurring</span> = <span class="ruby-ivar">@@RECURRING_NONE</span>, <span class="ruby-identifier">notify</span> = <span class="ruby-value">0</span>)
+16:       <span class="ruby-ivar">@minute</span> = <span class="ruby-identifier">minute</span>
+17:       <span class="ruby-ivar">@hour</span> = <span class="ruby-identifier">hour</span>
+18:       <span class="ruby-ivar">@day_of_month</span> = <span class="ruby-identifier">day_of_month</span>
+19:       <span class="ruby-ivar">@month</span> = <span class="ruby-identifier">month</span>
+20:       <span class="ruby-ivar">@year</span> = <span class="ruby-identifier">year</span>
+21:       <span class="ruby-ivar">@recurring</span> = <span class="ruby-identifier">recurring</span>
+22:       <span class="ruby-ivar">@notify</span> = <span class="ruby-identifier">notify</span>
+23:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000133" class="method-detail">
-        <a name="M000133"></a>
+      <div id="method-M000147" class="method-detail">
+        <a name="M000147"></a>
 
         <div class="method-heading">
-          <a href="ConferenceSchedule.src/M000133.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceSchedule.src/M000133.html');return false;">
+          <a href="#M000147" class="method-signature">
           <span class="method-name">add_to_handsoap_xml</span><span class="method-args">(xml_doc)</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000147-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000147-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/conference_call_service/conference_schedule.rb, line 30</span>
+30:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_to_handsoap_xml</span>(<span class="ruby-identifier">xml_doc</span>)
+31:       <span class="ruby-identifier">xml_doc</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'minute'</span>, <span class="ruby-ivar">@minute</span>.<span class="ruby-identifier">to_s</span>)
+32:       <span class="ruby-identifier">xml_doc</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'hour'</span>, <span class="ruby-ivar">@hour</span>.<span class="ruby-identifier">to_s</span>)
+33:       <span class="ruby-identifier">xml_doc</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'dayOfMonth'</span>, <span class="ruby-ivar">@day_of_month</span>.<span class="ruby-identifier">to_s</span>)
+34:       <span class="ruby-identifier">xml_doc</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'month'</span>, <span class="ruby-ivar">@month</span>.<span class="ruby-identifier">to_s</span>)
+35:       <span class="ruby-identifier">xml_doc</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'year'</span>, <span class="ruby-ivar">@year</span>.<span class="ruby-identifier">to_s</span>)
+36:       <span class="ruby-identifier">xml_doc</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'recurring'</span>, <span class="ruby-ivar">@recurring</span>.<span class="ruby-identifier">to_s</span>)
+37:       <span class="ruby-identifier">xml_doc</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'notify'</span>, <span class="ruby-ivar">@notify</span>.<span class="ruby-identifier">to_s</span>)
+38:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000132" class="method-detail">
-        <a name="M000132"></a>
+      <div id="method-M000146" class="method-detail">
+        <a name="M000146"></a>
 
         <div class="method-heading">
-          <a href="ConferenceSchedule.src/M000132.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceSchedule.src/M000132.html');return false;">
+          <a href="#M000146" class="method-signature">
           <span class="method-name">to_s</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000146-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000146-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/conference_call_service/conference_schedule.rb, line 25</span>
+25:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
+26:       <span class="ruby-identifier">ret</span> = <span class="ruby-node">&quot;#{year}-#{month}-#{day_of_month} #{hour}:#{minute} Recurring: #{recurring}, Notify: #{notify}\n&quot;</span>
+27:       <span class="ruby-identifier">ret</span>
+28:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 

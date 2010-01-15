@@ -93,11 +93,11 @@ IpLocation-Service.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000027">IP_V4</a>&nbsp;&nbsp;
-      <a href="#M000028">IP_V6</a>&nbsp;&nbsp;
-      <a href="#M000029">build_from_ip_address</a>&nbsp;&nbsp;
-      <a href="#M000025">new</a>&nbsp;&nbsp;
-      <a href="#M000026">to_s</a>&nbsp;&nbsp;
+      <a href="#M000036">IP_V4</a>&nbsp;&nbsp;
+      <a href="#M000037">IP_V6</a>&nbsp;&nbsp;
+      <a href="#M000038">build_from_ip_address</a>&nbsp;&nbsp;
+      <a href="#M000034">new</a>&nbsp;&nbsp;
+      <a href="#M000035">to_s</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -137,12 +137,11 @@ IpLocation-Service.
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000027" class="method-detail">
-        <a name="M000027"></a>
+      <div id="method-M000036" class="method-detail">
+        <a name="M000036"></a>
 
         <div class="method-heading">
-          <a href="IpAddress.src/M000027.html" target="Code" class="method-signature"
-            onclick="popupCode('IpAddress.src/M000027.html');return false;">
+          <a href="#M000036" class="method-signature">
           <span class="method-name">IP_V4</span><span class="method-args">()</span>
           </a>
         </div>
@@ -151,29 +150,47 @@ IpLocation-Service.
           <p>
 Class methods
 </p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000036-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000036-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/ip_location_service/ip_address.rb, line 25</span>
+25:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-constant">IP_V4</span>
+26:       <span class="ruby-ivar">@@IP_V4</span>
+27:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000028" class="method-detail">
-        <a name="M000028"></a>
+      <div id="method-M000037" class="method-detail">
+        <a name="M000037"></a>
 
         <div class="method-heading">
-          <a href="IpAddress.src/M000028.html" target="Code" class="method-signature"
-            onclick="popupCode('IpAddress.src/M000028.html');return false;">
+          <a href="#M000037" class="method-signature">
           <span class="method-name">IP_V6</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000037-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000037-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/ip_location_service/ip_address.rb, line 29</span>
+29:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-constant">IP_V6</span>
+30:       <span class="ruby-ivar">@@IP_V6</span>
+31:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000025" class="method-detail">
-        <a name="M000025"></a>
+      <div id="method-M000034" class="method-detail">
+        <a name="M000034"></a>
 
         <div class="method-heading">
-          <a href="IpAddress.src/M000025.html" target="Code" class="method-signature"
-            onclick="popupCode('IpAddress.src/M000025.html');return false;">
+          <a href="#M000034" class="method-signature">
           <span class="method-name">new</span><span class="method-args">(ip_address, ip_type = @@IP_V4)</span>
           </a>
         </div>
@@ -189,17 +206,27 @@ Currently only :ipv4 is supported.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000034-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000034-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/ip_location_service/ip_address.rb, line 14</span>
+14:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">ip_address</span>, <span class="ruby-identifier">ip_type</span> = <span class="ruby-ivar">@@IP_V4</span>)
+15:       <span class="ruby-ivar">@ip_address</span> = <span class="ruby-identifier">ip_address</span>
+16:       <span class="ruby-ivar">@ip_type</span> = <span class="ruby-identifier">ip_type</span>
+17:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
       <h3 class="section-bar">Protected Class methods</h3>
 
-      <div id="method-M000029" class="method-detail">
-        <a name="M000029"></a>
+      <div id="method-M000038" class="method-detail">
+        <a name="M000038"></a>
 
         <div class="method-heading">
-          <a href="IpAddress.src/M000029.html" target="Code" class="method-signature"
-            onclick="popupCode('IpAddress.src/M000029.html');return false;">
+          <a href="#M000038" class="method-signature">
           <span class="method-name">build_from_ip_address</span><span class="method-args">(from_ip_address)</span>
           </a>
         </div>
@@ -211,22 +238,50 @@ Currently only :ipv4 is supported.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000038-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000038-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/ip_location_service/ip_address.rb, line 37</span>
+37:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">build_from_ip_address</span>(<span class="ruby-identifier">from_ip_address</span>)
+38:       <span class="ruby-identifier">ret</span> = <span class="ruby-keyword kw">nil</span>
+39:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">from_ip_address</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+40:         <span class="ruby-identifier">ret</span> = <span class="ruby-identifier">new</span>(<span class="ruby-identifier">from_ip_address</span>)
+41:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">from_ip_address</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">IpAddress</span>)
+42:         <span class="ruby-identifier">ret</span> = <span class="ruby-identifier">from_ip_address</span>.<span class="ruby-identifier">dup</span>
+43:       <span class="ruby-keyword kw">else</span>        
+44:         <span class="ruby-identifier">raise</span>(<span class="ruby-node">&quot;Unknown class #{from_ip_address.class.to_s} for ip address. Can be string or IpAddress.&quot;</span>)
+45:       <span class="ruby-keyword kw">end</span>
+46:       
+47:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">ret</span>
+48:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000026" class="method-detail">
-        <a name="M000026"></a>
+      <div id="method-M000035" class="method-detail">
+        <a name="M000035"></a>
 
         <div class="method-heading">
-          <a href="IpAddress.src/M000026.html" target="Code" class="method-signature"
-            onclick="popupCode('IpAddress.src/M000026.html');return false;">
+          <a href="#M000035" class="method-signature">
           <span class="method-name">to_s</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000035-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000035-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/ip_location_service/ip_address.rb, line 19</span>
+19:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
+20:       <span class="ruby-ivar">@ip_address</span>.<span class="ruby-identifier">to_s</span>
+21:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 

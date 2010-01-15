@@ -86,9 +86,9 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000073">build_from_xml</a>&nbsp;&nbsp;
-      <a href="#M000071">new</a>&nbsp;&nbsp;
-      <a href="#M000072">to_s</a>&nbsp;&nbsp;
+      <a href="#M000087">build_from_xml</a>&nbsp;&nbsp;
+      <a href="#M000085">new</a>&nbsp;&nbsp;
+      <a href="#M000086">to_s</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -133,12 +133,11 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000073" class="method-detail">
-        <a name="M000073"></a>
+      <div id="method-M000087" class="method-detail">
+        <a name="M000087"></a>
 
         <div class="method-heading">
-          <a href="Participant.src/M000073.html" target="Code" class="method-signature"
-            onclick="popupCode('Participant.src/M000073.html');return false;">
+          <a href="#M000087" class="method-signature">
           <span class="method-name">build_from_xml</span><span class="method-args">(xml_doc)</span>
           </a>
         </div>
@@ -147,15 +146,30 @@
           <p>
 Static methods
 </p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000087-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000087-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/conference_call_service/participant.rb, line 18</span>
+18:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">build_from_xml</span>(<span class="ruby-identifier">xml_doc</span>)
+19:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">xml_doc</span> <span class="ruby-keyword kw">then</span>
+20:         <span class="ruby-identifier">id</span> = <span class="ruby-constant">ConferenceCallService</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">xml_doc</span>, <span class="ruby-value str">&quot;participantId&quot;</span>).<span class="ruby-identifier">to_s</span>
+21:         <span class="ruby-identifier">details</span> = <span class="ruby-constant">ParticipantDetails</span>.<span class="ruby-identifier">build_from_xml</span>( <span class="ruby-constant">ConferenceCallService</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">xml_doc</span>, <span class="ruby-value str">&quot;detail&quot;</span>) )
+22:         <span class="ruby-identifier">status</span> = { <span class="ruby-identifier">:muted</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">ConferenceCallService</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">xml_doc</span>, <span class="ruby-value str">&quot;status/value&quot;</span>).<span class="ruby-identifier">to_s</span> }
+23: 
+24:         <span class="ruby-identifier">new</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">details</span>, <span class="ruby-identifier">status</span>)
+25:       <span class="ruby-keyword kw">end</span>
+26:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000071" class="method-detail">
-        <a name="M000071"></a>
+      <div id="method-M000085" class="method-detail">
+        <a name="M000085"></a>
 
         <div class="method-heading">
-          <a href="Participant.src/M000071.html" target="Code" class="method-signature"
-            onclick="popupCode('Participant.src/M000071.html');return false;">
+          <a href="#M000085" class="method-signature">
           <span class="method-name">new</span><span class="method-args">(id, details, status)</span>
           </a>
         </div>
@@ -164,22 +178,43 @@ Static methods
           <p>
 Constructor
 </p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000085-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000085-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/conference_call_service/participant.rb, line 6</span>
+ 6:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">details</span>, <span class="ruby-identifier">status</span>)
+ 7:       <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">id</span>
+ 8:       <span class="ruby-ivar">@details</span> = <span class="ruby-identifier">details</span>
+ 9:       <span class="ruby-ivar">@status</span> = <span class="ruby-identifier">status</span>
+10:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000072" class="method-detail">
-        <a name="M000072"></a>
+      <div id="method-M000086" class="method-detail">
+        <a name="M000086"></a>
 
         <div class="method-heading">
-          <a href="Participant.src/M000072.html" target="Code" class="method-signature"
-            onclick="popupCode('Participant.src/M000072.html');return false;">
+          <a href="#M000086" class="method-signature">
           <span class="method-name">to_s</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000086-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000086-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/conference_call_service/participant.rb, line 12</span>
+12:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
+13:       <span class="ruby-node">&quot;Participant - id:#{@id.to_s} details:#{@details.to_s}, status:#{@status.to_s}&quot;</span>
+14:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 

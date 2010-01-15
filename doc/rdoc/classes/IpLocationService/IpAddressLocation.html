@@ -86,9 +86,9 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000035">build_from_xml</a>&nbsp;&nbsp;
-      <a href="#M000033">new</a>&nbsp;&nbsp;
-      <a href="#M000034">to_s</a>&nbsp;&nbsp;
+      <a href="#M000044">build_from_xml</a>&nbsp;&nbsp;
+      <a href="#M000042">new</a>&nbsp;&nbsp;
+      <a href="#M000043">to_s</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -148,12 +148,11 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000035" class="method-detail">
-        <a name="M000035"></a>
+      <div id="method-M000044" class="method-detail">
+        <a name="M000044"></a>
 
         <div class="method-heading">
-          <a href="IpAddressLocation.src/M000035.html" target="Code" class="method-signature"
-            onclick="popupCode('IpAddressLocation.src/M000035.html');return false;">
+          <a href="#M000044" class="method-signature">
           <span class="method-name">build_from_xml</span><span class="method-args">(xml_doc)</span>
           </a>
         </div>
@@ -170,36 +169,90 @@ service response.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000044-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000044-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/ip_location_service/ip_address_location.rb, line 27</span>
+27:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">build_from_xml</span>(<span class="ruby-identifier">xml_doc</span>)
+28:       <span class="ruby-identifier">ipa</span> = <span class="ruby-constant">IpAddressLocation</span>.<span class="ruby-identifier">new</span>
+29: 
+30:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">xml_doc</span> <span class="ruby-keyword kw">then</span>
+31: 
+32:         <span class="ruby-comment cmt"># We are passing &quot;false&quot; do search relative to the xml_doc position. Without this flag the resulting</span>
+33:         <span class="ruby-comment cmt"># xpath query would beginn with a &quot;//&quot; which would always look the search term relative from the beginning</span>
+34:         <span class="ruby-comment cmt"># of the document. This is not what we want right here. We would rather like to search relative to the</span>
+35:         <span class="ruby-comment cmt"># partial tree we have with xml_doc pointing to the IpAddressLocation tag of the response xml.</span>
+36:         <span class="ruby-comment cmt"># This is also true for Region's build method.</span>
+37:         <span class="ruby-identifier">ipa</span>.<span class="ruby-identifier">address</span>       = <span class="ruby-constant">IpLocationService</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">xml_doc</span>, <span class="ruby-value str">&quot;ipAddress&quot;</span>, <span class="ruby-keyword kw">false</span>).<span class="ruby-identifier">to_s</span>        
+38:         <span class="ruby-identifier">ipa</span>.<span class="ruby-identifier">ip_type</span>       = <span class="ruby-constant">IpLocationService</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">xml_doc</span>, <span class="ruby-value str">&quot;ipType&quot;</span>, <span class="ruby-keyword kw">false</span>).<span class="ruby-identifier">to_s</span>
+39: 
+40:         <span class="ruby-comment cmt"># TODO As soon as the API supports them.</span>
+41:         <span class="ruby-comment cmt"># ipa.radius        = IpLocationService.xpath_query(xml_doc, &quot;radius&quot;, false).to_s</span>
+42:         <span class="ruby-comment cmt"># ... isInGeo, isInCity</span>
+43:         
+44:         <span class="ruby-identifier">region_xml_doc</span>    = <span class="ruby-constant">IpLocationService</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">xml_doc</span>, <span class="ruby-value str">&quot;isInRegion&quot;</span>, <span class="ruby-keyword kw">false</span>)        
+45:         <span class="ruby-identifier">ipa</span>.<span class="ruby-identifier">is_in_region</span>  = <span class="ruby-constant">Region</span>.<span class="ruby-identifier">build_from_xml</span>(<span class="ruby-identifier">region_xml_doc</span>)
+46:       <span class="ruby-keyword kw">end</span>
+47:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">ipa</span>
+48:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000033" class="method-detail">
-        <a name="M000033"></a>
+      <div id="method-M000042" class="method-detail">
+        <a name="M000042"></a>
 
         <div class="method-heading">
-          <a href="IpAddressLocation.src/M000033.html" target="Code" class="method-signature"
-            onclick="popupCode('IpAddressLocation.src/M000033.html');return false;">
+          <a href="#M000042" class="method-signature">
           <span class="method-name">new</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000042-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000042-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/ip_location_service/ip_address_location.rb, line 6</span>
+ 6:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
+ 7:       <span class="ruby-ivar">@address</span>      = <span class="ruby-keyword kw">nil</span>
+ 8:       <span class="ruby-ivar">@ip_type</span>      = <span class="ruby-keyword kw">nil</span>
+ 9:       <span class="ruby-ivar">@is_in_region</span> = <span class="ruby-keyword kw">nil</span>
+10:       <span class="ruby-ivar">@is_in_city</span>   = <span class="ruby-keyword kw">nil</span>
+11:       <span class="ruby-ivar">@is_in_geo</span>    = <span class="ruby-keyword kw">nil</span>
+12:       <span class="ruby-ivar">@radius</span>       = <span class="ruby-keyword kw">nil</span>
+13:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000034" class="method-detail">
-        <a name="M000034"></a>
+      <div id="method-M000043" class="method-detail">
+        <a name="M000043"></a>
 
         <div class="method-heading">
-          <a href="IpAddressLocation.src/M000034.html" target="Code" class="method-signature"
-            onclick="popupCode('IpAddressLocation.src/M000034.html');return false;">
+          <a href="#M000043" class="method-signature">
           <span class="method-name">to_s</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000043-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000043-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/ip_location_service/ip_address_location.rb, line 15</span>
+15:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
+16:       <span class="ruby-identifier">ret</span> = <span class="ruby-node">&quot;Address: #{@address.to_s}, IP-Type: #{@ip_type.to_s}, #{@is_in_region.to_s}, &quot;</span>
+17:       <span class="ruby-identifier">ret</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;City: #{@is_in_city.to_s}, Geo: #{@is_in_geo.to_s}, Radius: #{@radius.to_s}&quot;</span>
+18:       <span class="ruby-identifier">ret</span>
+19:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 

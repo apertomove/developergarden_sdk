@@ -93,8 +93,8 @@ is yet or still valid. This is done to avoid unnecessary
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000047">token_invalid?</a>&nbsp;&nbsp;
-      <a href="#M000046">token_valid?</a>&nbsp;&nbsp;
+      <a href="#M000056">token_invalid?</a>&nbsp;&nbsp;
+      <a href="#M000055">token_valid?</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -116,12 +116,11 @@ is yet or still valid. This is done to avoid unnecessary
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000047" class="method-detail">
-        <a name="M000047"></a>
+      <div id="method-M000056" class="method-detail">
+        <a name="M000056"></a>
 
         <div class="method-heading">
-          <a href="SecurityTokenValidator.src/M000047.html" target="Code" class="method-signature"
-            onclick="popupCode('SecurityTokenValidator.src/M000047.html');return false;">
+          <a href="#M000056" class="method-signature">
           <span class="method-name">token_invalid?</span><span class="method-args">(security_token_xml)</span>
           </a>
         </div>
@@ -140,18 +139,27 @@ is yet or still valid. This is done to avoid unnecessary
 <h3>Returns</h3>
 <p>
 (logical) not <a
-href="SecurityTokenValidator.html#M000046">token_valid?</a>(security_token_xml)
+href="SecurityTokenValidator.html#M000055">token_valid?</a>(security_token_xml)
 Returns true if the security token is not valid!
 </p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000056-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000056-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/token_service/security_token_validator.rb, line 41</span>
+41:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">token_invalid?</span>(<span class="ruby-identifier">security_token_xml</span>)
+42:       <span class="ruby-keyword kw">return</span> <span class="ruby-operator">!</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">token_valid?</span>(<span class="ruby-identifier">security_token_xml</span>))
+43:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000046" class="method-detail">
-        <a name="M000046"></a>
+      <div id="method-M000055" class="method-detail">
+        <a name="M000055"></a>
 
         <div class="method-heading">
-          <a href="SecurityTokenValidator.src/M000046.html" target="Code" class="method-signature"
-            onclick="popupCode('SecurityTokenValidator.src/M000046.html');return false;">
+          <a href="#M000055" class="method-signature">
           <span class="method-name">token_valid?</span><span class="method-args">(security_token_xml)</span>
           </a>
         </div>
@@ -171,6 +179,28 @@ is yet or still valid. This is done to avoid unnecessary
 <p>
 Boolean indicating whether the security token is yet or still valid.
 </p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000055-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000055-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/token_service/security_token_validator.rb, line 17</span>
+17:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">token_valid?</span>(<span class="ruby-identifier">security_token_xml</span>)
+18:       <span class="ruby-identifier">doc</span> = <span class="ruby-constant">Nokogiri</span>.<span class="ruby-constant">XML</span>( <span class="ruby-identifier">security_token_xml</span> )
+19:       <span class="ruby-identifier">conditions_node_set</span> = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">xpath</span>(<span class="ruby-value str">&quot;//schema:Conditions&quot;</span>, <span class="ruby-value str">&quot;schema&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'urn:oasis:names:tc:SAML:2.0:assertion'</span>)
+20:       <span class="ruby-identifier">conditions_elment</span> = <span class="ruby-identifier">conditions_node_set</span>.<span class="ruby-identifier">first</span>
+21:       <span class="ruby-identifier">not_before</span> = <span class="ruby-identifier">conditions_elment</span>.<span class="ruby-identifier">get_attribute</span>(<span class="ruby-value str">'NotBefore'</span>)
+22:       <span class="ruby-identifier">not_on_or_after</span> = <span class="ruby-identifier">conditions_elment</span>.<span class="ruby-identifier">get_attribute</span>(<span class="ruby-value str">'NotOnOrAfter'</span>)
+23: 
+24:       <span class="ruby-identifier">date_not_before</span> = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">not_before</span>)
+25:       <span class="ruby-identifier">date_not_on_or_after</span> = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">not_on_or_after</span>)
+26: 
+27:       <span class="ruby-comment cmt"># Should be: date_not_before =&lt; now &lt; date_not_on_or_after</span>
+28:       <span class="ruby-identifier">ret</span> = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">between?</span>(<span class="ruby-identifier">date_not_before</span>, <span class="ruby-identifier">date_not_on_or_after</span>)
+29:           
+30:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">ret</span>
+31:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 

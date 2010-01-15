@@ -107,29 +107,29 @@ href="http://www.developergarden.com/static/docu/de/ch04s02s02.html">www.develop
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000125">CONFERENCE_CALL_SCHEMA</a>&nbsp;&nbsp;
-      <a href="#M000124">add_conference_template_participant</a>&nbsp;&nbsp;
-      <a href="#M000105">commit_conference</a>&nbsp;&nbsp;
-      <a href="#M000106">create_conference</a>&nbsp;&nbsp;
-      <a href="#M000116">create_conference_template</a>&nbsp;&nbsp;
-      <a href="#M000107">get_conference_list</a>&nbsp;&nbsp;
-      <a href="#M000108">get_conference_status</a>&nbsp;&nbsp;
-      <a href="#M000117">get_conference_template</a>&nbsp;&nbsp;
-      <a href="#M000120">get_conference_template_list</a>&nbsp;&nbsp;
-      <a href="#M000121">get_conference_template_participant</a>&nbsp;&nbsp;
-      <a href="#M000109">get_participant_status</a>&nbsp;&nbsp;
-      <a href="#M000115">get_running_conference</a>&nbsp;&nbsp;
-      <a href="#M000110">new_participant</a>&nbsp;&nbsp;
-      <a href="#M000104">on_create_document</a>&nbsp;&nbsp;
-      <a href="#M000112">remove_conference</a>&nbsp;&nbsp;
-      <a href="#M000119">remove_conference_template</a>&nbsp;&nbsp;
-      <a href="#M000123">remove_conference_template_participant</a>&nbsp;&nbsp;
-      <a href="#M000113">remove_participant</a>&nbsp;&nbsp;
-      <a href="#M000114">update_conference</a>&nbsp;&nbsp;
-      <a href="#M000118">update_conference_template</a>&nbsp;&nbsp;
-      <a href="#M000122">update_conference_template_participant</a>&nbsp;&nbsp;
-      <a href="#M000111">update_participant</a>&nbsp;&nbsp;
-      <a href="#M000126">xpath_query</a>&nbsp;&nbsp;
+      <a href="#M000139">CONFERENCE_CALL_SCHEMA</a>&nbsp;&nbsp;
+      <a href="#M000138">add_conference_template_participant</a>&nbsp;&nbsp;
+      <a href="#M000119">commit_conference</a>&nbsp;&nbsp;
+      <a href="#M000120">create_conference</a>&nbsp;&nbsp;
+      <a href="#M000130">create_conference_template</a>&nbsp;&nbsp;
+      <a href="#M000121">get_conference_list</a>&nbsp;&nbsp;
+      <a href="#M000122">get_conference_status</a>&nbsp;&nbsp;
+      <a href="#M000131">get_conference_template</a>&nbsp;&nbsp;
+      <a href="#M000134">get_conference_template_list</a>&nbsp;&nbsp;
+      <a href="#M000135">get_conference_template_participant</a>&nbsp;&nbsp;
+      <a href="#M000123">get_participant_status</a>&nbsp;&nbsp;
+      <a href="#M000129">get_running_conference</a>&nbsp;&nbsp;
+      <a href="#M000124">new_participant</a>&nbsp;&nbsp;
+      <a href="#M000118">on_create_document</a>&nbsp;&nbsp;
+      <a href="#M000126">remove_conference</a>&nbsp;&nbsp;
+      <a href="#M000133">remove_conference_template</a>&nbsp;&nbsp;
+      <a href="#M000137">remove_conference_template_participant</a>&nbsp;&nbsp;
+      <a href="#M000127">remove_participant</a>&nbsp;&nbsp;
+      <a href="#M000128">update_conference</a>&nbsp;&nbsp;
+      <a href="#M000132">update_conference_template</a>&nbsp;&nbsp;
+      <a href="#M000136">update_conference_template_participant</a>&nbsp;&nbsp;
+      <a href="#M000125">update_participant</a>&nbsp;&nbsp;
+      <a href="#M000140">xpath_query</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -151,12 +151,11 @@ href="http://www.developergarden.com/static/docu/de/ch04s02s02.html">www.develop
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000125" class="method-detail">
-        <a name="M000125"></a>
+      <div id="method-M000139" class="method-detail">
+        <a name="M000139"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000125.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000125.html');return false;">
+          <a href="#M000139" class="method-signature">
           <span class="method-name">CONFERENCE_CALL_SCHEMA</span><span class="method-args">()</span>
           </a>
         </div>
@@ -165,15 +164,24 @@ href="http://www.developergarden.com/static/docu/de/ch04s02s02.html">www.develop
           <p>
 Static Methods
 </p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000139-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000139-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 468</span>
+468:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-constant">CONFERENCE_CALL_SCHEMA</span>
+469:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@@CONFERENCE_CALL_SCHEMA</span>
+470:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000126" class="method-detail">
-        <a name="M000126"></a>
+      <div id="method-M000140" class="method-detail">
+        <a name="M000140"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000126.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000126.html');return false;">
+          <a href="#M000140" class="method-signature">
           <span class="method-name">xpath_query</span><span class="method-args">(doc, query_string, global_search = true)</span>
           </a>
         </div>
@@ -196,17 +204,26 @@ true</tt>.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000140-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000140-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 477</span>
+477:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">doc</span>, <span class="ruby-identifier">query_string</span>, <span class="ruby-identifier">global_search</span> = <span class="ruby-keyword kw">true</span>)
+478:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">xpath_query_for_schema</span>(<span class="ruby-ivar">@@CONFERENCE_CALL_SCHEMA</span>, <span class="ruby-identifier">doc</span>, <span class="ruby-identifier">query_string</span>, <span class="ruby-identifier">global_search</span>)
+479:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000124" class="method-detail">
-        <a name="M000124"></a>
+      <div id="method-M000138" class="method-detail">
+        <a name="M000138"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000124.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000124.html');return false;">
+          <a href="#M000138" class="method-signature">
           <span class="method-name">add_conference_template_participant</span><span class="method-args">(template_id, participant, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -227,15 +244,35 @@ Give the list of the templates of the given conference owner
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000138-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000138-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 450</span>
+450:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_conference_template_participant</span>(<span class="ruby-identifier">template_id</span>, <span class="ruby-identifier">participant</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+451:        <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:addConferenceTemplateParticipant&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+452:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'addConferenceTemplateParticipantRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">add_conference_template_participant_request</span><span class="ruby-operator">|</span>
+453:           <span class="ruby-identifier">add_conference_template_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+454:           <span class="ruby-identifier">add_conference_template_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'templateId'</span>, <span class="ruby-identifier">template_id</span>.<span class="ruby-identifier">to_s</span>)
+455:           <span class="ruby-identifier">add_conference_template_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'participant'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">participant_request</span><span class="ruby-operator">|</span>
+456:             <span class="ruby-identifier">participant</span>.<span class="ruby-identifier">add_to_handsoap_xml</span>(<span class="ruby-identifier">participant_request</span>)
+457:           <span class="ruby-keyword kw">end</span>
+458:           <span class="ruby-identifier">add_conference_template_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+459:         <span class="ruby-keyword kw">end</span>
+460:       <span class="ruby-keyword kw">end</span>
+461: 
+462:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">AddConferenceTemplateParticipantResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+463:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000105" class="method-detail">
-        <a name="M000105"></a>
+      <div id="method-M000119" class="method-detail">
+        <a name="M000119"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000105.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000105.html');return false;">
+          <a href="#M000119" class="method-signature">
           <span class="method-name">commit_conference</span><span class="method-args">(conference_id, environment = ServiceEnvironment.MOCK)</span>
           </a>
         </div>
@@ -254,15 +291,31 @@ href="../ServiceEnvironment.html">ServiceEnvironment</a>.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000119-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000119-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 62</span>
+62:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">commit_conference</span>(<span class="ruby-identifier">conference_id</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>)
+63:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:commitConference&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+64:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'commitConferenceRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">commit_request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+65:           <span class="ruby-identifier">commit_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'conferenceId'</span>, <span class="ruby-identifier">conference_id</span>)
+66:           <span class="ruby-identifier">commit_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+67:         <span class="ruby-keyword kw">end</span>
+68:       <span class="ruby-keyword kw">end</span>
+69: 
+70:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">CommitConferenceResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+71:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000106" class="method-detail">
-        <a name="M000106"></a>
+      <div id="method-M000120" class="method-detail">
+        <a name="M000120"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000106.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000106.html');return false;">
+          <a href="#M000120" class="method-signature">
           <span class="method-name">create_conference</span><span class="method-args">(owner_id, detail, schedule = nil, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -288,15 +341,43 @@ repeated on a regular basis.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000120-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000120-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 79</span>
+ 79:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_conference</span>(<span class="ruby-identifier">owner_id</span>, <span class="ruby-identifier">detail</span>, <span class="ruby-identifier">schedule</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+ 80:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:createConference&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+ 81:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'createConferenceRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">create_request</span><span class="ruby-operator">|</span>
+ 82:           <span class="ruby-identifier">create_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+ 83:           <span class="ruby-identifier">create_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'ownerId'</span>, <span class="ruby-identifier">owner_id</span>.<span class="ruby-identifier">to_s</span>)
+ 84:           <span class="ruby-identifier">create_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'detail'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">detail_request</span><span class="ruby-operator">|</span>
+ 85:             <span class="ruby-identifier">detail</span>.<span class="ruby-identifier">add_to_handsoap_xml</span>(<span class="ruby-identifier">detail_request</span>)
+ 86:           <span class="ruby-keyword kw">end</span>
+ 87: 
+ 88:           <span class="ruby-comment cmt"># schedule</span>
+ 89:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">schedule</span> <span class="ruby-keyword kw">then</span>
+ 90:             <span class="ruby-identifier">create_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'schedule'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">schedule_request</span><span class="ruby-operator">|</span>
+ 91:               <span class="ruby-identifier">schedule</span>.<span class="ruby-identifier">add_to_handsoap_xml</span>(<span class="ruby-identifier">schedule_request</span>)
+ 92:             <span class="ruby-keyword kw">end</span>
+ 93:           <span class="ruby-keyword kw">end</span>
+ 94: 
+ 95:           <span class="ruby-identifier">create_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+ 96:         <span class="ruby-keyword kw">end</span>
+ 97:       <span class="ruby-keyword kw">end</span>
+ 98: 
+ 99:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">CreateConferenceResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+100:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000116" class="method-detail">
-        <a name="M000116"></a>
+      <div id="method-M000130" class="method-detail">
+        <a name="M000130"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000116.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000116.html');return false;">
+          <a href="#M000130" class="method-signature">
           <span class="method-name">create_conference_template</span><span class="method-args">(owner_id, detail, participants = nil, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -321,15 +402,43 @@ href="ConferenceDetails.html">ConferenceDetails</a> Type
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000130-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000130-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 295</span>
+295:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_conference_template</span>(<span class="ruby-identifier">owner_id</span>, <span class="ruby-identifier">detail</span>, <span class="ruby-identifier">participants</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>,  <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+296:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:createConferenceTemplate&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+297:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'createConferenceTemplateRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">create_conference_template_request</span><span class="ruby-operator">|</span>
+298:           <span class="ruby-identifier">create_conference_template_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+299:           <span class="ruby-identifier">create_conference_template_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+300:           <span class="ruby-identifier">create_conference_template_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'ownerId'</span>, <span class="ruby-identifier">owner_id</span>.<span class="ruby-identifier">to_s</span>)
+301:           <span class="ruby-identifier">create_conference_template_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'detail'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">detail_request</span><span class="ruby-operator">|</span>
+302:             <span class="ruby-identifier">detail</span>.<span class="ruby-identifier">add_to_handsoap_xml</span>(<span class="ruby-identifier">detail_request</span>)
+303:           <span class="ruby-keyword kw">end</span>
+304: 
+305:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">participants</span> <span class="ruby-keyword kw">then</span>
+306:             <span class="ruby-identifier">participants</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">participant</span><span class="ruby-operator">|</span>
+307:               <span class="ruby-identifier">create_conference_template_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'participants'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">participant_request</span><span class="ruby-operator">|</span>
+308:                 <span class="ruby-identifier">participant</span>.<span class="ruby-identifier">add_to_handsoap_xml</span>(<span class="ruby-identifier">participant_request</span>)
+309:               <span class="ruby-keyword kw">end</span>
+310:             <span class="ruby-keyword kw">end</span>
+311:           <span class="ruby-keyword kw">end</span>
+312:         <span class="ruby-keyword kw">end</span>
+313:       <span class="ruby-keyword kw">end</span>
+314: 
+315:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">CreateConferenceTemplateResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+316:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000107" class="method-detail">
-        <a name="M000107"></a>
+      <div id="method-M000121" class="method-detail">
+        <a name="M000121"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000107.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000107.html');return false;">
+          <a href="#M000121" class="method-signature">
           <span class="method-name">get_conference_list</span><span class="method-args">(owner_id, what = ConferenceConstants.CONFERENCE_LIST_ALL, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -354,15 +463,35 @@ Retrieves spatial information about the given ip address.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000121-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000121-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 109</span>
+109:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_conference_list</span>(<span class="ruby-identifier">owner_id</span>, <span class="ruby-identifier">what</span> = <span class="ruby-constant">ConferenceConstants</span>.<span class="ruby-constant">CONFERENCE_LIST_ALL</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+110: 
+111:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:getConferenceList&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+112:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'getConferenceListRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">list_request</span><span class="ruby-operator">|</span>
+113:           <span class="ruby-identifier">list_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+114:           <span class="ruby-identifier">list_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'what'</span>, <span class="ruby-identifier">what</span>.<span class="ruby-identifier">to_s</span>)
+115:           <span class="ruby-identifier">list_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'ownerId'</span>, <span class="ruby-identifier">owner_id</span>.<span class="ruby-identifier">to_s</span>)
+116:           <span class="ruby-identifier">list_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+117:         <span class="ruby-keyword kw">end</span>
+118:       <span class="ruby-keyword kw">end</span>
+119: 
+120:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">GetConferenceListResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+121:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">response</span>
+122:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000108" class="method-detail">
-        <a name="M000108"></a>
+      <div id="method-M000122" class="method-detail">
+        <a name="M000122"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000108.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000108.html');return false;">
+          <a href="#M000122" class="method-signature">
           <span class="method-name">get_conference_status</span><span class="method-args">(conference_id, what = ConferenceConstants.CONFERENCE_LIST_ALL, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -383,15 +512,34 @@ Retrieves that status of the given conference.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000122-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000122-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 129</span>
+129:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_conference_status</span>(<span class="ruby-identifier">conference_id</span>, <span class="ruby-identifier">what</span> = <span class="ruby-constant">ConferenceConstants</span>.<span class="ruby-constant">CONFERENCE_LIST_ALL</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+130:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:getConferenceStatus&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+131:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'getConferenceStatusRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">status_request</span><span class="ruby-operator">|</span>
+132:           <span class="ruby-identifier">status_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+133:           <span class="ruby-identifier">status_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'what'</span>, <span class="ruby-identifier">what</span>.<span class="ruby-identifier">to_s</span>)
+134:           <span class="ruby-identifier">status_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'conferenceId'</span>, <span class="ruby-identifier">conference_id</span>.<span class="ruby-identifier">to_s</span>)
+135:           <span class="ruby-identifier">status_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+136:         <span class="ruby-keyword kw">end</span>
+137:       <span class="ruby-keyword kw">end</span>
+138: 
+139:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">GetConferenceStatusResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+140:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">response</span>
+141:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000117" class="method-detail">
-        <a name="M000117"></a>
+      <div id="method-M000131" class="method-detail">
+        <a name="M000131"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000117.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000117.html');return false;">
+          <a href="#M000131" class="method-signature">
           <span class="method-name">get_conference_template</span><span class="method-args">(template_id, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -409,15 +557,32 @@ Returns the confernece template with the given id.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000131-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000131-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 322</span>
+322:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_conference_template</span>(<span class="ruby-identifier">template_id</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>,  <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+323:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:getConferenceTemplate&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+324:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'getConferenceTemplateRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">get_conference_template_request</span><span class="ruby-operator">|</span>
+325:           <span class="ruby-identifier">get_conference_template_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+326:           <span class="ruby-identifier">get_conference_template_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'templateId'</span>, <span class="ruby-identifier">template_id</span>.<span class="ruby-identifier">to_s</span>)
+327:           <span class="ruby-identifier">get_conference_template_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+328:         <span class="ruby-keyword kw">end</span>
+329:       <span class="ruby-keyword kw">end</span>
+330:       
+331:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">GetConferenceTemplateResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+332:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000120" class="method-detail">
-        <a name="M000120"></a>
+      <div id="method-M000134" class="method-detail">
+        <a name="M000134"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000120.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000120.html');return false;">
+          <a href="#M000134" class="method-signature">
           <span class="method-name">get_conference_template_list</span><span class="method-args">(owner_id, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -435,15 +600,32 @@ Give the list of the templates of the given conference owner
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000134-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000134-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 375</span>
+375:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_conference_template_list</span>(<span class="ruby-identifier">owner_id</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>,  <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+376:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:getConferenceTemplateList&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+377:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'getConferenceTemplateListRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">get_conference_template_list_request</span><span class="ruby-operator">|</span>
+378:           <span class="ruby-identifier">get_conference_template_list_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+379:           <span class="ruby-identifier">get_conference_template_list_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'ownerId'</span>, <span class="ruby-identifier">owner_id</span>.<span class="ruby-identifier">to_s</span>)
+380:           <span class="ruby-identifier">get_conference_template_list_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+381:         <span class="ruby-keyword kw">end</span>
+382:       <span class="ruby-keyword kw">end</span>
+383: 
+384:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">GetConferenceTemplateListResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+385:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000121" class="method-detail">
-        <a name="M000121"></a>
+      <div id="method-M000135" class="method-detail">
+        <a name="M000135"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000121.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000121.html');return false;">
+          <a href="#M000135" class="method-signature">
           <span class="method-name">get_conference_template_participant</span><span class="method-args">(template_id, participant_id, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -464,15 +646,33 @@ Give the list of the templates of the given conference owner
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000135-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000135-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 392</span>
+392:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_conference_template_participant</span>(<span class="ruby-identifier">template_id</span>, <span class="ruby-identifier">participant_id</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+393:        <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:getConferenceTemplateParticipant&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+394:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'getConferenceTemplateParticipantRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">get_conference_template_participant_request</span><span class="ruby-operator">|</span>
+395:           <span class="ruby-identifier">get_conference_template_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+396:           <span class="ruby-identifier">get_conference_template_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'templateId'</span>, <span class="ruby-identifier">template_id</span>.<span class="ruby-identifier">to_s</span>)
+397:           <span class="ruby-identifier">get_conference_template_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'participantId'</span>, <span class="ruby-identifier">participant_id</span>.<span class="ruby-identifier">to_s</span>)
+398:           <span class="ruby-identifier">get_conference_template_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+399:         <span class="ruby-keyword kw">end</span>
+400:       <span class="ruby-keyword kw">end</span>
+401: 
+402:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">GetConferenceTemplateParticipantResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+403:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000109" class="method-detail">
-        <a name="M000109"></a>
+      <div id="method-M000123" class="method-detail">
+        <a name="M000123"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000109.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000109.html');return false;">
+          <a href="#M000123" class="method-signature">
           <span class="method-name">get_participant_status</span><span class="method-args">(conference_id, participant_id, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -493,15 +693,33 @@ Retrieves the status of the given participant in the specified conference.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000123-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000123-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 148</span>
+148:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_participant_status</span>(<span class="ruby-identifier">conference_id</span>, <span class="ruby-identifier">participant_id</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+149:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:getParticipantStatus&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+150:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'getParticipantStatusRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">new_participant_request</span><span class="ruby-operator">|</span>
+151:           <span class="ruby-identifier">new_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+152:           <span class="ruby-identifier">new_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+153:           <span class="ruby-identifier">new_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'conferenceId'</span>, <span class="ruby-identifier">conference_id</span>.<span class="ruby-identifier">to_s</span>)
+154:           <span class="ruby-identifier">new_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'participantId'</span>, <span class="ruby-identifier">participant_id</span>)
+155:         <span class="ruby-keyword kw">end</span>
+156:       <span class="ruby-keyword kw">end</span>
+157: 
+158:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">GetParticipantStatusResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)        
+159:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000115" class="method-detail">
-        <a name="M000115"></a>
+      <div id="method-M000129" class="method-detail">
+        <a name="M000129"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000115.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000115.html');return false;">
+          <a href="#M000129" class="method-signature">
           <span class="method-name">get_running_conference</span><span class="method-args">(conference_id, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -519,15 +737,32 @@ Tell whether a conference is running
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000129-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000129-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 277</span>
+277:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_running_conference</span>(<span class="ruby-identifier">conference_id</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>,  <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+278:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:getRunningConference&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+279:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'getRunningConferenceRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">get_running_conference_request</span><span class="ruby-operator">|</span>
+280:           <span class="ruby-identifier">get_running_conference_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+281:           <span class="ruby-identifier">get_running_conference_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'conferenceId'</span>, <span class="ruby-identifier">conference_id</span>.<span class="ruby-identifier">to_s</span>)
+282:           <span class="ruby-identifier">get_running_conference_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+283:         <span class="ruby-keyword kw">end</span>
+284:       <span class="ruby-keyword kw">end</span>
+285: 
+286:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">GetRunningConferenceResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+287:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000110" class="method-detail">
-        <a name="M000110"></a>
+      <div id="method-M000124" class="method-detail">
+        <a name="M000124"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000110.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000110.html');return false;">
+          <a href="#M000124" class="method-signature">
           <span class="method-name">new_participant</span><span class="method-args">(conference_id, participant, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -548,15 +783,35 @@ Adds the given participant to the specified conference.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000124-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000124-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 166</span>
+166:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new_participant</span>(<span class="ruby-identifier">conference_id</span>, <span class="ruby-identifier">participant</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+167:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:newParticipant&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+168:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'newParticipantRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">new_participant_request</span><span class="ruby-operator">|</span>
+169:           <span class="ruby-identifier">new_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+170:           <span class="ruby-identifier">new_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+171:           <span class="ruby-identifier">new_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'conferenceId'</span>, <span class="ruby-identifier">conference_id</span>.<span class="ruby-identifier">to_s</span>)
+172:           <span class="ruby-identifier">new_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'participant'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">participant_request</span><span class="ruby-operator">|</span>
+173:             <span class="ruby-identifier">participant</span>.<span class="ruby-identifier">add_to_handsoap_xml</span>(<span class="ruby-identifier">participant_request</span>)
+174:           <span class="ruby-keyword kw">end</span>
+175:         <span class="ruby-keyword kw">end</span>
+176:       <span class="ruby-keyword kw">end</span>
+177: 
+178:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">NewParticipantResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+179:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000104" class="method-detail">
-        <a name="M000104"></a>
+      <div id="method-M000118" class="method-detail">
+        <a name="M000118"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000104.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000104.html');return false;">
+          <a href="#M000118" class="method-signature">
           <span class="method-name">on_create_document</span><span class="method-args">(doc)</span>
           </a>
         </div>
@@ -565,15 +820,25 @@ Adds the given participant to the specified conference.
           <p>
 Add namespaces to the handsoap XmlMason document.
 </p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000118-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000118-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 53</span>
+53:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">on_create_document</span>(<span class="ruby-identifier">doc</span>)
+54:       <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">doc</span>)
+55:       <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">alias</span> <span class="ruby-value str">'cc'</span>, <span class="ruby-ivar">@@CONFERENCE_CALL_SCHEMA</span>
+56:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000112" class="method-detail">
-        <a name="M000112"></a>
+      <div id="method-M000126" class="method-detail">
+        <a name="M000126"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000112.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000112.html');return false;">
+          <a href="#M000126" class="method-signature">
           <span class="method-name">remove_conference</span><span class="method-args">(conference_id, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -591,15 +856,32 @@ Removes the given conference.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000126-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000126-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 213</span>
+213:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_conference</span>(<span class="ruby-identifier">conference_id</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+214:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:removeConference&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+215:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'removeConferenceRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">remove_conference_request</span><span class="ruby-operator">|</span>
+216:           <span class="ruby-identifier">remove_conference_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+217:           <span class="ruby-identifier">remove_conference_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'conferenceId'</span>, <span class="ruby-identifier">conference_id</span>.<span class="ruby-identifier">to_s</span>)
+218:           <span class="ruby-identifier">remove_conference_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+219:         <span class="ruby-keyword kw">end</span>
+220:       <span class="ruby-keyword kw">end</span>
+221: 
+222:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">RemoveConferenceResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+223:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000119" class="method-detail">
-        <a name="M000119"></a>
+      <div id="method-M000133" class="method-detail">
+        <a name="M000133"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000119.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000119.html');return false;">
+          <a href="#M000133" class="method-signature">
           <span class="method-name">remove_conference_template</span><span class="method-args">(template_id, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -614,15 +896,32 @@ Removes the given conference.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000133-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000133-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 359</span>
+359:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_conference_template</span>(<span class="ruby-identifier">template_id</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>,  <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+360:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:removeConferenceTemplate&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+361:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'getConferenceTemplateRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">remove_conference_template_request</span><span class="ruby-operator">|</span>
+362:           <span class="ruby-identifier">remove_conference_template_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+363:           <span class="ruby-identifier">remove_conference_template_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'templateId'</span>, <span class="ruby-identifier">template_id</span>.<span class="ruby-identifier">to_s</span>)
+364:           <span class="ruby-identifier">remove_conference_template_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+365:         <span class="ruby-keyword kw">end</span>
+366:       <span class="ruby-keyword kw">end</span>
+367:       
+368:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">RemoveConferenceTemplateResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+369:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000123" class="method-detail">
-        <a name="M000123"></a>
+      <div id="method-M000137" class="method-detail">
+        <a name="M000137"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000123.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000123.html');return false;">
+          <a href="#M000137" class="method-signature">
           <span class="method-name">remove_conference_template_participant</span><span class="method-args">(template_id, participant_id, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -643,15 +942,33 @@ Give the list of the templates of the given conference owner
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000137-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000137-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 432</span>
+432:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_conference_template_participant</span>(<span class="ruby-identifier">template_id</span>, <span class="ruby-identifier">participant_id</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+433:        <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:removeConferenceTemplateParticipant&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+434:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'removeConferenceTemplateParticipantRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">remove_conference_template_participant_request</span><span class="ruby-operator">|</span>
+435:           <span class="ruby-identifier">remove_conference_template_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+436:           <span class="ruby-identifier">remove_conference_template_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'templateId'</span>, <span class="ruby-identifier">template_id</span>.<span class="ruby-identifier">to_s</span>)
+437:           <span class="ruby-identifier">remove_conference_template_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'participantId'</span>, <span class="ruby-identifier">participant_id</span>.<span class="ruby-identifier">to_s</span>)
+438:           <span class="ruby-identifier">remove_conference_template_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+439:         <span class="ruby-keyword kw">end</span>
+440:       <span class="ruby-keyword kw">end</span>
+441: 
+442:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">RemoveConferenceTemplateParticipantResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+443:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000113" class="method-detail">
-        <a name="M000113"></a>
+      <div id="method-M000127" class="method-detail">
+        <a name="M000127"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000113.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000113.html');return false;">
+          <a href="#M000127" class="method-signature">
           <span class="method-name">remove_participant</span><span class="method-args">(conference_id, participant_id, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -672,15 +989,33 @@ Retrieves that status of the given conference.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000127-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000127-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 230</span>
+230:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_participant</span>(<span class="ruby-identifier">conference_id</span>, <span class="ruby-identifier">participant_id</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+231:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:removeParticipant&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+232:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'removeParticipantRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">remove_request</span><span class="ruby-operator">|</span>
+233:           <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+234:           <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+235:           <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'conferenceId'</span>, <span class="ruby-identifier">conference_id</span>.<span class="ruby-identifier">to_s</span>)
+236:           <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'participantId'</span>, <span class="ruby-identifier">participant_id</span>.<span class="ruby-identifier">to_s</span>)
+237:         <span class="ruby-keyword kw">end</span>
+238:       <span class="ruby-keyword kw">end</span>
+239: 
+240:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">RemoveParticipantResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+241:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000114" class="method-detail">
-        <a name="M000114"></a>
+      <div id="method-M000128" class="method-detail">
+        <a name="M000128"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000114.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000114.html');return false;">
+          <a href="#M000128" class="method-signature">
           <span class="method-name">update_conference</span><span class="method-args">(conference_id, conference_details = nil, schedule = nil, initiator_id = nil, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -701,15 +1036,45 @@ Updates an existing conference.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000128-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000128-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 248</span>
+248:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_conference</span>(<span class="ruby-identifier">conference_id</span>, <span class="ruby-identifier">conference_details</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">schedule</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">initiator_id</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+249:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:updateConference&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+250:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'updateConferenceRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">remove_request</span><span class="ruby-operator">|</span>
+251:           <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+252:           <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+253:           <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'conferenceId'</span>, <span class="ruby-identifier">conference_id</span>.<span class="ruby-identifier">to_s</span>)
+254:           <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'initiatorId'</span>, <span class="ruby-identifier">initiator_id</span>.<span class="ruby-identifier">to_s</span>)
+255: 
+256:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">conference_details</span> <span class="ruby-keyword kw">then</span>
+257:             <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'detail'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">detail_request</span><span class="ruby-operator">|</span>
+258:               <span class="ruby-identifier">conference_details</span>.<span class="ruby-identifier">add_to_handsoap_xml</span>(<span class="ruby-identifier">detail_request</span>)
+259:             <span class="ruby-keyword kw">end</span>
+260:           <span class="ruby-keyword kw">end</span>
+261: 
+262:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">schedule</span> <span class="ruby-keyword kw">then</span>
+263:             <span class="ruby-identifier">remove_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'schedule'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">schedule_request</span><span class="ruby-operator">|</span>
+264:               <span class="ruby-identifier">schedule</span>.<span class="ruby-identifier">add_to_handsoap_xml</span>(<span class="ruby-identifier">schedule_request</span>)
+265:             <span class="ruby-keyword kw">end</span>
+266:           <span class="ruby-keyword kw">end</span>
+267:         <span class="ruby-keyword kw">end</span>
+268:       <span class="ruby-keyword kw">end</span>
+269: 
+270:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">UpdateConferenceResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+271:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000118" class="method-detail">
-        <a name="M000118"></a>
+      <div id="method-M000132" class="method-detail">
+        <a name="M000132"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000118.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000118.html');return false;">
+          <a href="#M000132" class="method-signature">
           <span class="method-name">update_conference_template</span><span class="method-args">(template_id, initiator_id, detail, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -733,15 +1098,36 @@ Updates the specified conference with the given parameters.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000132-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000132-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 340</span>
+340:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_conference_template</span>(<span class="ruby-identifier">template_id</span>, <span class="ruby-identifier">initiator_id</span>, <span class="ruby-identifier">detail</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>,  <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+341:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:updateConferenceTemplate&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+342:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'updateConferenceTemplateRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">update_conference_template_request</span><span class="ruby-operator">|</span>
+343:           <span class="ruby-identifier">update_conference_template_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+344:           <span class="ruby-identifier">update_conference_template_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'templateId'</span>, <span class="ruby-identifier">template_id</span>.<span class="ruby-identifier">to_s</span>)
+345:           <span class="ruby-identifier">update_conference_template_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'initiatorId'</span>, <span class="ruby-identifier">initiator_id</span>.<span class="ruby-identifier">to_s</span>)
+346:           <span class="ruby-identifier">update_conference_template_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'detail'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">detail_request</span><span class="ruby-operator">|</span>
+347:             <span class="ruby-identifier">detail</span>.<span class="ruby-identifier">add_to_handsoap_xml</span>(<span class="ruby-identifier">detail_request</span>)
+348:           <span class="ruby-keyword kw">end</span>
+349:           <span class="ruby-identifier">update_conference_template_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+350:         <span class="ruby-keyword kw">end</span>
+351:       <span class="ruby-keyword kw">end</span>
+352: 
+353:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">UpdateConferenceTemplateResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+354:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000122" class="method-detail">
-        <a name="M000122"></a>
+      <div id="method-M000136" class="method-detail">
+        <a name="M000136"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000122.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000122.html');return false;">
+          <a href="#M000136" class="method-signature">
           <span class="method-name">update_conference_template_participant</span><span class="method-args">(template_id, participant_id, participant, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -765,15 +1151,36 @@ Update the details of a given participant
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000136-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000136-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 411</span>
+411:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_conference_template_participant</span>(<span class="ruby-identifier">template_id</span>, <span class="ruby-identifier">participant_id</span>, <span class="ruby-identifier">participant</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+412:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:updateConferenceTemplateParticipant&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+413:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'updateConferenceTemplateParticipantRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">update_conference_template_participant_request</span><span class="ruby-operator">|</span>
+414:           <span class="ruby-identifier">update_conference_template_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+415:           <span class="ruby-identifier">update_conference_template_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'templateId'</span>, <span class="ruby-identifier">template_id</span>.<span class="ruby-identifier">to_s</span>)
+416:           <span class="ruby-identifier">update_conference_template_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'participantId'</span>, <span class="ruby-identifier">participant_id</span>.<span class="ruby-identifier">to_s</span>)
+417:           <span class="ruby-identifier">update_conference_template_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'participant'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">participant_request</span><span class="ruby-operator">|</span>
+418:             <span class="ruby-identifier">participant</span>.<span class="ruby-identifier">add_to_handsoap_xml</span>(<span class="ruby-identifier">participant_request</span>)
+419:           <span class="ruby-keyword kw">end</span>
+420:           <span class="ruby-identifier">update_conference_template_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+421:         <span class="ruby-keyword kw">end</span>
+422:       <span class="ruby-keyword kw">end</span>
+423: 
+424:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">UpdateConferenceTemplateParticipantResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+425:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000111" class="method-detail">
-        <a name="M000111"></a>
+      <div id="method-M000125" class="method-detail">
+        <a name="M000125"></a>
 
         <div class="method-heading">
-          <a href="ConferenceCallService.src/M000111.html" target="Code" class="method-signature"
-            onclick="popupCode('ConferenceCallService.src/M000111.html');return false;">
+          <a href="#M000125" class="method-signature">
           <span class="method-name">update_participant</span><span class="method-args">(conference_id, participant_id, participant_detail = nil, action = nil, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -803,6 +1210,32 @@ the corresponding constants.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000125-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000125-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/conference_call_service/conference_call_service.rb, line 189</span>
+189:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_participant</span>(<span class="ruby-identifier">conference_id</span>, <span class="ruby-identifier">participant_id</span>, <span class="ruby-identifier">participant_detail</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">action</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+190:       <span class="ruby-identifier">response_xml</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;cc:updateParticipant&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+191:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'updateParticipantRequest'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">update_participant_request</span><span class="ruby-operator">|</span>
+192:           <span class="ruby-identifier">update_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+193:           <span class="ruby-identifier">update_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+194:           <span class="ruby-identifier">update_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'conferenceId'</span>, <span class="ruby-identifier">conference_id</span>.<span class="ruby-identifier">to_s</span>)
+195:           <span class="ruby-identifier">update_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'participantId'</span>, <span class="ruby-identifier">participant_id</span>.<span class="ruby-identifier">to_s</span>)
+196:           <span class="ruby-identifier">update_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'action'</span>, <span class="ruby-identifier">action</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">action</span>
+197: 
+198:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">participant_detail</span> <span class="ruby-keyword kw">then</span>
+199:             <span class="ruby-identifier">update_participant_request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'participant'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">participant_request</span><span class="ruby-operator">|</span>
+200:               <span class="ruby-identifier">participant_detail</span>.<span class="ruby-identifier">add_to_handsoap_xml</span>(<span class="ruby-identifier">participant_request</span>)
+201:             <span class="ruby-keyword kw">end</span>
+202:           <span class="ruby-keyword kw">end</span>
+203:         <span class="ruby-keyword kw">end</span>
+204:       <span class="ruby-keyword kw">end</span>
+205: 
+206:       <span class="ruby-identifier">response</span> = <span class="ruby-constant">UpdateParticipantResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response_xml</span>)
+207:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 

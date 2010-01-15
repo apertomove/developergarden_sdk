@@ -107,9 +107,9 @@ href="http://www.developergarden.com/static/docu/de/ch04s02s06.html">www.develop
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000031">IP_LOCATON_SCHEMA</a>&nbsp;&nbsp;
-      <a href="#M000030">locate_ip</a>&nbsp;&nbsp;
-      <a href="#M000032">xpath_query</a>&nbsp;&nbsp;
+      <a href="#M000040">IP_LOCATON_SCHEMA</a>&nbsp;&nbsp;
+      <a href="#M000039">locate_ip</a>&nbsp;&nbsp;
+      <a href="#M000041">xpath_query</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -131,12 +131,11 @@ href="http://www.developergarden.com/static/docu/de/ch04s02s06.html">www.develop
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000031" class="method-detail">
-        <a name="M000031"></a>
+      <div id="method-M000040" class="method-detail">
+        <a name="M000040"></a>
 
         <div class="method-heading">
-          <a href="IpLocationService.src/M000031.html" target="Code" class="method-signature"
-            onclick="popupCode('IpLocationService.src/M000031.html');return false;">
+          <a href="#M000040" class="method-signature">
           <span class="method-name">IP_LOCATON_SCHEMA</span><span class="method-args">()</span>
           </a>
         </div>
@@ -145,15 +144,24 @@ href="http://www.developergarden.com/static/docu/de/ch04s02s06.html">www.develop
           <p>
 Static Methods
 </p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000040-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000040-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/ip_location_service/ip_location_service.rb, line 65</span>
+65:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-constant">IP_LOCATON_SCHEMA</span>
+66:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@@IP_LOCATON_SCHEMA</span>
+67:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000032" class="method-detail">
-        <a name="M000032"></a>
+      <div id="method-M000041" class="method-detail">
+        <a name="M000041"></a>
 
         <div class="method-heading">
-          <a href="IpLocationService.src/M000032.html" target="Code" class="method-signature"
-            onclick="popupCode('IpLocationService.src/M000032.html');return false;">
+          <a href="#M000041" class="method-signature">
           <span class="method-name">xpath_query</span><span class="method-args">(doc, query_string, global_search = true)</span>
           </a>
         </div>
@@ -176,17 +184,26 @@ true</tt>.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000041-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000041-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/ip_location_service/ip_location_service.rb, line 75</span>
+75:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">xpath_query</span>(<span class="ruby-identifier">doc</span>, <span class="ruby-identifier">query_string</span>, <span class="ruby-identifier">global_search</span> = <span class="ruby-keyword kw">true</span>)
+76:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">xpath_query_for_schema</span>(<span class="ruby-ivar">@@IP_LOCATION_SCHEMA</span>, <span class="ruby-identifier">doc</span>, <span class="ruby-identifier">query_string</span>, <span class="ruby-identifier">global_search</span>)
+77:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000030" class="method-detail">
-        <a name="M000030"></a>
+      <div id="method-M000039" class="method-detail">
+        <a name="M000039"></a>
 
         <div class="method-heading">
-          <a href="IpLocationService.src/M000030.html" target="Code" class="method-signature"
-            onclick="popupCode('IpLocationService.src/M000030.html');return false;">
+          <a href="#M000039" class="method-signature">
           <span class="method-name">locate_ip</span><span class="method-args">(ip_addresses, environment = ServiceEnvironment.MOCK, account = nil)</span>
           </a>
         </div>
@@ -209,6 +226,39 @@ location. Can be a single ip address or an array. of ip addresses.
 
 </td></tr>
 </table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000039-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000039-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/ip_location_service/ip_location_service.rb, line 36</span>
+36:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">locate_ip</span>(<span class="ruby-identifier">ip_addresses</span>, <span class="ruby-identifier">environment</span> = <span class="ruby-constant">ServiceEnvironment</span>.<span class="ruby-constant">MOCK</span>, <span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>)
+37:       <span class="ruby-identifier">ip_location_response</span> = <span class="ruby-keyword kw">nil</span>
+38: 
+39:       <span class="ruby-identifier">response</span> = <span class="ruby-identifier">invoke_authenticated</span>(<span class="ruby-value str">&quot;locateIP&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">request</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
+40:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'environment'</span>, <span class="ruby-identifier">environment</span>)
+41: 
+42:         <span class="ruby-comment cmt"># If only a single ip has been passed create an array from it to have a more uniform processing afterwards.</span>
+43:         <span class="ruby-identifier">ip_addresses</span> = [<span class="ruby-identifier">ip_addresses</span>] <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">ip_addresses</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+44: 
+45:         <span class="ruby-identifier">ip_addresses</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ip_address</span><span class="ruby-operator">|</span>
+46: 
+47:           <span class="ruby-comment cmt"># If there are string ips convert them to IpAddress objects.</span>
+48:           <span class="ruby-identifier">ip_address</span> = <span class="ruby-constant">IpAddress</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">ip_address</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ip_address</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+49: 
+50:           <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'address'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">address</span><span class="ruby-operator">|</span>
+51:             <span class="ruby-identifier">address</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'ipType'</span>, <span class="ruby-identifier">ip_address</span>.<span class="ruby-identifier">ip_type</span>)
+52:             <span class="ruby-identifier">address</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'ipAddress'</span>, <span class="ruby-identifier">ip_address</span>.<span class="ruby-identifier">ip_address</span>)
+53:           <span class="ruby-keyword kw">end</span>
+54:         <span class="ruby-keyword kw">end</span>
+55:         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value str">'account'</span>, <span class="ruby-identifier">account</span>) <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">account</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account</span>.<span class="ruby-identifier">empty?</span>)
+56:       <span class="ruby-keyword kw">end</span>
+57: 
+58:       <span class="ruby-identifier">ip_location_response</span> = <span class="ruby-constant">IpLocationResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">response</span>)
+59: 
+60:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">ip_location_response</span>
+61:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 

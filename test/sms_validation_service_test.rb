@@ -18,14 +18,13 @@ class TestSendSmsService < Test::Unit::TestCase
   def test_send_validation_keyword
 
     # Create SmsService instance
-    message = "Das Keyword zur Validierung Ihrer Rufnummer lautet #key# und gŸltig bix #validUntil#."
+    message = "Das Keyword zur Validierung Ihrer Rufnummer lautet #key# und gï¿½ltig bix #validUntil#."
     number  = "+49-12345678"
     originator = "McGuyver"
 
     sms_response = @service.send_validation_keyword(message, number, originator, ServiceEnvironment.MOCK)    
 
-    assert_equal("0000", sms_response.error_code, "Error code was not 0000 (success).")
-    assert_equal(SUCCESS_MESSAGE, sms_response.error_message, "Request was not successful.")
+    assert_equal("0000", sms_response.error_code, "Error code was not 0000 (success).")    
   end
 
   def test_validate
@@ -36,8 +35,7 @@ class TestSendSmsService < Test::Unit::TestCase
     
     sms_response = @service.validate(keyword, number, ServiceEnvironment.MOCK)
 
-    assert_equal("0000", sms_response.error_code, "Error code was not 0000 (success).")
-    assert_equal(SUCCESS_MESSAGE, sms_response.error_message, "Request was not successful.")
+    assert_equal("0000", sms_response.error_code, "Error code was not 0000 (success).")    
   end
 
   def test_invalidate
@@ -45,15 +43,13 @@ class TestSendSmsService < Test::Unit::TestCase
 
     sms_response = @service.invalidate(number, ServiceEnvironment.MOCK)
 
-    assert_equal("0000", sms_response.error_code, "Error code was not 0000 (success).")
-    assert_equal(SUCCESS_MESSAGE, sms_response.error_message, "Request was not successful.")
+    assert_equal("0000", sms_response.error_code, "Error code was not 0000 (success).")    
   end
 
   def test_get_validated_numbers
     sms_response = @service.get_validated_numbers(ServiceEnvironment.MOCK)
 
-    assert_equal("0000", sms_response.error_code, "Error code was not 0000 (success).")
-    assert_equal(SUCCESS_MESSAGE, sms_response.error_message, "Request was not successful.")
+    assert_equal("0000", sms_response.error_code, "Error code was not 0000 (success).")    
     assert_instance_of(Array, sms_response.validated_numbers)
     assert_not_nil(sms_response.validated_numbers.first.number)
     assert_not_nil(sms_response.validated_numbers.first.validated_until)

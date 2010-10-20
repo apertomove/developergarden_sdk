@@ -1,8 +1,4 @@
-#!/usr/bin/env ruby
-
-require 'test/unit'
-
-require File.dirname(__FILE__) + '/../lib/quota_service/quota_service'
+require File.join(File.dirname(__FILE__), 'test_helper')
 
 class QuotaServiceTest < Test::Unit::TestCase
 

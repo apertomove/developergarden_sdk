@@ -1,10 +1,4 @@
-#!/usr/bin/env ruby -d
-
-# To be run from the lib folder
-
-require 'test/unit'
-
-require File.dirname(__FILE__) + '/../lib/voice_call_service/voice_call_service'
+require File.join(File.dirname(__FILE__), 'test_helper')
 
 class VoiceCallServiceTest < Test::Unit::TestCase
 
@@ -23,7 +17,7 @@ class VoiceCallServiceTest < Test::Unit::TestCase
     voice_call = @voice_call_service.new_call("+4932-000001", "+4932-000003", 1, 2, ServiceEnvironment.MOCK)
 
     assert_equal("0000", voice_call.error_code, "Error code was not 0000 (success).")
-    assert_equal("the request was successful", voice_call.error_message, "Request was not successful.")
+    assert_equal("The request was successful.", voice_call.error_message, "Request was not successful.")
   end
 
   # Initiate new call with an invalid a_number.
@@ -49,7 +43,7 @@ class VoiceCallServiceTest < Test::Unit::TestCase
     voice_call = @voice_call_service.new_call("+4932-000004", "+4932-000004", 10, 10, ServiceEnvironment.MOCK)
 
     assert_equal("0000", voice_call.error_code, "Error code was not 0000 (success).")
-    assert_equal("the request was successful", voice_call.error_message, "Request was not successful.")
+    assert_equal("The request was successful.", voice_call.error_message, "Request was not successful.")
   end
 
   # Initiate new call with:
@@ -59,7 +53,7 @@ class VoiceCallServiceTest < Test::Unit::TestCase
     voice_call = @voice_call_service.new_call("+4932-000001", "+4932-000003", 1, 2, ServiceEnvironment.MOCK, true, true)
 
     assert_equal("0000", voice_call.error_code, "Error code was not 0000 (success).")
-    assert_equal("the request was successful", voice_call.error_message, "Request was not successful.")
+    assert_equal("The request was successful.", voice_call.error_message, "Request was not successful.")
   end
 
   # Test new sequenced call:
@@ -69,7 +63,7 @@ class VoiceCallServiceTest < Test::Unit::TestCase
     voice_call = @voice_call_service.new_call_sequenced("+4932-000001", ["+4932-000003", "+4932-000002"], 1, 2)
 
     assert_equal("0000", voice_call.error_code, "Error code was not 0000 (success).")
-    assert_equal("the request was successful", voice_call.error_message, "Request was not successful.")
+    assert_equal("The request was successful.", voice_call.error_message, "Request was not successful.")
   end
 
   # Test new sequenced call with an invalid a number
@@ -99,7 +93,7 @@ class VoiceCallServiceTest < Test::Unit::TestCase
     voice_call = @voice_call_service.call_status(session_id, ServiceEnvironment.SANDBOX, keep_alive = 1)
 
     assert_equal("0000", voice_call.error_code, "Error code was not 0000 (success).")
-    assert_equal("the request was successful", voice_call.error_message, "Request was not successful.")
+    assert_equal("The request was successful.", voice_call.error_message, "Request was not successful.")
   end
 
   # Invoke call status with an invalid session id
@@ -119,7 +113,7 @@ class VoiceCallServiceTest < Test::Unit::TestCase
     teardown_response = @voice_call_service.teardown_call(session_id, ServiceEnvironment.SANDBOX)
 
     assert_equal("0000", teardown_response.error_code, "Error code was not 0000 (success).")
-    assert_equal("the request was successful", teardown_response.error_message, "Request was not successful.")
+    assert_equal("The request was successful.", teardown_response.error_message, "Request was not successful.")
   end
 
   # Initiates a call and cancels it by calling teardown_call with an invalid session id.

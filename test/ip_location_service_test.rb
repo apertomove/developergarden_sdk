@@ -1,12 +1,4 @@
-#!/usr/bin/env ruby
-
-# To be run from the lib folder
-
-require 'test/unit'
-#require 'iconv'
-
-
-require File.dirname(__FILE__) + '/../lib/ip_location_service/ip_location_service'
+require File.join(File.dirname(__FILE__), 'test_helper')
 
 class IpLocationServiceTest < Test::Unit::TestCase
 

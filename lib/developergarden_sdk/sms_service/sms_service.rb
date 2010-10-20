@@ -65,7 +65,7 @@ module SmsService
     def send_sms_common(action_name, numbers, sms_message, originator, environment = 2, account = "")
 
       # Cut originator down to 11 characters, unless number is validated
-      originator = originator[0, 11] unless originator =~ ^\+
+      originator = originator[0, 11] unless originator =~ /^\+/
 
       response = invoke_authenticated(action_name) do |message, doc|
         message.add("request") do |request|

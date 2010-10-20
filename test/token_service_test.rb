@@ -1,8 +1,4 @@
-#!/usr/bin/env ruby
-
-require 'test/unit'
-require File.dirname(__FILE__) + '/../lib/token_service/token_service'
-require File.dirname(__FILE__) + '/../lib/token_service/security_token_validator'
+require File.join(File.dirname(__FILE__), 'test_helper')
 
 class TokenServiceTest < Test::Unit::TestCase
  

@@ -1,11 +1,4 @@
-#!/usr/bin/env ruby
-
-# To be run from the lib folder
-
-require 'test/unit'
-
-require File.dirname(__FILE__) + '/../lib/conference_call_service/conference_call_service'
-
+require File.join(File.dirname(__FILE__), 'test_helper')
 
 # Some ot the tests here run against the sandbox while most run against the mock environment.
 # The mock environment currently does not allow a complete test coverage so these cases are covered

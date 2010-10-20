@@ -1,6 +1,4 @@
-require 'test/unit'
-require File.dirname(__FILE__) + '/../lib/sms_service/sms_validation_service'
-require File.dirname(__FILE__) + '/../lib/service_environment'
+require File.join(File.dirname(__FILE__), 'test_helper')
 
 class TestSendSmsService < Test::Unit::TestCase
 

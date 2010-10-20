@@ -58,14 +58,14 @@ module SmsService
     # ===Parameters
     # <tt>numbers</tt>:: Up to 10 receivers can be specified separated by commas (",").
     # <tt>sms_message</tt>:: Actual message. Can be up to 765 characters. A sms will be charged for each 153 chars.
-    # <tt>originator</tt>:: String to be displayed as the originator of the message.
+    # <tt>originator</tt>:: String to be displayed as the originator of the message, or validated number.
     # Max. 11 characters. Further chars will be cut of. Allowed chars are [a-zA-Z0-9].
     # <tt>environment</tt>:: Service environment as defined in ServiceEnvironment.
     # <tt>account</tt>:: Currently unused
     def send_sms_common(action_name, numbers, sms_message, originator, environment = 2, account = "")
 
-      # Cut originator down to 11 characters
-      originator = originator[0, 11]
+      # Cut originator down to 11 characters, unless number is validated
+      originator = originator[0, 11] unless originator =~ ^\+
 
       response = invoke_authenticated(action_name) do |message, doc|
         message.add("request") do |request|

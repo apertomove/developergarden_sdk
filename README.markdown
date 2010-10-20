@@ -22,11 +22,6 @@ Using bundler
   
 You can use the gem from any Ruby or Ruby on Rails applications. For examples see the examples folder.
 
-# More Examples
-In order to see more examples have a look the unit tests included in the gem's source code.
-You might also want to have a look at the actual source code and source code comments.
-
-
 # More Information
 More information about developer garden services can be found at:
  http://www.developergarden.com

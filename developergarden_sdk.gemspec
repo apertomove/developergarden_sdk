@@ -18,4 +18,9 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
+  
+  s.add_dependency('htmlentities', '>= 4.0.0')
+  s.add_dependency('handsoap', '1.1.4')
+  s.add_dependency('nokogiri', '>= 1.4.0')
+  s.add_dependency('httpclient', '2.1.5.2')
 end

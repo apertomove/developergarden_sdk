@@ -4,27 +4,19 @@ For more details about the services see
 
  http://www.developergarden.com
 
-Depending on your operating system you might want to skip the "sudo" command prior to the
-commands listed here.
-
-
 # Installation
 
-Using rvm
+Assuming you are using rvm:
  
     $ gem install developergarden_sdk
 
-Using bundler
+Or bundler:
 
     $ gem 'developergarden_sdk', :git => 'git://github.com/nicolai86/developergarden_sdk.git'
 
-# Basic usage
-  
-You can use the gem from any Ruby or Ruby on Rails applications. For examples see the examples folder.
-
-# More Information
+**See the examples folder for details on how to use the gem.**
 More information about developer garden services can be found at:
- http://www.developergarden.com
+ [http://www.developergarden.com](http://www.developergarden.com)
 
 # FAQ
 ## Did not understand "MustUnderstand" header(s)

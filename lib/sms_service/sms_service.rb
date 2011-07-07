@@ -64,9 +64,6 @@ module SmsService
     # <tt>account</tt>:: Currently unused
     def send_sms_common(action_name, numbers, sms_message, originator, environment = 2, account = "")
 
-      # Cut originator down to 11 characters
-      originator = originator[0, 11]
-
       response = invoke_authenticated(action_name) do |message, doc|
         message.add("request") do |request|
           request.add('environment', environment)
